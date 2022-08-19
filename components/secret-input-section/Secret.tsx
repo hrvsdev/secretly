@@ -15,6 +15,18 @@ const SecretWrapper = styled.div`
   flex-direction: column;
 `;
 
-const Textarea = styled.textarea``;
+const Textarea = styled.textarea`
+  margin-bottom: 1.5rem;
+  height: 10rem;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1rem;
+`;
 
-const Button = styled.button``;
+const Button = styled.button`
+  width: fit-content;
+  font-size: 1rem;
+  padding: 5px 10px;
+  outline: 0;
+  cursor: pointer;
+`;

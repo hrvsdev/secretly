@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@emotion/styled": "^11.10.0",
+    "@hookstate/core": "^4.0.0-rc21",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
