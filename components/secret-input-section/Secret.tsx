@@ -1,5 +1,5 @@
+import { Button } from "@mantine/core";
+
 export default function Secret(): JSX.Element {
-  return (
-    <div>Secret</div>
-  )
+  return <Button>Click me!</Button>;
 }
