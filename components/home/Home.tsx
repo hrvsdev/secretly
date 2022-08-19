@@ -1,11 +1,15 @@
-import {MantineProvider } from "@mantine/core";
-import styled from "@emotion/react"
+import styled from "@emotion/styled";
 
 import Secret from "../secret-input-section";
 
 export default function Home(): JSX.Element {
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
-    </MantineProvider>
+      <Main>
+        <Secret/>
+      </Main>
   );
 }
+
+const Main = styled.main`
+  padding: 2rem;
+`;
