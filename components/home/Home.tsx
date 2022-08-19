@@ -4,9 +4,9 @@ import Secret from "../secret-input-section";
 
 export default function Home(): JSX.Element {
   return (
-      <Main>
-        <Secret/>
-      </Main>
+    <Main>
+      <Secret />
+    </Main>
   );
 }
 

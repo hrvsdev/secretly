@@ -1,10 +1,15 @@
 import styled from "@emotion/styled";
+import { useState } from "@hookstate/core";
 
 export default function Secret(): JSX.Element {
+  const value = useState<string>("");
+
+  const onClick = (): void => {};
+
   return (
     <SecretWrapper>
-      <Textarea placeholder="What's on your mind!" />
-      <Button>Get Link</Button>
+      <Textarea placeholder="What's on your mind!" onChange={(e) => value.set(e.target.value)} />
+      <Button onClick={onClick}>Get Link</Button>
     </SecretWrapper>
   );
 }
