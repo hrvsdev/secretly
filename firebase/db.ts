@@ -12,9 +12,10 @@ const secretsRef = collection(db, "secrets");
 const saveSecret = async (secret: string) => {
   try {
     const res = await addDoc(secretsRef, { secret });
-    console.log(res.id);
+    return { success: true, data: { id: res.id } };
   } catch (err) {
     console.log(err);
+    return { success: false, err };
   }
 };
 
@@ -22,9 +23,10 @@ const saveSecret = async (secret: string) => {
 const getSecret = async (id: string) => {
   try {
     const res = await getDoc(doc(db, "secrets", id));
-    console.log(res.data());
+    return { success: true, data: res.data() };
   } catch (err) {
     console.log(err);
+    return { success: false, err };
   }
 };
 
