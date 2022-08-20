@@ -4,7 +4,7 @@ import { useState } from "@hookstate/core";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-import { getSecret } from "../../firebase/db";
+import { deleteSecret, getSecret } from "../../firebase/db";
 
 export default function Link(): JSX.Element {
   // Router hook
@@ -20,7 +20,10 @@ export default function Link(): JSX.Element {
   const secret = useState("");
 
   // Show secret function
-  const onShowSecret = () => isSecretShown.set(true);
+  const onShowSecret = () => {
+    isSecretShown.set(true);
+    if (typeof link === "string") deleteSecret(link);
+  };
 
   // Getting secret on page load
   useEffect(() => {
