@@ -32,13 +32,13 @@ const getSecret = async (id: string) => {
 
 // Deleting secret
 const deleteSecret = async (id: string) => {
-//   try {
-//     await deleteDoc(doc(db, "secrets", id));
-//     return { success: true };
-//   } catch (err) {
-//     console.log(err);
-//     return { success: false, err };
-//   }
+  try {
+    await deleteDoc(doc(db, "secrets", id));
+    return { success: true };
+  } catch (err) {
+    console.log(err);
+    return { success: false, err };
+  }
 };
 
 export { saveSecret, getSecret, deleteSecret };
