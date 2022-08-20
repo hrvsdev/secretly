@@ -16,18 +16,28 @@ export default function Link(): JSX.Element {
   // Show secret state
   const isSecretShown = useState(false);
 
+  // Secret text value state
+  const secret = useState("");
+
   // Show secret function
   const onShowSecret = () => isSecretShown.set(true);
 
   // Getting secret on page load
   useEffect(() => {
-    if (router.isReady) getSecret(link);
-  }, [link]);
+    if (router.isReady && typeof link === "string") {
+      const promise = getSecret(link);
+      promise.then((res) => {
+        if (res.success) {
+          secret.set(res?.data?.secret);
+        }
+      });
+    }
+  }, [link]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <LinkWrapper>
       {isSecretShown.value ? (
-        <SecretText>{link}</SecretText>
+        <SecretText>{secret.value}</SecretText>
       ) : (
         <ShowButton onClick={onShowSecret}>Show Secret</ShowButton>
       )}

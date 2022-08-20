@@ -1,5 +1,5 @@
 import { getFirestore, collection } from "firebase/firestore";
-import { addDoc, getDoc, doc } from "firebase/firestore";
+import { addDoc, getDoc, doc, deleteDoc } from "firebase/firestore";
 import app from "./config";
 
 // Initializing firestore db
@@ -30,4 +30,15 @@ const getSecret = async (id: string) => {
   }
 };
 
-export { saveSecret, getSecret };
+// Deleting secret
+const deleteSecret = async (id: string) => {
+//   try {
+//     await deleteDoc(doc(db, "secrets", id));
+//     return { success: true };
+//   } catch (err) {
+//     console.log(err);
+//     return { success: false, err };
+//   }
+};
+
+export { saveSecret, getSecret, deleteSecret };
