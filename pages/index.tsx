@@ -1,7 +1,9 @@
 import type { NextPage } from "next";
+import dynamic from "next/dynamic";
 import Head from "next/head";
+import { Suspense } from "react";
 
-import Home from "../components/home";
+const Home = dynamic(() => import("../components/home"), { suspense: true });
 
 const Root: NextPage = () => {
   return (
@@ -14,7 +16,9 @@ const Root: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Home/>
+      <Suspense fallback={<h1>Loading ...</h1>}>
+        <Home />
+      </Suspense>
     </div>
   );
 };
