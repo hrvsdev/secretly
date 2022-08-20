@@ -6,7 +6,7 @@ import Secret from "../secret-input-section";
 export default function Home(): JSX.Element {
   return (
     <Main>
-      {/* <Hero/> */}
+      <Hero/>
       <Secret />
     </Main>
   );
