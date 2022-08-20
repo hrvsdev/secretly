@@ -20,12 +20,12 @@ const saveSecret = async (secret: string) => {
 
 // Getting secret
 const getSecret = async (id: string) => {
-//   try {
-//     const res = await getDoc(doc(db, "secrets", id));
-//     console.log(res.data());
-//   } catch (err) {
-//     console.log(err);
-//   }
+  try {
+    const res = await getDoc(doc(db, "secrets", id));
+    console.log(res.data());
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export { saveSecret, getSecret };
