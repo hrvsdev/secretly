@@ -31,7 +31,8 @@ export default function Link(): JSX.Element {
       const promise = getSecret(link);
       promise.then((res) => {
         if (res.success) {
-          secret.set(res?.data?.secret);
+          if (res.data) secret.set(res.data.secret);
+          else secret.set("Secret is expired or link is invalid");
         }
       });
     }
