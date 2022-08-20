@@ -1,10 +1,13 @@
 import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
+import { saveSecret } from "../../firebase/db";
 
 export default function Secret(): JSX.Element {
   const value = useState<string>("");
 
-  const onClick = (): void => {};
+  const onClick = (): void => {
+    saveSecret(value.value);
+  };
 
   return (
     <SecretWrapper>
