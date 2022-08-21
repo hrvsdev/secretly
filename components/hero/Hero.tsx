@@ -12,13 +12,13 @@ export default function Hero(): JSX.Element {
 const HeroWrapper = styled.div``;
 
 const Heading = styled.h1`
-  font-size: 5rem;
+  font-size: 4.6rem;
   margin-bottom: 10px;
   text-align: center;
 `;
 
 const Para = styled.p`
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #5a6064;
   text-align: center;
 `;
