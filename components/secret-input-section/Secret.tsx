@@ -6,7 +6,7 @@ import { BiChevronDown } from "react-icons/bi";
 
 export default function Secret(): JSX.Element {
   const value = useState<string>("");
-  const loading = useState(false);
+  const loading = useState<boolean>(false);
 
   const onClick = (): void => {
     loading.set(true);
