@@ -11,7 +11,7 @@ export default function Hero(): JSX.Element {
 
 const HeroWrapper = styled.section`
   margin: 40px auto 50px;
-  max-width: 900px;
+  max-width: 800px;
   width: 100%;
   padding: 0 20px;
 `;
@@ -23,7 +23,7 @@ const Heading = styled.h1`
 `;
 
 const Para = styled.p`
-  font-size: 1.8rem;
+  font-size: 1.67rem;
   color: #5a6064;
   text-align: center;
 `;
