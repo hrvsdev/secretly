@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 import { saveSecret } from "../../firebase/db";
 
+import {BiChevronDown} from "react-icons/bi"
+
 export default function Secret(): JSX.Element {
   const value = useState<string>("");
 
@@ -19,12 +21,10 @@ export default function Secret(): JSX.Element {
           />
         </TextareaBox>
         <OptionsWrapper>
-          <Top>
-
-          </Top>
+          <Top></Top>
           <Bottom>
-            <p>More</p>
-            <Button onClick={onClick}>Create Secret Link</Button>
+            <MoreButton>More</MoreButton>
+            <CreateButton onClick={onClick}>Create Secret Link</CreateButton>
           </Bottom>
         </OptionsWrapper>
       </SecretWrapper>
@@ -81,21 +81,33 @@ const Textarea = styled.textarea`
   }
 `;
 
-const OptionsWrapper = styled.div``
+const OptionsWrapper = styled.div``;
 
 const Top = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
+`;
 
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
+`;
+const MoreButton = styled.button`
+  all: unset;
+  color: white;
+  border-radius: 10px;
+  padding: 0 20px;
+  cursor: pointer;
+  height: 38px;
 
-const Button = styled.button`
+  &:hover{
+    background-color: #000;
+  }
+`;
+
+const CreateButton = styled.button`
   all: unset;
   width: fit-content;
   height: 48px;
@@ -107,11 +119,11 @@ const Button = styled.button`
   will-change: transform filter;
   transition: all 0.25s;
 
-  &:hover{
+  &:hover {
     filter: brightness(1.2);
   }
 
-  &:active{
+  &:active {
     transform: scale(0.96);
   }
 `;
