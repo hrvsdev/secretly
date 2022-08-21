@@ -6,16 +6,14 @@ import Secret from "../secret-input-section";
 
 export default function Home(): JSX.Element {
   return (
-    <Main>
+    <>
       <Navbar />
-      <Hero />
-      <Secret />
-    </Main>
+      <Main>
+        <Hero />
+        <Secret />
+      </Main>
+    </>
   );
 }
 
-const Main = styled.main`
-  position: relative;
-  max-width: 900px;
-  margin: auto;
-`;
+const Main = styled.main``;

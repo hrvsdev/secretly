@@ -5,7 +5,9 @@ export default function Navbar(): JSX.Element {
 }
 
 const NavWrapper = styled.nav`
-  height: 76px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 76px;
+  border-bottom: 1px solid rgb(239, 239, 239);
 `;

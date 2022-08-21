@@ -9,7 +9,12 @@ export default function Hero(): JSX.Element {
   );
 }
 
-const HeroWrapper = styled.div``;
+const HeroWrapper = styled.section`
+  margin: 40px auto 50px;
+  max-width: 900px;
+  width: 100%;
+  padding: 0 20px;
+`;
 
 const Heading = styled.h1`
   font-size: 4.6rem;
