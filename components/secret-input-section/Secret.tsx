@@ -23,8 +23,12 @@ export default function Secret(): JSX.Element {
         <OptionsWrapper>
           <Top></Top>
           <Bottom>
-            <MoreButton active><BiChevronDown/> Set options</MoreButton>
-            <CreateButton onClick={onClick}>Create Secret Link</CreateButton>
+            <MoreButton active>
+              <BiChevronDown /> Set options
+            </MoreButton>
+            <CreateButton disabled={value.value.trim().length ? true : false} onClick={onClick}>
+              Create Secret Link
+            </CreateButton>
           </Bottom>
         </OptionsWrapper>
       </SecretWrapper>
@@ -93,7 +97,8 @@ const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-const MoreButton = styled.button<{active: boolean}>`
+
+const MoreButton = styled.button<{ active: boolean }>`
   all: unset;
   color: #d9d9d9;
   border-radius: 5px;
@@ -108,21 +113,21 @@ const MoreButton = styled.button<{active: boolean}>`
     background-color: hsla(0, 0%, 100%, 0.1);
   }
 
-  svg{
+  svg {
     width: 20px;
     height: 20px;
     margin-right: 5px;
     transition: transform 200ms;
   }
 
-  &:active{
-    svg{
+  &:active {
+    svg {
       transform: rotate(180deg);
     }
   }
 `;
 
-const CreateButton = styled.button`
+const CreateButton = styled.button<{ disabled: boolean }>`
   all: unset;
   width: fit-content;
   height: 48px;
