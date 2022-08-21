@@ -6,8 +6,10 @@ import { BiChevronDown } from "react-icons/bi";
 
 export default function Secret(): JSX.Element {
   const value = useState<string>("");
+  const loading = useState(false);
 
   const onClick = (): void => {
+    loading.set(true);
     saveSecret(value.value);
   };
 
@@ -28,7 +30,7 @@ export default function Secret(): JSX.Element {
             </MoreButton>
             <CreateButton
               disabled={value.value.trim() ? false : true}
-              loading={true}
+              loading={loading.value}
               onClick={onClick}>
               <span className="loader"></span>
               <span className="text">Create Secret Link</span>
@@ -135,6 +137,9 @@ const MoreButton = styled.button<{ active: boolean }>`
 
 const CreateButton = styled.button<{ loading: boolean }>`
   all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 140px;
   height: 48px;
   color: #ffffff;
@@ -143,19 +148,16 @@ const CreateButton = styled.button<{ loading: boolean }>`
   padding: 0 20px;
   will-change: transform filter;
   transition: all 0.25s;
-  cursor: not-allowed;
 
   &:enabled {
-    ${({ loading }) =>
-      !loading &&
-      `cursor: pointer;
-      &:hover {
-        filter: brightness(1.2);
-      }
-  
-      &:active {
-        transform: scale(0.96);
-      }`}
+    cursor: ${({ loading }) => (loading ? "not-allowed" : "pointer")};
+    &:hover {
+      filter: ${({ loading }) => (loading ? "unset" : "brightness(1.2)")};
+    }
+
+    &:active {
+      transform: ${({ loading }) => (loading ? "unset" : "scale(0.96)")};
+    }
   }
 
   &:disabled {
