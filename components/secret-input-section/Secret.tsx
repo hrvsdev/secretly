@@ -27,7 +27,7 @@ export default function Secret(): JSX.Element {
 }
 
 const Section = styled.section`
-  /* background: linear-gradient(135deg, hsl(321.42, 100%, 75%), hsl(295.71, 100%, 75%)); */
+  background: linear-gradient(135deg, hsl(321.42, 100%, 75%), hsl(295.71, 100%, 75%));
   padding: 40px 20px;
 `;
 
