@@ -1,19 +1,21 @@
 import styled from "@emotion/styled";
 
 import Hero from "../hero";
+import Navbar from "../navbar";
 import Secret from "../secret-input-section";
 
 export default function Home(): JSX.Element {
   return (
     <Main>
-      <Hero/>
+      <Navbar />
+      <Hero />
       <Secret />
     </Main>
   );
 }
 
 const Main = styled.main`
-  padding: 2rem;
+  position: relative;
   max-width: 900px;
   margin: auto;
 `;
