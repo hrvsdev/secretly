@@ -12,8 +12,6 @@ export default function Secret(): JSX.Element {
   return (
     <Section>
       <SecretWrapper>
-        {/* <Heading>Add a secret</Heading>
-        <Para>You can try different options: Views, Time or Read Reciepts </Para> */}
         <TextareaBox>
           <Textarea
             placeholder="What's on your mind!"
@@ -21,10 +19,10 @@ export default function Secret(): JSX.Element {
           />
         </TextareaBox>
         <OptionsWrapper>
-          <Top>
+          <Bottom>
             <p>More</p>
             <Button onClick={onClick}>Create Secret Link</Button>
-          </Top>
+          </Bottom>
         </OptionsWrapper>
       </SecretWrapper>
     </Section>
@@ -83,7 +81,7 @@ const Textarea = styled.textarea`
 
 const OptionsWrapper = styled.div``
 
-const Top = styled.div`
+const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
