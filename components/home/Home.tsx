@@ -14,4 +14,6 @@ export default function Home(): JSX.Element {
 
 const Main = styled.main`
   padding: 2rem;
+  max-width: 900px;
+  margin: auto;
 `;
