@@ -26,8 +26,12 @@ export default function Secret(): JSX.Element {
             <MoreButton active>
               <BiChevronDown /> Set options
             </MoreButton>
-            <CreateButton disabled={value.value.trim().length ? true : false} onClick={onClick}>
-              Create Secret Link
+            <CreateButton
+              disabled={value.value.trim() ? false : true}
+              loading={true}
+              onClick={onClick}>
+              <span className="loader"></span>
+              <span className="text">Create Secret Link</span>
             </CreateButton>
           </Bottom>
         </OptionsWrapper>
@@ -108,6 +112,8 @@ const MoreButton = styled.button<{ active: boolean }>`
   font-size: 13px;
   display: flex;
   align-items: center;
+  display: flex;
+  align-items: center;
 
   &:hover {
     background-color: hsla(0, 0%, 100%, 0.1);
@@ -127,23 +133,56 @@ const MoreButton = styled.button<{ active: boolean }>`
   }
 `;
 
-const CreateButton = styled.button<{ disabled: boolean }>`
+const CreateButton = styled.button<{ loading: boolean }>`
   all: unset;
-  width: fit-content;
+  width: 140px;
   height: 48px;
   color: #ffffff;
   background-color: #0072f5;
   border-radius: 10px;
   padding: 0 20px;
-  cursor: pointer;
   will-change: transform filter;
   transition: all 0.25s;
+  cursor: not-allowed;
 
-  &:hover {
-    filter: brightness(1.2);
+  &:enabled {
+    ${({ loading }) =>
+      !loading &&
+      `cursor: pointer;
+      &:hover {
+        filter: brightness(1.2);
+      }
+  
+      &:active {
+        transform: scale(0.96);
+      }`}
   }
 
-  &:active {
-    transform: scale(0.96);
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  .text {
+    display: ${({ loading }) => (loading ? "none" : "inline-block")};
+  }
+
+  .loader {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border-top: 2px solid #fff;
+    border-right: 2px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    display: ${({ loading }) => (loading ? "inline-block" : "none")};
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;
