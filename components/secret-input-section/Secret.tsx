@@ -25,7 +25,7 @@ export default function Secret(): JSX.Element {
         <OptionsWrapper>
           <Top></Top>
           <Bottom>
-            <MoreButton active>
+            <MoreButton active={true}>
               <BiChevronDown /> Set options
             </MoreButton>
             <CreateButton
@@ -126,12 +126,7 @@ const MoreButton = styled.button<{ active: boolean }>`
     height: 20px;
     margin-right: 5px;
     transition: transform 200ms;
-  }
-
-  &:active {
-    svg {
-      transform: rotate(180deg);
-    }
+    transform: ${({ active }) => (active ? "rotate(180deg)" : "rotate(0deg)")};
   }
 `;
 
