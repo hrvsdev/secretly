@@ -10,20 +10,21 @@ export default function Hero(): JSX.Element {
 }
 
 const HeroWrapper = styled.section`
-  margin: 40px auto 50px;
+  margin: 0 auto 50px;
   max-width: 800px;
   width: 100%;
-  padding: 0 20px;
+  padding: 40px 20px 0;
 `;
 
 const Heading = styled.h1`
   font-size: 4.6rem;
   margin-bottom: 10px;
   text-align: center;
+  color: white;
 `;
 
 const Para = styled.p`
   font-size: 1.67rem;
-  color: #5a6064;
+  color: #d9d9d9;
   text-align: center;
 `;

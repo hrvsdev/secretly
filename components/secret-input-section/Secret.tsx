@@ -20,14 +20,18 @@ export default function Secret(): JSX.Element {
             onChange={(e) => value.set(e.target.value)}
           />
         </TextareaBox>
-        <Button onClick={onClick}>Get Link</Button>
+        <OptionsWrapper>
+          <Top>
+            <p>More</p>
+            <Button onClick={onClick}>Create Secret Link</Button>
+          </Top>
+        </OptionsWrapper>
       </SecretWrapper>
     </Section>
   );
 }
 
 const Section = styled.section`
-  background: linear-gradient(135deg, hsl(321.42, 100%, 75%), hsl(295.71, 100%, 75%));
   padding: 40px 20px;
 `;
 
@@ -40,15 +44,15 @@ const SecretWrapper = styled.div`
 `;
 
 const Heading = styled.h2`
-  color: hsl(295.71, 100%, 8%);
+  color: white;
   font-size: 2.2rem;
   text-align: center;
   margin-bottom: 8px;
-  `;
+`;
 
 const Para = styled.p`
   font-size: 1.2rem;
-  color: hsl(295.71, 100%, 12%);
+  color: white;
   text-align: center;
   margin-bottom: 30px;
 `;
@@ -57,7 +61,7 @@ const TextareaBox = styled.div`
   border-radius: 10px;
   width: 100%;
   padding: 20px 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 15px;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: saturate(300%) blur(5px);
   box-shadow: #55435445 0 0 0.25em, #5a7dbc0d 0 0.25em 1em;
@@ -77,10 +81,23 @@ const Textarea = styled.textarea`
   }
 `;
 
+const OptionsWrapper = styled.div``
+
+const Top = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
 const Button = styled.button`
+  all: unset;
   width: fit-content;
-  font-size: 1rem;
-  padding: 5px 10px;
-  outline: 0;
+  height: 48px;
+  color: #ffffff;
+  background-color: hsl(295.71, 100%, 8%);
+  border-radius: 10px;
+  padding: 0 15px;
   cursor: pointer;
+  will-change: transform;
+  transition: all 0.1s;
 `;
