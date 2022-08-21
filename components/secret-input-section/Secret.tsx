@@ -3,6 +3,7 @@ import { useState } from "@hookstate/core";
 import { saveSecret } from "../../firebase/db";
 
 import { BiChevronDown } from "react-icons/bi";
+import TextareaInput from "./textarea/Textarea";
 
 export default function Secret(): JSX.Element {
   const value = useState<string>("");
@@ -16,12 +17,7 @@ export default function Secret(): JSX.Element {
   return (
     <Section>
       <SecretWrapper>
-        <TextareaBox>
-          <Textarea
-            placeholder="What's on your mind!"
-            onChange={(e) => value.set(e.target.value)}
-          />
-        </TextareaBox>
+        <TextareaInput value={value}/>
         <OptionsWrapper>
           <Top></Top>
           <Bottom>
@@ -66,29 +62,6 @@ const Para = styled.p`
   color: white;
   text-align: center;
   margin-bottom: 30px;
-`;
-
-const TextareaBox = styled.div`
-  border-radius: 10px;
-  width: 100%;
-  padding: 20px 0;
-  margin-bottom: 15px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: saturate(300%) blur(5px);
-`;
-
-const Textarea = styled.textarea`
-  padding: 0 20px;
-  height: 10rem;
-  font-size: 1rem;
-  resize: none;
-  border: 0;
-  background: transparent;
-  width: 100%;
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 const OptionsWrapper = styled.div``;
