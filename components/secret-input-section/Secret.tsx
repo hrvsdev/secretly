@@ -19,6 +19,9 @@ export default function Secret(): JSX.Element {
           />
         </TextareaBox>
         <OptionsWrapper>
+          <Top>
+
+          </Top>
           <Bottom>
             <p>More</p>
             <Button onClick={onClick}>Create Secret Link</Button>
@@ -62,7 +65,6 @@ const TextareaBox = styled.div`
   margin-bottom: 15px;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: saturate(300%) blur(5px);
-  box-shadow: #55435445 0 0 0.25em, #5a7dbc0d 0 0.25em 1em;
 `;
 
 const Textarea = styled.textarea`
@@ -81,6 +83,12 @@ const Textarea = styled.textarea`
 
 const OptionsWrapper = styled.div``
 
+const Top = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
@@ -92,10 +100,18 @@ const Button = styled.button`
   width: fit-content;
   height: 48px;
   color: #ffffff;
-  background-color: hsl(295.71, 100%, 8%);
+  background-color: #0072f5;
   border-radius: 10px;
-  padding: 0 15px;
+  padding: 0 20px;
   cursor: pointer;
-  will-change: transform;
-  transition: all 0.1s;
+  will-change: transform filter;
+  transition: all 0.25s;
+
+  &:hover{
+    filter: brightness(1.2);
+  }
+
+  &:active{
+    transform: scale(0.96);
+  }
 `;
