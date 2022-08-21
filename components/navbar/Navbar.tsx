@@ -9,6 +9,6 @@ const NavWrapper = styled.nav`
   justify-content: center;
   align-items: center;
   height: 76px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
 `;

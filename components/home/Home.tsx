@@ -16,4 +16,4 @@ export default function Home(): JSX.Element {
   );
 }
 
-const Main = styled.main``;
+const Main = styled.main`min-height: 100vh`;

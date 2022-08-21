@@ -12,8 +12,8 @@ export default function Secret(): JSX.Element {
   return (
     <Section>
       <SecretWrapper>
-        <Heading>Add a secret</Heading>
-        <Para>You can try different options: Views, Time or Read Reciepts </Para>
+        {/* <Heading>Add a secret</Heading>
+        <Para>You can try different options: Views, Time or Read Reciepts </Para> */}
         <TextareaBox>
           <Textarea
             placeholder="What's on your mind!"
@@ -32,7 +32,7 @@ export default function Secret(): JSX.Element {
 }
 
 const Section = styled.section`
-  padding: 40px 20px;
+  padding: 20px;
 `;
 
 const SecretWrapper = styled.div`
