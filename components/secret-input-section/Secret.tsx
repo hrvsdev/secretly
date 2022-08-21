@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 import { saveSecret } from "../../firebase/db";
 
-import {BiChevronDown} from "react-icons/bi"
+import { BiChevronDown } from "react-icons/bi";
 
 export default function Secret(): JSX.Element {
   const value = useState<string>("");
@@ -23,7 +23,7 @@ export default function Secret(): JSX.Element {
         <OptionsWrapper>
           <Top></Top>
           <Bottom>
-            <MoreButton>More</MoreButton>
+            <MoreButton active><BiChevronDown/> Set options</MoreButton>
             <CreateButton onClick={onClick}>Create Secret Link</CreateButton>
           </Bottom>
         </OptionsWrapper>
@@ -92,18 +92,33 @@ const Top = styled.div`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
 `;
-const MoreButton = styled.button`
+const MoreButton = styled.button<{active: boolean}>`
   all: unset;
-  color: white;
-  border-radius: 10px;
-  padding: 0 20px;
+  color: #d9d9d9;
+  border-radius: 5px;
+  padding: 0 8px 0 5px;
   cursor: pointer;
-  height: 38px;
+  height: 30px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
 
-  &:hover{
-    background-color: #000;
+  &:hover {
+    background-color: hsla(0, 0%, 100%, 0.1);
+  }
+
+  svg{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    transition: transform 200ms;
+  }
+
+  &:active{
+    svg{
+      transform: rotate(180deg);
+    }
   }
 `;
 
