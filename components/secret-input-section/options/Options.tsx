@@ -26,7 +26,7 @@ export default function Options(props: OptionsTypes): JSX.Element {
       <Top visible={areOptionsShown.value}>
         <PasswordWrapper>
           <Label>Encrypt with a password</Label>
-          <Input />
+          <Input placeholder="Enter password"/>
         </PasswordWrapper>
         <Blank />
       </Top>
@@ -60,6 +60,7 @@ const Label = styled.label`
   margin-bottom: 5px;
   color: white;
   padding-left: 6px;
+  font-weight: 300;
 `;
 
 const Input = styled.input`
