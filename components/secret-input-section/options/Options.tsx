@@ -23,7 +23,13 @@ export default function Options(props: OptionsTypes): JSX.Element {
 
   return (
     <OptionsWrapper>
-      <Top visible={areOptionsShown.value}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae enim fuga molestias optio! Quaerat adipisci eius, quibusdam corporis ipsa, repellendus eos ea necessitatibus dolor qui eaque blanditiis inventore iure numquam. Sapiente ipsum optio atque, dicta voluptatibus illum quidem velit? Molestias optio saepe, mollitia veniam nemo ipsam dolorum iusto libero cum.</Top>
+      <Top visible={areOptionsShown.value}>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae enim fuga molestias optio!
+        Quaerat adipisci eius, quibusdam corporis ipsa, repellendus eos ea necessitatibus dolor qui
+        eaque blanditiis inventore iure numquam. Sapiente ipsum optio atque, dicta voluptatibus
+        illum quidem velit? Molestias optio saepe, mollitia veniam nemo ipsam dolorum iusto libero
+        cum.
+      </Top>
       <Bottom>
         <MoreButton active={areOptionsShown.value} onClick={onMoreOptions}>
           <BiChevronDown /> Set options
@@ -42,8 +48,8 @@ const Top = styled.div<{ visible: boolean }>`
   align-items: center;
   color: white;
   overflow: hidden;
-  transition: height 300ms;
-  height: ${({ visible }) => !visible && "0"};
+  transition: max-height 300ms;
+  max-height: ${({ visible }) => (visible ? "100px" : "0")};
 `;
 
 const Bottom = styled.div`
