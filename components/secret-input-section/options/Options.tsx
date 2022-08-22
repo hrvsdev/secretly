@@ -40,6 +40,7 @@ const Top = styled.div<{ visible: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: white;
   overflow: hidden;
   transition: height 300ms;
   height: ${({ visible }) => !visible && "0"};
