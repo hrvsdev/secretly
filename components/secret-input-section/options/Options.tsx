@@ -51,13 +51,12 @@ const Top = styled.div<{ visible: boolean }>`
 
 const PasswordWrapper = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 30px;
 `;
 
 const Label = styled.label`
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   color: white;
   padding-left: 6px;
   font-weight: 300;
@@ -65,7 +64,7 @@ const Label = styled.label`
 
 const Input = styled.input`
   all: unset;
-  height: 46px;
+  height: 50px;
   width: 100%;
   color: black;
   padding: 0 20px;
