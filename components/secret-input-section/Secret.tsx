@@ -1,39 +1,37 @@
 import styled from "@emotion/styled";
-import { useState, __state } from "@hookstate/core";
+import { useState } from "@hookstate/core";
+
+import Options from "./options";
+import TextareaInput from "./textarea";
+
 import { saveSecret } from "../../firebase/db";
 
-import { BiChevronDown } from "react-icons/bi";
-import TextareaInput from "./textarea";
-import CreateButton from "./create-button";
-
 export default function Secret(): JSX.Element {
-  const value = useState<string>("");
-  const loading = useState<boolean>(false);
 
-  const onClick = (): void => {
-    loading.set(true);
+  // Textarea value state
+  const value = useState<string>("");
+
+  // Loading state for data saving
+  const isLoading = useState<boolean>(false);
+
+  // Create button click action
+  const onCreateButton = (): void => {
+    isLoading.set(true);
     saveSecret(value.value);
   };
 
-  const createButtonProps = {
-    disabled: value.value.trim().length ? false: true,
-    loading: loading.value,
-    onClick: onClick
+  // Options component props
+  const optionsProps = {
+    isCreateButtonDisabled: value.value.trim().length ? false: true,
+    isLoading: isLoading.value,
+    onCreateButton: onCreateButton
   }
 
   return (
     <Section>
       <SecretWrapper>
         <TextareaInput value={value}/>
-        <OptionsWrapper>
-          <Top></Top>
-          <Bottom>
-            <MoreButton active={true}>
-              <BiChevronDown /> Set options
-            </MoreButton>
-            <CreateButton {...createButtonProps}/>
-          </Bottom>
-        </OptionsWrapper>
+        <Options {...optionsProps}/>
       </SecretWrapper>
     </Section>
   );
@@ -49,43 +47,4 @@ const SecretWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-`;
-
-const OptionsWrapper = styled.div``;
-
-const Top = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Bottom = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const MoreButton = styled.button<{ active: boolean }>`
-  all: unset;
-  color: #d9d9d9;
-  border-radius: 5px;
-  padding: 0 8px 0 5px;
-  cursor: pointer;
-  height: 30px;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  display: flex;
-  align-items: center;
-
-  &:hover {
-    background-color: hsla(0, 0%, 100%, 0.1);
-  }
-
-  svg {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-    transition: transform 200ms;
-    transform: ${({ active }) => (active ? "rotate(180deg)" : "rotate(0deg)")};
-  }
 `;

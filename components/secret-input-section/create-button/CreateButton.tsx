@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
+
 import { CreateButtonTypes } from "../types";
 
 export default function CreateButton(props: CreateButtonTypes) {
-  const { disabled, loading, onClick } = props;
+  const { isDisabled, onClick, isLoading } = props;
 
   return (
-    <Button disabled={disabled} loading={loading} onClick={onClick}>
+    <Button disabled={isDisabled} loading={isLoading} onClick={onClick}>
       <span className="loader"></span>
       <span className="text">Create Secret Link</span>
     </Button>
