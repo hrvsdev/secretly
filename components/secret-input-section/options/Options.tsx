@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 
 import { BiChevronDown } from "react-icons/bi";
+
 import CreateButton from "../create-button";
 
 import { OptionsTypes } from "../types";
@@ -11,7 +12,7 @@ export default function Options(props: OptionsTypes): JSX.Element {
   const areOptionsShown = useState(false);
 
   // More options button action
-  const onMoreOptions = () => areOptionsShown.set((prev) => !prev);
+  const onMoreOptions = () => areOptionsShown.set(!areOptionsShown.value);
 
   // Create button component props
   const createButtonProps = {
