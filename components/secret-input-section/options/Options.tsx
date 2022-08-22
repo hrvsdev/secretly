@@ -42,7 +42,6 @@ const Top = styled.div<{ visible: boolean }>`
   align-items: center;
   overflow: hidden;
   transition: height 300ms;
-  height: ${({ visible }) => !visible && "0"};
 `;
 
 const Bottom = styled.div`
