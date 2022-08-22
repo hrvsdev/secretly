@@ -25,10 +25,8 @@ export default function Options(props: OptionsTypes): JSX.Element {
     <OptionsWrapper>
       <Top visible={areOptionsShown.value}>
         <PasswordWrapper>
-          <Label>
-            Encrypt with a password
-            <Input />
-          </Label>
+          <Label>Encrypt with a password</Label>
+          <Input />
         </PasswordWrapper>
         <Blank />
       </Top>
@@ -53,20 +51,27 @@ const Top = styled.div<{ visible: boolean }>`
 
 const PasswordWrapper = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Label = styled.label`
   display: block;
   margin-bottom: 5px;
   color: white;
+  padding-left: 6px;
 `;
 
 const Input = styled.input`
   all: unset;
-  border-radius: 10px;
   height: 46px;
-  border: 1px solid white;
-  color: white;
+  width: 100%;
+  color: black;
+  padding: 0 20px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(300%) blur(5px);
 `;
 
 const Bottom = styled.div`
