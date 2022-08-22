@@ -25,13 +25,36 @@ export default function Options(props: OptionsTypes): JSX.Element {
     <OptionsWrapper>
       <Top visible={areOptionsShown.value}>
         <PasswordWrapper>
-          <Label>Encrypt with a password</Label>
-          <Input placeholder="Enter password"/>
+          <Label>Encrypt with a password otherwise leave empty</Label>
+          <Input placeholder="Enter password" />
         </PasswordWrapper>
         <MessageWrapper>
           <Label>Optional message</Label>
-          <Input placeholder="Enter password"/>
+          <Input placeholder="Enter password" />
         </MessageWrapper>
+        <ReadRecieptWrapper>
+          <Label>Read reciept on email otherwise leave empty</Label>
+          <Input placeholder="Enter email" />
+        </ReadRecieptWrapper>
+        <SelectBoxWrapper>
+          <ViewsWrapper>
+            <Label>Views after link with be deleted</Label>
+            <Select>
+              <Option>1</Option>
+              <Option>2</Option>
+              <Option>3</Option>
+              <Option>4</Option>
+              <Option>5</Option>
+              <Option>10</Option>
+              <Option>20</Option>
+              <Option>50</Option>
+              <Option>100</Option>
+              <Option>200</Option>
+              <Option>500</Option>
+              <Option>Unlimited</Option>
+            </Select>
+          </ViewsWrapper>
+        </SelectBoxWrapper>
         <Blank />
       </Top>
       <Bottom>
@@ -62,6 +85,22 @@ const MessageWrapper = styled.div`
   width: 100%;
   margin-bottom: 20px;
 `;
+
+const ReadRecieptWrapper = styled.div`
+  width: 100%;
+  margin-bottom: 20px;
+`;
+
+const SelectBoxWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ViewsWrapper = styled.div``;
+const TimeWrapper = styled.div``;
+
+const Select = styled.select``;
+const Option = styled.option``;
 
 const Label = styled.label`
   display: block;
