@@ -28,6 +28,10 @@ export default function Options(props: OptionsTypes): JSX.Element {
           <Label>Encrypt with a password</Label>
           <Input placeholder="Enter password"/>
         </PasswordWrapper>
+        <MessageWrapper>
+          <Label>Optional message</Label>
+          <Input placeholder="Enter password"/>
+        </MessageWrapper>
         <Blank />
       </Top>
       <Bottom>
@@ -45,13 +49,18 @@ const OptionsWrapper = styled.div``;
 const Top = styled.div<{ visible: boolean }>`
   color: white;
   overflow: hidden;
-  transition: max-height 300ms;
-  max-height: ${({ visible }) => (visible ? "100px" : "0")};
+  transition: max-height 500ms;
+  max-height: ${({ visible }) => (visible ? "500px" : "0")};
 `;
 
 const PasswordWrapper = styled.div`
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+`;
+
+const MessageWrapper = styled.div`
+  width: 100%;
+  margin-bottom: 20px;
 `;
 
 const Label = styled.label`
