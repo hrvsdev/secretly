@@ -54,6 +54,22 @@ export default function Options(props: OptionsTypes): JSX.Element {
               <Option>Unlimited</Option>
             </Select>
           </ViewsWrapper>
+          <TimeWrapper>
+            Time after link will be deleted regardless of views
+            <Select>
+              <Option>Unlimited</Option>
+              <Option>1 minute</Option>
+              <Option>2 minutes</Option>
+              <Option>5 minutes</Option>
+              <Option>10 minutes</Option>
+              <Option>30 minutes</Option>
+              <Option>1 hour</Option>
+              <Option>24 hours</Option>
+              <Option>1 week</Option>
+              <Option>1 month</Option>
+              <Option>1 year</Option>
+            </Select>
+          </TimeWrapper>
         </SelectBoxWrapper>
         <Blank />
       </Top>
