@@ -24,11 +24,13 @@ export default function Options(props: OptionsTypes): JSX.Element {
   return (
     <OptionsWrapper>
       <Top visible={areOptionsShown.value}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae enim fuga molestias optio!
-        Quaerat adipisci eius, quibusdam corporis ipsa, repellendus eos ea necessitatibus dolor qui
-        eaque blanditiis inventore iure numquam. Sapiente ipsum optio atque, dicta voluptatibus
-        illum quidem velit? Molestias optio saepe, mollitia veniam nemo ipsam dolorum iusto libero
-        cum.
+        <PasswordWrapper>
+          <Label>
+            Encrypt with a password
+            <Input />
+          </Label>
+        </PasswordWrapper>
+        <Blank />
       </Top>
       <Bottom>
         <MoreButton active={areOptionsShown.value} onClick={onMoreOptions}>
@@ -43,13 +45,28 @@ export default function Options(props: OptionsTypes): JSX.Element {
 const OptionsWrapper = styled.div``;
 
 const Top = styled.div<{ visible: boolean }>`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   color: white;
   overflow: hidden;
   transition: max-height 300ms;
   max-height: ${({ visible }) => (visible ? "100px" : "0")};
+`;
+
+const PasswordWrapper = styled.div`
+  width: 100%;
+`;
+
+const Label = styled.label`
+  display: block;
+  margin-bottom: 5px;
+  color: white;
+`;
+
+const Input = styled.input`
+  all: unset;
+  border-radius: 10px;
+  height: 46px;
+  border: 1px solid white;
+  color: white;
 `;
 
 const Bottom = styled.div`
@@ -81,4 +98,9 @@ const MoreButton = styled.button<{ active: boolean }>`
     transition: transform 200ms;
     transform: ${({ active }) => (active ? "rotate(180deg)" : "rotate(0deg)")};
   }
+`;
+
+const Blank = styled.div`
+  height: 10px;
+  width: 100%;
 `;
