@@ -23,7 +23,7 @@ export default function Options(props: OptionsTypes): JSX.Element {
 
   return (
     <OptionsWrapper>
-      <Top visible={areOptionsShown.value}></Top>
+      <Top visible={areOptionsShown.value}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae enim fuga molestias optio! Quaerat adipisci eius, quibusdam corporis ipsa, repellendus eos ea necessitatibus dolor qui eaque blanditiis inventore iure numquam. Sapiente ipsum optio atque, dicta voluptatibus illum quidem velit? Molestias optio saepe, mollitia veniam nemo ipsam dolorum iusto libero cum.</Top>
       <Bottom>
         <MoreButton active={areOptionsShown.value} onClick={onMoreOptions}>
           <BiChevronDown /> Set options
