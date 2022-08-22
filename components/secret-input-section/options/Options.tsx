@@ -12,7 +12,7 @@ export default function Options(props: OptionsTypes): JSX.Element {
   const areOptionsShown = useState(false);
 
   // More options button action
-  const onMoreOptions = () => areOptionsShown.set(!areOptionsShown.value);
+  const onMoreOptions = () => areOptionsShown.set((prev) => !prev);
 
   // Create button component props
   const createButtonProps = {
