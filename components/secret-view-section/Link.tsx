@@ -42,7 +42,6 @@ export default function Link(): JSX.Element {
 
   return (
     <SecretViewWrapper>
-      <Navbar/>
       <Hero heading="It's a secret!" para="Click to view secret"/>
       {isSecretShown.value ? (
         <SecretText>{secret.value}</SecretText>
@@ -53,7 +52,7 @@ export default function Link(): JSX.Element {
   );
 }
 
-const SecretViewWrapper = styled.div``;
+const SecretViewWrapper = styled.div`min-height: 100vh`;
 
 const SecretText = styled.p``;
 
