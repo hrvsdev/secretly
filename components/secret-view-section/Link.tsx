@@ -45,10 +45,10 @@ export default function Link(): JSX.Element {
       isLoading.set(true);
       const res = await getSecret(link);
       if (res.success) {
-        isSecretShown.set(true);
         isLoading.set(false);
         if (res.data) {
           secret.set(res.data.secret);
+          isSecretShown.set(true);
         } else {
           isError.set(true);
         }
@@ -71,8 +71,10 @@ export default function Link(): JSX.Element {
   return (
     <Main>
       <Hero {...heroProps} />
-      <ViewButtonWrapper show={isSecretShown.value}>
-        <ViewButton onClick={onShowSecret}>View Secret</ViewButton>
+      <ViewButtonWrapper show={isSecretShown.value || isError.value}>
+        <ViewButton onClick={onShowSecret} isLoading={isLoading.value}>
+          View Secret
+        </ViewButton>
       </ViewButtonWrapper>
       <Error show={isError.value} />
       <SecretWrapper show={isSecretShown.value}>
