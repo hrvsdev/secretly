@@ -15,8 +15,7 @@ const TextareaBox = styled.div`
   width: 100%;
   padding: 20px 0;
   margin-bottom: 15px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: saturate(300%) blur(5px);
+  /* background: hsla(0, 0%, 0%, 0.3); */
 `;
 
 const Textarea = styled.textarea`
@@ -27,8 +26,13 @@ const Textarea = styled.textarea`
   border: 0;
   background: transparent;
   width: 100%;
+  color: white;
 
   &:focus {
     outline: none;
+  }
+
+  &::placeholder{
+    color: hsl(0, 0%, 100%, 0.6);
   }
 `;

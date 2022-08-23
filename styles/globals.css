@@ -9,5 +9,6 @@
 
 #__next {
   background: linear-gradient(135deg, rgb(0, 0, 70) 0%, rgb(17, 0, 25) 100%);
+  background-position: fixed;
   
 }
