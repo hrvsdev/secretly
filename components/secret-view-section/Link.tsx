@@ -21,16 +21,34 @@ export default function Link(): JSX.Element {
   // Show secret state
   const isSecretShown = useState(false);
 
+  // Error state
+  const isError = useState(false);
+
   // Secret text value state
   const secret = useState("");
 
   // Copied text state
   const isCopied = useState(false);
 
-  // Show secret function
+  // View secret button action
   const onShowSecret = () => {
-    isSecretShown.set(true);
+    getSecretFromDB();
     if (typeof link === "string") deleteSecret(link);
+  };
+
+  // Getting secret from DB
+  const getSecretFromDB = async () => {
+    if (typeof link === "string") {
+      const res = await getSecret(link);
+      if (res.success) {
+        isSecretShown.set(true);
+        if (res.data) {
+          secret.set(res.data.secret);
+        } else {
+          isError.set(true);
+        }
+      }
+    }
   };
 
   // Copy button action
@@ -39,19 +57,6 @@ export default function Link(): JSX.Element {
     isCopied.set(true);
     setTimeout(() => isCopied.set(false), 2000);
   };
-
-  // Getting secret on page load
-  useEffect(() => {
-    if (router.isReady && typeof link === "string") {
-      const promise = getSecret(link);
-      promise.then((res) => {
-        if (res.success) {
-          if (res.data) secret.set(res.data.secret);
-          else secret.set("Secret is expired or link is invalid");
-        }
-      });
-    }
-  }, [link]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const heroProps = {
     heading: "Here is a secret",
@@ -64,8 +69,8 @@ export default function Link(): JSX.Element {
       <ViewButtonWrapper show={isSecretShown.value}>
         <ViewButton onClick={onShowSecret}>View Secret</ViewButton>
       </ViewButtonWrapper>
+      <Error show={isError.value} />
       <SecretWrapper show={isSecretShown.value}>
-        <Error/>
         <Secret>{secret.value}</Secret>
         <ButtonsWrapper>
           <CopyButton onClick={onCopy}>
