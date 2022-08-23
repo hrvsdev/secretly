@@ -1,10 +1,15 @@
 import styled from "@emotion/styled";
 
-export default function Hero(): JSX.Element {
+interface PropsTypes {
+  heading: string;
+  para: string;
+}
+
+export default function Hero(props: PropsTypes): JSX.Element {
   return (
     <HeroWrapper>
-      <Heading>Share a secret</Heading>
-      <Para>The secret is end-to-end encrypted and can only be viewed once via a link.</Para>
+      <Heading>{props.heading}</Heading>
+      <Para>{props.para}</Para>
     </HeroWrapper>
   );
 }
