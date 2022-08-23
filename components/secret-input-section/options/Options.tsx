@@ -36,42 +36,6 @@ export default function Options(props: OptionsTypes): JSX.Element {
           <Label>Read reciept on email otherwise leave empty</Label>
           <Input placeholder="Enter email" />
         </ReadRecieptWrapper>
-        <SelectBoxWrapper>
-          <ViewsWrapper>
-            <Label>Views after link with be deleted</Label>
-            <Select>
-              <Option>1</Option>
-              <Option>2</Option>
-              <Option>3</Option>
-              <Option>4</Option>
-              <Option>5</Option>
-              <Option>10</Option>
-              <Option>20</Option>
-              <Option>50</Option>
-              <Option>100</Option>
-              <Option>200</Option>
-              <Option>500</Option>
-              <Option>Unlimited</Option>
-            </Select>
-          </ViewsWrapper>
-          <TimeWrapper>
-            Time after link will be deleted regardless of views
-            <Select>
-              <Option>Unlimited</Option>
-              <Option>1 minute</Option>
-              <Option>2 minutes</Option>
-              <Option>5 minutes</Option>
-              <Option>10 minutes</Option>
-              <Option>30 minutes</Option>
-              <Option>1 hour</Option>
-              <Option>24 hours</Option>
-              <Option>1 week</Option>
-              <Option>1 month</Option>
-              <Option>1 year</Option>
-            </Select>
-          </TimeWrapper>
-        </SelectBoxWrapper>
-        <Blank />
       </Top>
       <Bottom>
         <MoreButton active={areOptionsShown.value} onClick={onMoreOptions}>
@@ -79,6 +43,7 @@ export default function Options(props: OptionsTypes): JSX.Element {
         </MoreButton>
         <CreateButton {...createButtonProps} />
       </Bottom>
+      <Blank />
     </OptionsWrapper>
   );
 }
@@ -106,17 +71,6 @@ const ReadRecieptWrapper = styled.div`
   width: 100%;
   margin-bottom: 20px;
 `;
-
-const SelectBoxWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const ViewsWrapper = styled.div``;
-const TimeWrapper = styled.div``;
-
-const Select = styled.select``;
-const Option = styled.option``;
 
 const Label = styled.label`
   display: block;
