@@ -9,7 +9,7 @@ import { BiCopy } from "react-icons/bi";
 
 import ViewButton from "../button";
 import Hero from "../hero";
-import Navbar from "../navbar";
+import Error from "./error";
 
 export default function Link(): JSX.Element {
   // Router hook
@@ -65,6 +65,7 @@ export default function Link(): JSX.Element {
         <ViewButton onClick={onShowSecret}>View Secret</ViewButton>
       </ViewButtonWrapper>
       <SecretWrapper show={isSecretShown.value}>
+        <Error/>
         <Secret>{secret.value}</Secret>
         <ButtonsWrapper>
           <CopyButton onClick={onCopy}>
@@ -93,6 +94,9 @@ const SecretWrapper = styled.div<{ show: boolean }>`
   padding: 0 20px;
   max-width: 800px;
   margin: auto;
+  transition: all 200ms;
+  transition-delay: 100ms;
+  transform: ${({ show }) => (show ? "scale(1)" : "scale(0)")};
 `;
 
 const Secret = styled.div`
@@ -133,7 +137,7 @@ const CopyButton = styled.button`
     transform: scale(0.96);
   }
 
-  svg{
+  svg {
     width: 20px;
     height: 20px;
     margin-right: 5px;
