@@ -66,3 +66,9 @@ const Button = styled.button<{ loading: boolean }>`
     }
   }
 `;
+
+CreateButton.defaultProps = {
+  isDisabled: false,
+  isLoading: false,
+  onCLick: () => {},
+};

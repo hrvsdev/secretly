@@ -33,3 +33,8 @@ const Para = styled.p`
   color: #d9d9d9;
   text-align: center;
 `;
+
+Hero.defaultProps = {
+  heading: "Share a secret",
+  para: "The secret is end-to-end encrypted and can only be viewed once via a link."
+}
