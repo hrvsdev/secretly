@@ -27,6 +27,9 @@ export default function Link(): JSX.Element {
   // Secret text value state
   const secret = useState("");
 
+  // Loading state
+  const isLoading = useState(false);
+
   // Copied text state
   const isCopied = useState(false);
 
@@ -39,9 +42,11 @@ export default function Link(): JSX.Element {
   // Getting secret from DB
   const getSecretFromDB = async () => {
     if (typeof link === "string") {
+      isLoading.set(true);
       const res = await getSecret(link);
       if (res.success) {
         isSecretShown.set(true);
+        isLoading.set(false);
         if (res.data) {
           secret.set(res.data.secret);
         } else {
