@@ -15,7 +15,7 @@ const TextareaBox = styled.div`
   width: 100%;
   padding: 20px 0;
   margin-bottom: 15px;
-  /* background: hsla(0, 0%, 0%, 0.3); */
+  background: hsla(0, 0%, 0%, 0.3);
 `;
 
 const Textarea = styled.textarea`
