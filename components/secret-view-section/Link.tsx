@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 import { deleteSecret, getSecret } from "../../firebase/db";
 
-import { BiCopy } from "react-icons/bi";
-
 import ViewButton from "../button";
+import CopyButton from "../copy-button";
 import Hero from "../hero";
 import Error from "./error";
 
@@ -29,9 +27,6 @@ export default function Link(): JSX.Element {
 
   // Loading state
   const isLoading = useState(false);
-
-  // Copied text state
-  const isCopied = useState(false);
 
   // View secret button action
   const onShowSecret = () => {
@@ -56,13 +51,6 @@ export default function Link(): JSX.Element {
     }
   };
 
-  // Copy button action
-  const onCopy = () => {
-    window.navigator.clipboard.writeText(secret.value);
-    isCopied.set(true);
-    setTimeout(() => isCopied.set(false), 2000);
-  };
-
   const heroProps = {
     heading: "Here is a secret",
     para: "Click the button below to view the secret. Copy it as it will be deleted instantly.",
@@ -80,10 +68,7 @@ export default function Link(): JSX.Element {
       <SecretWrapper show={isSecretShown.value}>
         <Secret>{secret.value}</Secret>
         <ButtonsWrapper>
-          <CopyButton onClick={onCopy}>
-            <BiCopy />
-            {isCopied.value ? "Copied" : "Copy"}
-          </CopyButton>
+          <CopyButton text={secret.value} />
         </ButtonsWrapper>
       </SecretWrapper>
     </Main>
@@ -125,33 +110,4 @@ const ButtonsWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
-`;
-
-const CopyButton = styled.button`
-  all: unset;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 48px;
-  padding: 0 20px;
-  background-color: #0073ff;
-  color: white;
-  border-radius: 10px;
-  will-change: transform filter;
-  transition: all 0.25s;
-  cursor: pointer;
-
-  &:hover {
-    filter: brightness(1.2);
-  }
-
-  &:active {
-    transform: scale(0.96);
-  }
-
-  svg {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-  }
 `;
