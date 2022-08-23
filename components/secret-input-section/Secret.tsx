@@ -45,7 +45,7 @@ export default function Secret(): JSX.Element {
 }
 
 const Section = styled.section`
-  padding: 20px;
+  padding: 0 20px;
 `;
 
 const SecretWrapper = styled.div`

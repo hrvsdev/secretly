@@ -15,7 +15,7 @@ export default function Hero(props: PropsTypes): JSX.Element {
 }
 
 const HeroWrapper = styled.section`
-  margin: 0 auto 50px;
+  margin: 0 auto 70px;
   max-width: 800px;
   width: 100%;
   padding: 70px 20px 0;
