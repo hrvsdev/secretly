@@ -3,7 +3,7 @@ import { useState } from "@hookstate/core";
 
 import { BiChevronDown } from "react-icons/bi";
 
-import CreateButton from "../create-button";
+import CreateButton from "../../button";
 
 import { OptionsTypes } from "../types";
 

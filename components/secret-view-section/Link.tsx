@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import { deleteSecret, getSecret } from "../../firebase/db";
+import Hero from "../hero";
+import Navbar from "../navbar";
 
 export default function Link(): JSX.Element {
   // Router hook
@@ -39,17 +41,19 @@ export default function Link(): JSX.Element {
   }, [link]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <LinkWrapper>
+    <SecretViewWrapper>
+      <Navbar/>
+      <Hero heading="It's a secret!" para="Click to view secret"/>
       {isSecretShown.value ? (
         <SecretText>{secret.value}</SecretText>
       ) : (
         <ShowButton onClick={onShowSecret}>Show Secret</ShowButton>
       )}
-    </LinkWrapper>
+    </SecretViewWrapper>
   );
 }
 
-const LinkWrapper = styled.div``;
+const SecretViewWrapper = styled.div``;
 
 const SecretText = styled.p``;
 

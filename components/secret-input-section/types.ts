@@ -5,7 +5,7 @@ export interface TextareaTypes {
 }
 
 export interface CreateButtonTypes {
-  isDisabled: boolean;
+  isDisabled?: boolean;
   onClick: () => void;
   isLoading: boolean;
 }
