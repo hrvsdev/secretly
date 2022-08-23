@@ -33,6 +33,6 @@ const Textarea = styled.textarea`
   }
 
   &::placeholder{
-    color: hsl(0, 0%, 100%, 0.6);
+    color: hsl(0, 0%, 100%, 0.5);
   }
 `;

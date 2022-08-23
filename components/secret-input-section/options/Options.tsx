@@ -84,11 +84,14 @@ const Input = styled.input`
   all: unset;
   height: 50px;
   width: 100%;
-  color: black;
+  color: white;
   padding: 0 20px;
   border-radius: 10px;
   box-sizing: border-box;
   background: hsla(0, 0%, 0%, 0.3);
+  &::placeholder{
+    color: hsl(0, 0%, 100%, 0.5);
+  }
 `;
 
 const Bottom = styled.div`
