@@ -14,4 +14,7 @@ export interface OptionsTypes {
   isCreateButtonDisabled: boolean;
   onCreateButton: () => void;
   isLoading: boolean;
+  message: StateMethods<string>;
+  email: StateMethods<string>;
+  password: StateMethods<string>;
 }

@@ -7,12 +7,11 @@ import TextareaInput from "./textarea";
 import { saveSecret } from "../../firebase/db";
 
 export default function Secret(): JSX.Element {
-
   // Textarea value state
-  const value = useState<string>("");
+  const value = useState("");
 
   // Loading state for data saving
-  const isLoading = useState<boolean>(false);
+  const isLoading = useState(false);
 
   // Create button click action
   const onCreateButton = (): void => {
@@ -22,16 +21,19 @@ export default function Secret(): JSX.Element {
 
   // Options component props
   const optionsProps = {
-    isCreateButtonDisabled: value.value.trim().length ? false: true,
+    isCreateButtonDisabled: value.value.trim().length ? false : true,
     isLoading: isLoading.value,
-    onCreateButton: onCreateButton
-  }
+    onCreateButton: onCreateButton,
+    password: password,
+    message: message,
+    email: email,
+  };
 
   return (
     <Section>
       <SecretWrapper>
-        <TextareaInput value={value}/>
-        <Options {...optionsProps}/>
+        <TextareaInput value={value} />
+        <Options {...optionsProps} />
       </SecretWrapper>
     </Section>
   );

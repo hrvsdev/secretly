@@ -8,11 +8,23 @@ import CreateButton from "../create-button";
 import { OptionsTypes } from "../types";
 
 export default function Options(props: OptionsTypes): JSX.Element {
+  // Props destructuring
+  const { message, email, password } = props;
+
   // Show more options state
   const areOptionsShown = useState(false);
 
   // More options button action
   const onMoreOptions = () => areOptionsShown.set((prev) => !prev);
+
+  // Input onChange function
+  const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    if (name === "message") return message.set(value);
+    if (name === "email") return email.set(value);
+    if (name === "password") return password.set(value);
+  };
 
   // Create button component props
   const createButtonProps = {
@@ -26,15 +38,15 @@ export default function Options(props: OptionsTypes): JSX.Element {
       <Top visible={areOptionsShown.value}>
         <PasswordWrapper>
           <Label>Encrypt with a password otherwise leave empty</Label>
-          <Input placeholder="Enter password" />
+          <Input placeholder="Enter password" name="password" onChange={onInput} />
         </PasswordWrapper>
         <MessageWrapper>
           <Label>Optional message</Label>
-          <Input placeholder="Enter password" />
+          <Input placeholder="Enter password" name="message" onChange={onInput} />
         </MessageWrapper>
         <ReadRecieptWrapper>
           <Label>Read reciept on email otherwise leave empty</Label>
-          <Input placeholder="Enter email" />
+          <Input placeholder="Enter email" name="email" onChange={onInput} />
         </ReadRecieptWrapper>
       </Top>
       <Bottom>
@@ -89,7 +101,7 @@ const Input = styled.input`
   border-radius: 10px;
   box-sizing: border-box;
   background: hsla(0, 0%, 0%, 0.3);
-  &::placeholder{
+  &::placeholder {
     color: hsl(0, 0%, 100%, 0.5);
   }
 `;
