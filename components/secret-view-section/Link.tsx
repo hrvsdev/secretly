@@ -47,17 +47,24 @@ export default function Link(): JSX.Element {
   };
 
   return (
-    <SecretViewWrapper>
+    <Main>
       <Hero {...heroProps} />
-      <ViewButton onClick={onShowSecret}>View Secret</ViewButton>
-    </SecretViewWrapper>
+      <ButtonWrapper>
+        <ViewButton>View Secret</ViewButton>
+      </ButtonWrapper>
+    </Main>
   );
 }
 
-const SecretViewWrapper = styled.div`
+const Main = styled.main`
   min-height: 100vh;
 `;
 
 const SecretText = styled.p``;
 
 const ShowButton = styled.button``;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`

@@ -71,5 +71,5 @@ CreateButton.defaultProps = {
   isDisabled: false,
   isLoading: false,
   children: "Create Secret Link",
-  onCLick: () => {},
+  onClick: () => {},
 };
