@@ -5,7 +5,11 @@ import { TextareaTypes } from "../types";
 export default function TextareaInput({ value }: TextareaTypes): JSX.Element {
   return (
     <TextareaBox>
-      <Textarea placeholder="What's on your mind!" onChange={(e) => value.set(e.target.value)} />
+      <Textarea
+        placeholder="What's on your mind!"
+        onChange={(e) => value.set(e.target.value)}
+        spellCheck={false}
+      />
     </TextareaBox>
   );
 }
@@ -32,7 +36,7 @@ const Textarea = styled.textarea`
     outline: none;
   }
 
-  &::placeholder{
+  &::placeholder {
     color: hsl(0, 0%, 100%, 0.5);
   }
 `;
