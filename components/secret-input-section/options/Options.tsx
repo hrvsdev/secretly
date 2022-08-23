@@ -134,8 +134,7 @@ const Input = styled.input`
   padding: 0 20px;
   border-radius: 10px;
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: saturate(300%) blur(5px);
+  background: hsla(0, 0%, 0%, 0.3);
 `;
 
 const Bottom = styled.div`
