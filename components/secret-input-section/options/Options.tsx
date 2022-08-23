@@ -21,9 +21,6 @@ export default function Options(props: OptionsTypes): JSX.Element {
   const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
-    if (name === "message") return message.set(value);
-    if (name === "email") return email.set(value);
-    if (name === "password") return password.set(value);
   };
 
   // Create button component props
