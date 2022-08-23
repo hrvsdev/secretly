@@ -38,15 +38,25 @@ export default function Options(props: OptionsTypes): JSX.Element {
       <Top visible={areOptionsShown.value}>
         <PasswordWrapper>
           <Label>Encrypt with a password otherwise leave empty</Label>
-          <Input placeholder="Enter password" name="password" onChange={onInput} />
+          <Input
+            placeholder="Enter password"
+            name="password"
+            onChange={onInput}
+            spellCheck={false}
+          />
         </PasswordWrapper>
         <MessageWrapper>
           <Label>Optional message</Label>
-          <Input placeholder="Enter password" name="message" onChange={onInput} />
+          <Input
+            placeholder="Enter password"
+            name="message"
+            onChange={onInput}
+            spellCheck={false}
+          />
         </MessageWrapper>
         <ReadRecieptWrapper>
           <Label>Read reciept on email otherwise leave empty</Label>
-          <Input placeholder="Enter email" name="email" onChange={onInput} />
+          <Input placeholder="Enter email" name="email" onChange={onInput} spellCheck={false} />
         </ReadRecieptWrapper>
       </Top>
       <Bottom>
