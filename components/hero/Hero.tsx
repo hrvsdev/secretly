@@ -18,7 +18,7 @@ const HeroWrapper = styled.section`
   margin: 0 auto 50px;
   max-width: 800px;
   width: 100%;
-  padding: 40px 20px 0;
+  padding: 70px 20px 0;
 `;
 
 const Heading = styled.h1`

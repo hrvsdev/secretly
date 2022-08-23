@@ -40,9 +40,14 @@ export default function Link(): JSX.Element {
     }
   }, [link]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const heroProps = {
+    heading: "Here is a secret",
+    para: "Click the button below to view the secret. Make sure that you copied the sceret.",
+  };
+
   return (
     <SecretViewWrapper>
-      <Hero heading="It's a secret!" para="Click to view secret"/>
+      <Hero {...heroProps} />
       {isSecretShown.value ? (
         <SecretText>{secret.value}</SecretText>
       ) : (
@@ -52,7 +57,9 @@ export default function Link(): JSX.Element {
   );
 }
 
-const SecretViewWrapper = styled.div`min-height: 100vh`;
+const SecretViewWrapper = styled.div`
+  min-height: 100vh;
+`;
 
 const SecretText = styled.p``;
 
