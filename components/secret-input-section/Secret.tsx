@@ -10,6 +10,11 @@ export default function Secret(): JSX.Element {
   // Textarea value state
   const value = useState("");
 
+  // Values state
+  const password = useState("");
+  const message = useState("");
+  const email = useState("");
+
   // Loading state for data saving
   const isLoading = useState(false);
 
