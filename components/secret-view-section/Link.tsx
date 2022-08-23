@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import { deleteSecret, getSecret } from "../../firebase/db";
+import ViewButton from "../button";
 import Hero from "../hero";
 import Navbar from "../navbar";
 
@@ -42,17 +43,13 @@ export default function Link(): JSX.Element {
 
   const heroProps = {
     heading: "Here is a secret",
-    para: "Click the button below to view the secret. Make sure that you copied the sceret.",
+    para: "Click the button below to view the secret. Copy it as it will be deleted instantly.",
   };
 
   return (
     <SecretViewWrapper>
       <Hero {...heroProps} />
-      {isSecretShown.value ? (
-        <SecretText>{secret.value}</SecretText>
-      ) : (
-        <ShowButton onClick={onShowSecret}>Show Secret</ShowButton>
-      )}
+      <ViewButton onClick={onShowSecret}>View Secret</ViewButton>
     </SecretViewWrapper>
   );
 }
