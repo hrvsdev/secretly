@@ -8,13 +8,12 @@ import LinkView from "../link-view-section";
 import { saveSecret } from "../../firebase/db";
 
 export default function Secret(): JSX.Element {
-  // Textarea value state
-  const value = useState("");
-
   // Values state
+  const value = useState("");
   const password = useState("");
   const message = useState("");
   const email = useState("");
+  const link = useState("");
 
   // Loading state for data saving
   const isLoading = useState(false);
@@ -23,13 +22,16 @@ export default function Secret(): JSX.Element {
   const isLinkShown = useState(false);
 
   // Create button click action
-  const onCreateButton = (): void => {
+  const onCreateButton = async () => {
     isLoading.set(true);
-    setTimeout(() => {
+    try {
+      const res = await saveSecret(value.value);
+      link.set(`https://secretly.vercel.app/${res.data?.id}`);
       isLinkShown.set(true);
       isLoading.set(false);
-    }, 1000);
-    // saveSecret(value.value);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // Options component props
@@ -44,7 +46,7 @@ export default function Secret(): JSX.Element {
 
   return (
     <Section>
-      <LinkView isLinkShown={isLinkShown.value} link="hello" />
+      <LinkView isLinkShown={isLinkShown.value} link={link.value} />
       <SecretWrapper show={!isLinkShown.value}>
         <TextareaInput value={value} />
         <Options {...optionsProps} />
