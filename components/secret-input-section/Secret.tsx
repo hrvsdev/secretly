@@ -6,6 +6,7 @@ import TextareaInput from "./textarea";
 import LinkView from "../link-view-section";
 
 import { saveSecret } from "../../firebase/db";
+import { encrypt, genKey, genLink } from "../../utils/utils";
 
 export default function Secret(): JSX.Element {
   // Values state
@@ -24,14 +25,12 @@ export default function Secret(): JSX.Element {
   // Create button click action
   const onCreateButton = async () => {
     isLoading.set(true);
-    try {
-      const res = await saveSecret(value.value);
-      link.set(`https://secretly.vercel.app/${res.data?.id}`);
-      isLinkShown.set(true);
-      isLoading.set(false);
-    } catch (err) {
-      console.log(err);
-    }
+    const key = genKey();
+    const encrypted = encrypt(value.value, key);
+    const res = await saveSecret(encrypted);
+    if (res.data?.id) link.set(genLink(res.data.id, key));
+    isLinkShown.set(true);
+    isLoading.set(false);
   };
 
   // Options component props

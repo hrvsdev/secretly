@@ -17,8 +17,7 @@ const decrypt = (ciphertext: string, key: string) => {
 };
 
 const genLink = (id: string, key: string) => {
-  return id + "#" + key;
+  return "https://secretly.vercel.app/" + id + "#" + key;
 };
 
-
-export {genKey, encrypt, decrypt, genLink}
+export { genKey, encrypt, decrypt, genLink };
