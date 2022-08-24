@@ -12,6 +12,7 @@
     "@emotion/styled": "^11.10.0",
     "@hookstate/core": "^4.0.0-rc21",
     "@stitches/react": "^1.2.8",
+    "crypto-js": "^4.1.1",
     "firebase": "^9.9.3",
     "nanoid": "^4.0.0",
     "next": "12.2.5",
@@ -20,6 +21,7 @@
     "react-icons": "^4.4.0"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.1.1",
     "@types/node": "18.7.6",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
