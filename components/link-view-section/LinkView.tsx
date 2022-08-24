@@ -1,17 +1,20 @@
 import styled from "@emotion/styled";
+
 import CopyButton from "../copy-button";
 
-export default function LinkView() {
-  return (
-    <LinkWrapper show={true}>
-        <Link>{""}</Link>
-        <ButtonsWrapper>
-          <CopyButton text={"gc vbnm"} />
-        </ButtonsWrapper>
-      </LinkWrapper>
-  )
-}
+import { LinkViewType } from "./types";
 
+export default function LinkView(props: LinkViewType): JSX.Element {
+  const { link, isLinkShown } = props;
+  return (
+    <LinkWrapper show={isLinkShown}>
+      <Link>{link}</Link>
+      <ButtonsWrapper>
+        <CopyButton text={link} />
+      </ButtonsWrapper>
+    </LinkWrapper>
+  );
+}
 
 const LinkWrapper = styled.div<{ show: boolean }>`
   display: ${({ show }) => (show ? "flex" : "none")};
@@ -26,12 +29,12 @@ const LinkWrapper = styled.div<{ show: boolean }>`
 
 const Link = styled.div`
   border-radius: 10px;
-  min-height: 100px;
   width: 100%;
-  padding: 20px;
+  padding: 20px 25px;
   background: hsla(0, 0%, 0%, 0.3);
   color: white;
   margin-bottom: 15px;
+  font-size: 22px;
 `;
 
 const ButtonsWrapper = styled.div`
