@@ -13,7 +13,7 @@ const encrypt = (string: string, key: string) => {
 
 const decrypt = (ciphertext: string, key: string) => {
   const bytes = AES.decrypt(ciphertext, key);
-  console.log(key)
+  console.log(key);
   return bytes.toString(enc.Utf8);
 };
 
@@ -21,9 +21,9 @@ const genLink = (id: string, key: string) => {
   return "http://localhost:3000/" + id + "#" + key;
 };
 
-const getHash = ()=>{
-  const hash = window.location.hash
-  return hash.substring(1)
-}
+const getHash = () => {
+  const hash = window.location.hash;
+  return hash.substring(1);
+};
 
-export { genKey, encrypt, decrypt, genLink };
+export { genKey, encrypt, decrypt, genLink, getHash };
