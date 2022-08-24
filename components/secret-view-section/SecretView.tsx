@@ -93,7 +93,6 @@ const SecretWrapper = styled.div<{ show: boolean }>`
   margin: auto;
   transition: all 200ms;
   transition-delay: 100ms;
-  transform: ${({ show }) => (show ? "scale(1)" : "scale(0)")};
 `;
 
 const Secret = styled.div`
