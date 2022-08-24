@@ -30,11 +30,11 @@ const LinkWrapper = styled.div<{ show: boolean }>`
 const Link = styled.div`
   border-radius: 10px;
   width: 100%;
-  padding: 20px 25px;
+  padding: 20px;
   background: hsla(0, 0%, 0%, 0.3);
   color: white;
   margin-bottom: 15px;
-  font-size: 22px;
+  font-size: 20px;
 `;
 
 const ButtonsWrapper = styled.div`

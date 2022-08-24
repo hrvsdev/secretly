@@ -29,8 +29,8 @@ export default function Link(): JSX.Element {
   const isLoading = useState(false);
 
   // View secret button action
-  const onShowSecret = () => {
-    getSecretFromDB();
+  const onShowSecret = async () => {
+    await getSecretFromDB();
     if (typeof link === "string") deleteSecret(link);
   };
 
