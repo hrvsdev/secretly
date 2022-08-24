@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
+import { getHash } from "next/dist/server/image-optimizer";
 import { useRouter } from "next/router";
 
 import { deleteSecret, getSecret } from "../../firebase/db";
+import { decrypt } from "../../utils/utils";
 
 import ViewButton from "../button";
 import CopyButton from "../copy-button";
@@ -42,7 +44,7 @@ export default function Link(): JSX.Element {
       if (res.success) {
         isLoading.set(false);
         if (res.data) {
-          secret.set(res.data.secret);
+          secret.set(decrypt(res.data.secret, getHash()));
           isSecretShown.set(true);
         } else {
           isError.set(true);
