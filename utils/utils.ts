@@ -18,7 +18,7 @@ const decrypt = (ciphertext: string, key: string) => {
 };
 
 const genLink = (id: string, key: string) => {
-  return window.location.origin + id + "#" + key;
+  return `${window.location.origin}/${id}#${key}`;
 };
 
 const getHash = () => {
