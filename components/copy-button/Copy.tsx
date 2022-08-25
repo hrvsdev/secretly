@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import copy from "copy-to-clipboard";
 import { useState } from "@hookstate/core";
 
 import { BiCopy } from "react-icons/bi";
@@ -8,14 +9,10 @@ export default function Copy({ text }: { text: string }) {
   const isCopied = useState(false);
 
   // Copy button action
-  const onCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(text);
-      isCopied.set(true);
-      setTimeout(() => isCopied.set(false), 2000);
-    } catch (error) {
-      alert(error)
-    }
+  const onCopy = () => {
+    copy(text);
+    isCopied.set(true);
+    setTimeout(() => isCopied.set(false), 2000);
   };
 
   return (
