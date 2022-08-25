@@ -5,10 +5,10 @@
   margin: 0;
   box-sizing: border-box;
   font-family: Inter, sens-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
 #__next {
   background: linear-gradient(135deg, rgb(0, 0, 70) 0%, rgb(17, 0, 25) 100%);
   background-position: fixed;
-  
 }
