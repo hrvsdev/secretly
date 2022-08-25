@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 import CopyButton from "../copy-button";
+import SecButton from "../sec-button";
 
 import { LinkViewType } from "./types";
 
@@ -12,6 +13,7 @@ export default function LinkView(props: LinkViewType): JSX.Element {
         <Text>{link}</Text>
       </Link>
       <ButtonsWrapper>
+        <SecButton>Create New</SecButton>
         <CopyButton text={link} />
       </ButtonsWrapper>
     </LinkWrapper>
@@ -36,7 +38,6 @@ const Link = styled.div`
   background: hsla(0, 0%, 0%, 0.3);
   color: white;
   margin-bottom: 15px;
-
 `;
 
 const Text = styled.p`
@@ -58,4 +59,10 @@ const ButtonsWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  column-gap: 15px;
+  @media (max-width: 600px) {
+    flex-direction: column-reverse;
+    row-gap: 15px;
+  }
 `;
