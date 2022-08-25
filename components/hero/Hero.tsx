@@ -19,6 +19,11 @@ const HeroWrapper = styled.section`
   max-width: 800px;
   width: 100%;
   padding: 70px 20px 0;
+
+  @media (max-width: 600px) {
+    margin-bottom: 30px;
+    padding-top: 30px;
+  }
 `;
 
 const Heading = styled.h1`
@@ -26,15 +31,25 @@ const Heading = styled.h1`
   margin-bottom: 10px;
   text-align: center;
   color: white;
+
+  @media (max-width: 600px) {
+    font-size: 2rem;
+    text-align: left;
+  }
 `;
 
 const Para = styled.p`
   font-size: 1.67rem;
   color: #d9d9d9;
   text-align: center;
+
+  @media (max-width: 600px) {
+    font-size: 1.1rem;
+    text-align: left;
+  }
 `;
 
 Hero.defaultProps = {
   heading: "Share a secret",
-  para: "The secret is end-to-end encrypted and can only be viewed once via a link."
-}
+  para: "The secret is end-to-end encrypted and can only be viewed once via a link.",
+};
