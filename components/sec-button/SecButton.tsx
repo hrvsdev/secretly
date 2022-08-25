@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { ReactNode } from "react";
+import { SecButtonType } from "./types";
 
-export default function SecButton({ children }: { children: ReactNode }) {
-  return <Button>{children}</Button>;
+export default function SecButton(props: SecButtonType) {
+  return <Button onClick={props.onClick}>{props.children}</Button>;
 }
 
 const Button = styled.button`

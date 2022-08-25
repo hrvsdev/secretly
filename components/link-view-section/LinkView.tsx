@@ -6,14 +6,14 @@ import SecButton from "../sec-button";
 import { LinkViewType } from "./types";
 
 export default function LinkView(props: LinkViewType): JSX.Element {
-  const { link, isLinkShown } = props;
+  const { link, isLinkShown, onCreateNew } = props;
   return (
     <LinkWrapper show={isLinkShown}>
       <Link>
         <Text>{link}</Text>
       </Link>
       <ButtonsWrapper>
-        <SecButton>Create New</SecButton>
+        <SecButton onClick={onCreateNew}>Create New</SecButton>
         <CopyButton text={link} />
       </ButtonsWrapper>
     </LinkWrapper>

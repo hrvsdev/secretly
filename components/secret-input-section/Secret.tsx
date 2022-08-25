@@ -33,7 +33,7 @@ export default function Secret(): JSX.Element {
     isLoading.set(false);
   };
 
-  // Options component props
+  // Components props
   const optionsProps = {
     isCreateButtonDisabled: value.value.trim().length ? false : true,
     isLoading: isLoading.value,
@@ -43,9 +43,18 @@ export default function Secret(): JSX.Element {
     email: email,
   };
 
+  const linkViewProps = {
+    isLinkShown: isLinkShown.value,
+    link: link.value,
+    onCreateNew: () => {
+      isLinkShown.set(false);
+      link.set("");
+    },
+  };
+
   return (
     <Section>
-      <LinkView isLinkShown={isLinkShown.value} link={link.value} />
+      <LinkView {...linkViewProps} />
       <SecretWrapper show={!isLinkShown.value}>
         <TextareaInput value={value} />
         <Options {...optionsProps} />
