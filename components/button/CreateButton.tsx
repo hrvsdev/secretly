@@ -6,14 +6,14 @@ export default function CreateButton(props: CreateButtonTypes) {
   const { isDisabled, onClick, isLoading, children } = props;
 
   return (
-    <Button disabled={isDisabled} loading={isLoading} onClick={onClick}>
+    <Button disabled={isDisabled} loading={+isLoading} onClick={onClick}>
       <span className="loader"></span>
       <span className="text">{children}</span>
     </Button>
   );
 }
 
-const Button = styled.button<{ loading: boolean }>`
+const Button = styled.button<{ loading: number }>`
   all: unset;
   display: flex;
   justify-content: center;
@@ -70,7 +70,6 @@ const Button = styled.button<{ loading: boolean }>`
       transform: rotate(360deg);
     }
   }
-
 `;
 
 CreateButton.defaultProps = {

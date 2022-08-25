@@ -13,7 +13,6 @@ const encrypt = (string: string, key: string) => {
 
 const decrypt = (ciphertext: string, key: string) => {
   const bytes = AES.decrypt(ciphertext, key);
-  console.log(key);
   return bytes.toString(enc.Utf8);
 };
 

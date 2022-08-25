@@ -8,6 +8,7 @@ export default function TextareaInput({ value }: TextareaTypes): JSX.Element {
       <Textarea
         placeholder="What's on your mind!"
         onChange={(e) => value.set(e.target.value)}
+        value={value.value}
         spellCheck={false}
       />
     </TextareaBox>
