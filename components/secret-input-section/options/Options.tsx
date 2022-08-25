@@ -60,9 +60,9 @@ export default function Options(props: OptionsTypes): JSX.Element {
         </ReadRecieptWrapper>
       </Top>
       <Bottom>
-        <MoreButton active={areOptionsShown.value} onClick={onMoreOptions}>
+        {/* <MoreButton active={areOptionsShown.value} onClick={onMoreOptions}>
           <BiChevronDown /> Set options
-        </MoreButton>
+        </MoreButton> */}
         <CreateButton {...createButtonProps} />
       </Bottom>
       <Blank />
