@@ -8,12 +8,12 @@ export default function Copy({ text }: { text: string }) {
   const isCopied = useState(false);
 
   // Copy button action
-  const onCopy = () => {
-    window.navigator.clipboard.writeText(text);
+  const onCopy = async () => {
+    await window.navigator.clipboard.writeText(text);
     isCopied.set(true);
     setTimeout(() => isCopied.set(false), 2000);
   };
-  
+
   return (
     <CopyButton onClick={onCopy}>
       <BiCopy />
@@ -35,6 +35,9 @@ const CopyButton = styled.button`
   will-change: transform filter;
   transition: all 0.25s;
   cursor: pointer;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 
   &:hover {
     filter: brightness(1.2);
