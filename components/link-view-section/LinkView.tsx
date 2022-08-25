@@ -8,7 +8,9 @@ export default function LinkView(props: LinkViewType): JSX.Element {
   const { link, isLinkShown } = props;
   return (
     <LinkWrapper show={isLinkShown}>
-      <Link>{link}</Link>
+      <Link>
+        <Text>{link}</Text>
+      </Link>
       <ButtonsWrapper>
         <CopyButton text={link} />
       </ButtonsWrapper>
@@ -30,11 +32,23 @@ const LinkWrapper = styled.div<{ show: boolean }>`
 const Link = styled.div`
   border-radius: 10px;
   width: 100%;
-  padding: 20px;
+  padding: 0 20px;
   background: hsla(0, 0%, 0%, 0.3);
   color: white;
   margin-bottom: 15px;
   font-size: 20px;
+`;
+
+const Text = styled.p`
+  padding: 20px 0;
+  overflow-x: scroll;
+  height: 100%;
+  scrollbar-width: 0;
+
+  &::-webkit-scrollbar{
+    display: none;
+  }
+
 `;
 
 const ButtonsWrapper = styled.div`
