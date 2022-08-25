@@ -8,6 +8,7 @@ import { getHash, decrypt } from "../../utils/utils";
 import ViewButton from "../button";
 import CopyButton from "../copy-button";
 import Hero from "../hero";
+import SecButton from "../sec-button";
 import Error from "./error";
 
 export default function Link(): JSX.Element {
@@ -52,6 +53,11 @@ export default function Link(): JSX.Element {
     }
   };
 
+  // Reply button action
+  const onReply = () => {
+    router.push("/");
+  };
+
   const heroProps = {
     heading: "Here is a secret",
     para: "Click the button below to view the secret. Copy it as it will be deleted instantly.",
@@ -69,6 +75,7 @@ export default function Link(): JSX.Element {
       <SecretWrapper show={isSecretShown.value}>
         <Secret>{secret.value}</Secret>
         <ButtonsWrapper>
+          <SecButton onClick={onReply}>Reply with a secret</SecButton>
           <CopyButton text={secret.value} />
         </ButtonsWrapper>
       </SecretWrapper>
@@ -111,4 +118,10 @@ const ButtonsWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  column-gap: 15px;
+  @media (max-width: 600px) {
+    flex-direction: column-reverse;
+    row-gap: 15px;
+  }
 `;

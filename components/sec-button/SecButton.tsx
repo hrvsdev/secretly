@@ -12,7 +12,7 @@ const Button = styled.button`
   padding: 0px 20px;
   cursor: pointer;
   height: 48px;
-  width: 100%;
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,6 +20,7 @@ const Button = styled.button`
   transition: all 250ms;
   @media (max-width: 600px) {
     padding: 0;
+    width: 100%;
   }
 
   &:hover {

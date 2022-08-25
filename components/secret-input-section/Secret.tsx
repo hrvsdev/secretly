@@ -47,6 +47,7 @@ export default function Secret(): JSX.Element {
     isLinkShown: isLinkShown.value,
     link: link.value,
     onCreateNew: () => {
+      value.set("");
       isLinkShown.set(false);
       link.set("");
     },
