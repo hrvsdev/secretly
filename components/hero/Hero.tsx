@@ -33,7 +33,7 @@ const Heading = styled.h1`
   color: white;
 
   @media (max-width: 600px) {
-    font-size: 2rem;
+    font-size: 2.1rem;
     text-align: left;
   }
 `;
@@ -44,7 +44,7 @@ const Para = styled.p`
   text-align: center;
 
   @media (max-width: 600px) {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-align: left;
   }
 `;

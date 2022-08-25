@@ -32,23 +32,26 @@ const LinkWrapper = styled.div<{ show: boolean }>`
 const Link = styled.div`
   border-radius: 10px;
   width: 100%;
-  padding: 0 20px;
+  padding: 20px;
   background: hsla(0, 0%, 0%, 0.3);
   color: white;
   margin-bottom: 15px;
-  font-size: 20px;
+
 `;
 
 const Text = styled.p`
-  padding: 20px 0;
+  font-size: 20px;
   overflow-x: scroll;
   height: 100%;
-  scrollbar-width: 0;
+  scrollbar-width: none;
 
-  &::-webkit-scrollbar{
-    display: none;
+  @media (max-width: 600px) {
+    font-size: 18px;
   }
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ButtonsWrapper = styled.div`
