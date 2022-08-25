@@ -9,7 +9,7 @@ export default function Error({ show }: { show: boolean }): JSX.Element {
         <Icon>
           <BiErrorCircle />
         </Icon>
-        <Text>Not found</Text>
+        <Text>This secret is unavailable.</Text>
       </ErrorWrapper>
     </Section>
   );
