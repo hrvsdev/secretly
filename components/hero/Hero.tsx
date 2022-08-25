@@ -21,8 +21,8 @@ const HeroWrapper = styled.section`
   padding: 70px 20px 0;
 
   @media (max-width: 600px) {
-    margin-bottom: 30px;
-    padding-top: 30px;
+    margin-bottom: 40px;
+    padding-top: 40px;
   }
 `;
 
