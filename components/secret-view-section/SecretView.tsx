@@ -83,6 +83,7 @@ const Main = styled.main`
 const ViewButtonWrapper = styled.div<{ show: boolean }>`
   display: ${({ show }) => (show ? "none" : "flex")};
   justify-content: center;
+  padding: 0 20px;
 `;
 
 const SecretWrapper = styled.div<{ show: boolean }>`
