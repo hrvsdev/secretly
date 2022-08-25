@@ -9,9 +9,13 @@ export default function Copy({ text }: { text: string }) {
 
   // Copy button action
   const onCopy = async () => {
-    await window.navigator.clipboard.writeText(text);
-    isCopied.set(true);
-    setTimeout(() => isCopied.set(false), 2000);
+    try {
+      await navigator.clipboard.writeText(text);
+      isCopied.set(true);
+      setTimeout(() => isCopied.set(false), 2000);
+    } catch (error) {
+      alert(error)
+    }
   };
 
   return (
