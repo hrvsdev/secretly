@@ -27,6 +27,11 @@ const Button = styled.button<{ loading: boolean }>`
   will-change: transform filter;
   transition: all 0.25s;
 
+  @media (max-width: 600px) {
+    width: 100%;
+    padding: 0;
+  }
+
   &:enabled {
     cursor: ${({ loading }) => (loading ? "not-allowed" : "pointer")};
     &:hover {
@@ -65,6 +70,7 @@ const Button = styled.button<{ loading: boolean }>`
       transform: rotate(360deg);
     }
   }
+
 `;
 
 CreateButton.defaultProps = {

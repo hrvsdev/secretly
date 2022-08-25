@@ -118,7 +118,12 @@ const Input = styled.input`
 
 const Bottom = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 const MoreButton = styled.button<{ active: boolean }>`
@@ -128,6 +133,7 @@ const MoreButton = styled.button<{ active: boolean }>`
   padding: 0 8px 0 5px;
   cursor: pointer;
   height: 30px;
+  width: fit-content;
   font-size: 13px;
   display: flex;
   align-items: center;
@@ -144,6 +150,11 @@ const MoreButton = styled.button<{ active: boolean }>`
     margin-right: 5px;
     transition: transform 200ms;
     transform: ${({ active }) => (active ? "rotate(180deg)" : "rotate(0deg)")};
+  }
+
+  
+  @media (max-width: 600px) {
+    margin-bottom: 8px;
   }
 `;
 
