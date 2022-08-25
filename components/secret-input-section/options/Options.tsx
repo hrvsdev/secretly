@@ -119,7 +119,7 @@ const Input = styled.input`
 const Bottom = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: right;
 
   @media (max-width: 600px) {
     flex-direction: column;
