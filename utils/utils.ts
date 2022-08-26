@@ -8,12 +8,12 @@ const genKey = () => {
 };
 
 const encrypt = (string: string, key: string) => {
-  return AES.encrypt(string, key).toString();
+  return AES.encrypt(JSON.stringify(string), key).toString();
 };
 
 const decrypt = (ciphertext: string, key: string) => {
   const bytes = AES.decrypt(ciphertext, key);
-  return bytes.toString(enc.Utf8);
+  return JSON.parse(bytes.toString(enc.Utf8));
 };
 
 const genLink = (id: string, key: string) => {
