@@ -45,8 +45,12 @@ export default function Link(): JSX.Element {
         isLoading.set(false);
         if (res.data) {
           const dec = decrypt(res.data.secret, getHash());
-          if (dec) isSecretShown.set(true);
-          else isError.set(true);
+          if (dec) {
+            secret.set(dec);
+            isSecretShown.set(true);
+          } else {
+            isError.set(true);
+          }
         } else {
           isError.set(true);
         }
