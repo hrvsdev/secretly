@@ -24,13 +24,15 @@ export default function Secret(): JSX.Element {
 
   // Create button click action
   const onCreateButton = async () => {
-    isLoading.set(true);
-    const key = genKey();
-    const encrypted = encrypt(value.value, key);
-    const res = await saveSecret(encrypted);
-    if (res.data?.id) link.set(genLink(res.data.id, key));
-    isLinkShown.set(true);
-    isLoading.set(false);
+    if (value.value.trim()) {
+      isLoading.set(true);
+      const key = genKey();
+      const encrypted = encrypt(value.value, key);
+      const res = await saveSecret(encrypted);
+      if (res.data?.id) link.set(genLink(res.data.id, key));
+      isLinkShown.set(true);
+      isLoading.set(false);
+    }
   };
 
   // Components props
