@@ -9,12 +9,16 @@ export function TabList({ children }: TabListTypes) {
   return <TabListStyled>{children}</TabListStyled>;
 }
 
-export function Tab({ children }: TabTypes) {
-  return <TabStyled>{children}</TabStyled>;
+export function Tab({ children, id, title, active }: TabTypes) {
+  return (
+    <TabStyled onClick={() => active.set(id)} active={active.value === id}>
+      {children ? children : title}
+    </TabStyled>
+  );
 }
 
-export function TabPanel({ children }: TabPanelTypes) {
-  return <TabPanelStyled>{children}</TabPanelStyled>;
+export function TabPanel({ children, id, active }: TabPanelTypes) {
+  return id === active.value ? <TabPanelStyled>{children}</TabPanelStyled> : null;
 }
 
 const TabsStyled = styled.div`
@@ -29,7 +33,7 @@ const TabListStyled = styled.div`
   flex-direction: row;
 `;
 
-const TabStyled = styled.div<{ active?: true }>`
+const TabStyled = styled.div<{ active?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
