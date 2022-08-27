@@ -1,22 +1,22 @@
 import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
-import React from "react";
 
-export default function Tabs() {
-  const selected = useState(0);
-  const toggle = (id: number) => {
-    selected.set(id);
-  };
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
+export default function TabsComp() {
   return (
-    <TabsWrapper>
-      <Header>
-        <Button>Password</Button>
-        <Button>Message</Button>
-        <Button>Read Reciept</Button>
-        <Button>Delivery</Button>
-      </Header>
-    </TabsWrapper>
+    <Tabs>
+      <TabList>
+        <Button>Title 1</Button>
+        <Button>Title 2</Button>
+      </TabList>
+      <TabPanel>
+        <h2>Any content 1</h2>
+      </TabPanel>
+      <TabPanel>
+        <h2>Any content 2</h2>
+      </TabPanel>
+    </Tabs>
   );
 }
 
@@ -32,7 +32,7 @@ const Header = styled.div`
   flex-direction: row;
 `;
 
-const Button = styled.div<{ active?: true }>`
+const Button = styled(Tab)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,8 +40,6 @@ const Button = styled.div<{ active?: true }>`
   margin-bottom: -2px;
   padding: 0 16px;
   cursor: pointer;
-  color: ${({ active }) => active && "#0072f5"};
-  border-bottom: 2px solid ${({ active }) => (active ? "currentcolor" : "transparent")};
 `;
 
 const Content = styled.div``;
