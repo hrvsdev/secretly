@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
+import React from "react";
 
 export default function Tabs() {
   const selected = useState(0);
@@ -20,8 +21,8 @@ export default function Tabs() {
 }
 
 const TabsWrapper = styled.div`
-  color: white;
   margin-bottom: 20px;
+  color: white;
 `;
 
 const Header = styled.div`
