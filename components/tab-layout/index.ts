@@ -1,2 +1,2 @@
-import * as TabLayout from "./TabLayout";
-export default TabLayout
+import {Tab, TabList, TabPanel, Tabs} from "./TabLayout";
+export {Tab, TabList, TabPanel, Tabs}

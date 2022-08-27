@@ -1,18 +1,19 @@
 import styled from "@emotion/styled";
+import { TabListTypes, TabPanelTypes, TabsTypes, TabTypes } from "./types";
 
-export function TabList({ children }: { children: React.ReactNode }) {
-  return <TabListStyled>{children}</TabListStyled>;
-}
-
-export function Tabs({ children }: { children: React.ReactNode }) {
+export function Tabs({ children }: TabsTypes) {
   return <TabsStyled>{children}</TabsStyled>;
 }
 
-export function Tab({ children }: { children: React.ReactNode }) {
+export function TabList({ children }: TabListTypes) {
+  return <TabListStyled>{children}</TabListStyled>;
+}
+
+export function Tab({ children }: TabTypes) {
   return <TabStyled>{children}</TabStyled>;
 }
 
-export function TabPanel({ children }: { children: React.ReactNode }) {
+export function TabPanel({ children }: TabPanelTypes) {
   return <TabPanelStyled>{children}</TabPanelStyled>;
 }
 

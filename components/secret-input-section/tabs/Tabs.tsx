@@ -1,11 +1,13 @@
-import { Tab, TabList, TabPanel, Tabs } from "../../tab-layout/TabLayout";
+import { useState } from "@hookstate/core";
+import { Tabs, TabList, Tab } from "../../tab-layout";
 
 export default function TabsComp() {
+  const active = useState("1");
+
   return (
     <Tabs>
       <TabList>
-        <Tab>Title 1</Tab>
-        <Tab>Title 2</Tab>
+        <Tab title="One" id="1" active={active} />
       </TabList>
     </Tabs>
   );
