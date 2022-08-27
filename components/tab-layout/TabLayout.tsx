@@ -41,6 +41,7 @@ const TabStyled = styled.div<{ active?: boolean }>`
   margin-bottom: -2px;
   padding: 0 16px;
   cursor: pointer;
+  transition: all 250ms;
   color: ${({ active }) => active && "#0072f5"};
   border-bottom: 2px solid ${({ active }) => (active ? "currentcolor" : "transparent")};
 `;
