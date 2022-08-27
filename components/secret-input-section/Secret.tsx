@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 
 import Options from "./options";
-import Tabs from "./tabs";
+import Tabs from "../tabs";
 import TextareaInput from "./textarea";
 import LinkView from "../link-view-section";
 
