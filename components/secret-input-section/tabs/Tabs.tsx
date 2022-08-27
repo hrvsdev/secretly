@@ -1,10 +1,16 @@
 import styled from "@emotion/styled";
+import { useState } from "@hookstate/core";
 
 export default function Tabs() {
+  const selected = useState(0);
+  const toggle = (id: number) => {
+    selected.set(id);
+  };
+
   return (
     <TabsWrapper>
       <Header>
-        <Button active={true}>Password</Button>
+        <Button>Password</Button>
         <Button>Message</Button>
         <Button>Read Reciept</Button>
         <Button>Delivery</Button>
@@ -34,7 +40,7 @@ const Button = styled.div<{ active?: true }>`
   padding: 0 16px;
   cursor: pointer;
   color: ${({ active }) => active && "#0072f5"};
-  border-bottom: ${({ active }) => active && "2px solid currentcolor"};
+  border-bottom: 2px solid ${({ active }) => (active ? "currentcolor" : "transparent")};
 `;
 
 const Content = styled.div``;
