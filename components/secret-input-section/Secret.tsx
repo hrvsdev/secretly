@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 
 import Options from "./options";
+import Tabs from "./tabs";
 import TextareaInput from "./textarea";
 import LinkView from "../link-view-section";
 
@@ -45,6 +46,7 @@ export default function Secret(): JSX.Element {
     email: email,
   };
 
+  // Link View Props
   const linkViewProps = {
     isLinkShown: isLinkShown.value,
     link: link.value,
@@ -59,6 +61,7 @@ export default function Secret(): JSX.Element {
     <Section>
       <LinkView {...linkViewProps} />
       <SecretWrapper show={!isLinkShown.value}>
+        <Tabs/>
         <TextareaInput value={value} />
         <Options {...optionsProps} />
       </SecretWrapper>
