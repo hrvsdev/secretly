@@ -16,17 +16,6 @@ export function TabPanel({ children }: { children: React.ReactNode }) {
   return <TabPanelStyled>{children}</TabPanelStyled>;
 }
 
-export default function Component() {
-  return (
-    <Tabs>
-      <TabList>
-        <Tab>One</Tab>
-        <Tab>Two</Tab>
-      </TabList>
-    </Tabs>
-  );
-}
-
 const TabsStyled = styled.div`
   margin-bottom: 20px;
   color: white;
