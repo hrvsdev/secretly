@@ -5,18 +5,12 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 export default function TabsComp() {
   return (
-    <Tabs>
-      <TabList>
-        <Button>Title 1</Button>
-        <Button>Title 2</Button>
-      </TabList>
-      <TabPanel>
-        <h2>Any content 1</h2>
-      </TabPanel>
-      <TabPanel>
-        <h2>Any content 2</h2>
-      </TabPanel>
-    </Tabs>
+    <TabsWrapper>
+      <Header>
+        <Button>Password</Button>
+        <Button>Message</Button>
+      </Header>
+    </TabsWrapper>
   );
 }
 
@@ -32,7 +26,7 @@ const Header = styled.div`
   flex-direction: row;
 `;
 
-const Button = styled(Tab)`
+const Button = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,4 +36,6 @@ const Button = styled(Tab)`
   cursor: pointer;
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+  color: white;
+`;
