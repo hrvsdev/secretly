@@ -1,14 +1,13 @@
 import styled from "@emotion/styled";
-import { useState } from "@hookstate/core";
 
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-
-export default function TabsComp() {
+export default function Tabs() {
   return (
     <TabsWrapper>
       <Header>
         <Button>Password</Button>
         <Button>Message</Button>
+        <Button>Read Reciept</Button>
+        <Button>Delivery</Button>
       </Header>
     </TabsWrapper>
   );
@@ -26,7 +25,7 @@ const Header = styled.div`
   flex-direction: row;
 `;
 
-const Button = styled.div`
+const Button = styled.div<{ active?: true }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,8 +33,8 @@ const Button = styled.div`
   margin-bottom: -2px;
   padding: 0 16px;
   cursor: pointer;
+  color: ${({ active }) => active && "#0072f5"};
+  border-bottom: 2px solid ${({ active }) => (active ? "currentcolor" : "transparent")};
 `;
 
-const Content = styled.div`
-  color: white;
-`;
+const Content = styled.div``;
