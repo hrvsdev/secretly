@@ -23,4 +23,5 @@ export interface OptionsTypes {
 
 export interface TabsTypes {
   value: StateMethods<string>;
+  active: StateMethods<string>
 }

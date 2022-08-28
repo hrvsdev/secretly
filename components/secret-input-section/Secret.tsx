@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
+import isUrl from "is-url";
 import { useState } from "@hookstate/core";
 
 import Options from "./options";
 import Tabs from "./tabs";
-import TextareaInput from "./textarea";
 import LinkView from "../link-view-section";
 
 import { saveSecret } from "../../firebase/db";
@@ -23,6 +23,9 @@ export default function Secret(): JSX.Element {
   // Link shown state
   const isLinkShown = useState(false);
 
+  // Active tab state
+  const activeTab = useState("1");
+
   // Create button click action
   const onCreateButton = async () => {
     if (value.value.trim()) {
@@ -36,9 +39,15 @@ export default function Secret(): JSX.Element {
     }
   };
 
+  // Disabling create button function
+  const disableButton = () => {
+    if (activeTab.value === "1") return value.value.trim() ? false : true;
+    if (activeTab.value === "2") return !isUrl(value.value);
+  };
+
   // Components props
   const optionsProps = {
-    isCreateButtonDisabled: value.value.trim().length ? false : true,
+    isCreateButtonDisabled: disableButton() || false,
     isLoading: isLoading.value,
     onCreateButton: onCreateButton,
     password: password,
@@ -61,7 +70,7 @@ export default function Secret(): JSX.Element {
     <Section>
       <LinkView {...linkViewProps} />
       <SecretWrapper show={!isLinkShown.value}>
-        <Tabs value={value} />
+        <Tabs value={value} active={activeTab} />
         <Options {...optionsProps} />
       </SecretWrapper>
     </Section>

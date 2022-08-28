@@ -1,13 +1,11 @@
-import { useState } from "@hookstate/core";
 import { Tabs, TabList, Tab, TabPanel } from "../../tab-layout";
 
 import { TabsTypes } from "../types";
 
 import TextareaInput from "../textarea";
+import RedirectInput from "../redirect";
 
-export default function TabsComp({ value }: TabsTypes): JSX.Element {
-  const active = useState("1");
-
+export default function TabsComp({ value, active }: TabsTypes): JSX.Element {
   return (
     <Tabs>
       <TabList>
@@ -16,10 +14,10 @@ export default function TabsComp({ value }: TabsTypes): JSX.Element {
         <Tab title="Animated" id="3" active={active} />
       </TabList>
       <TabPanel id="1" active={active}>
-        <TextareaInput value={value}/>
+        <TextareaInput value={value} />
       </TabPanel>
       <TabPanel id="2" active={active}>
-        Content 2
+        <RedirectInput value={value} />
       </TabPanel>
       <TabPanel id="3" active={active}>
         Content 3

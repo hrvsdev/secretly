@@ -12,3 +12,9 @@
   background: linear-gradient(135deg, rgb(0, 0, 70) 0%, rgb(17, 0, 25) 100%);
   background-position: fixed;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  transition: background-color 5000s 0s;
+}
