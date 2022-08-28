@@ -31,6 +31,7 @@ const TabListStyled = styled.div`
   margin-bottom: 20px;
   display: flex;
   flex-direction: row;
+  padding: 5px;
   background-color: hsla(0, 0%, 0%, 0.3);
   border-radius: 10px;
 `;
@@ -46,16 +47,11 @@ const TabStyled = styled.button<{ active?: boolean }>`
   padding: 0 18px;
   cursor: pointer;
   transition: all 250ms;
-  border-radius: 10px;
-  color: ${({ active }) => active && "#0072f5"};
-  /* border-bottom: 2px solid ${({ active }) => (active ? "currentcolor" : "transparent")}; */
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
+  border-radius: 5px;
+  background-color: ${({ active }) => (active && "#0072f5")};
+  
   &:active {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(0, 114, 245, 0.4);
   }
 `;
 
