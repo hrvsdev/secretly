@@ -27,23 +27,34 @@ const TabsStyled = styled.div`
 `;
 
 const TabListStyled = styled.div`
-  height: 50px;
+  height: 45px;
+  margin-bottom: 20px;
   border-bottom: 2px solid rgba(255, 255, 255, 0.2);
   display: flex;
   flex-direction: row;
 `;
 
-const TabStyled = styled.div<{ active?: boolean }>`
+const TabStyled = styled.button<{ active?: boolean }>`
+  all: unset;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   margin-bottom: -2px;
-  padding: 0 16px;
+  padding: 0 18px;
   cursor: pointer;
   transition: all 250ms;
+  border-radius: 5px 5px 0 0;
   color: ${({ active }) => active && "#0072f5"};
   border-bottom: 2px solid ${({ active }) => (active ? "currentcolor" : "transparent")};
+
+  &:hover{
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  &:active{
+    background-color: rgba(255, 255, 255, 0.05);
+  }
 `;
 
 const TabPanelStyled = styled.div``;
