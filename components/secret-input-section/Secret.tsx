@@ -61,8 +61,7 @@ export default function Secret(): JSX.Element {
     <Section>
       <LinkView {...linkViewProps} />
       <SecretWrapper show={!isLinkShown.value}>
-        <Tabs/>
-        <TextareaInput value={value} />
+        <Tabs value={value} />
         <Options {...optionsProps} />
       </SecretWrapper>
     </Section>

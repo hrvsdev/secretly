@@ -22,7 +22,7 @@ export function TabPanel({ children, id, active }: TabPanelTypes) {
 }
 
 const TabsStyled = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   color: white;
 `;
 

@@ -20,3 +20,7 @@ export interface OptionsTypes {
   email: StateMethods<string>;
   password: StateMethods<string>;
 }
+
+export interface TabsTypes {
+  value: StateMethods<string>;
+}
