@@ -9,13 +9,13 @@ export default function TabsComp({ value, active }: TabsTypes): JSX.Element {
   return (
     <Tabs>
       <TabList>
-        <Tab title="Text" id="" active={active} />
-        <Tab title="Redirect" id="2" active={active} />
+        <Tab title="Text" id="text" active={active} />
+        <Tab title="Redirect" id="redirect" active={active} />
       </TabList>
-      <TabPanel id="1" active={active}>
+      <TabPanel id="text" active={active}>
         <TextareaInput value={value} />
       </TabPanel>
-      <TabPanel id="2" active={active}>
+      <TabPanel id="redirect" active={active}>
         <RedirectInput value={value} />
       </TabPanel>
     </Tabs>
