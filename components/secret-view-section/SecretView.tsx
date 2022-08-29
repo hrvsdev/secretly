@@ -16,7 +16,7 @@ export default function Link(): JSX.Element {
   const router = useRouter();
 
   // Link from URL parameter
-  const link = router.query.link;
+  const link = router.query.link as string;
 
   // Show secret state
   const isSecretShown = useState(false);
@@ -32,30 +32,26 @@ export default function Link(): JSX.Element {
 
   // View secret button action
   const onShowSecret = async () => {
-    if (typeof link === "string") {
-      await getSecretFromDB();
-      deleteSecret(link);
-    }
+    await getSecretFromDB();
+    deleteSecret(link);
   };
 
   // Getting secret from DB
   const getSecretFromDB = async () => {
-    if (typeof link === "string") {
-      isLoading.set(true);
-      const res = await getSecret(link);
-      const data = res.data;
-      if (data) {
-        const decrypted = decrypt(data.secret, getHash());
-        if (decrypted) {
-          if (data.type === "text") secret.set(decrypted), isSecretShown.set(true);
-          else if (data.type === "redirect") router.push(decrypted);
-          isLoading.set(false);
-        } else {
-          isError.set(true);
-        }
+    isLoading.set(true);
+    const res = await getSecret(link);
+    const data = res.data;
+    if (data) {
+      const decrypted = decrypt(data.secret, getHash());
+      if (decrypted) {
+        if (data.type === "text") secret.set(decrypted), isSecretShown.set(true);
+        else if (data.type === "redirect") router.push(decrypted);
+        isLoading.set(false);
       } else {
         isError.set(true);
       }
+    } else {
+      isError.set(true);
     }
   };
 
