@@ -32,8 +32,10 @@ export default function Link(): JSX.Element {
 
   // View secret button action
   const onShowSecret = async () => {
-    await getSecretFromDB();
-    if (typeof link === "string") deleteSecret(link);
+    if (typeof link === "string") {
+      await getSecretFromDB();
+      deleteSecret(link);
+    }
   };
 
   // Getting secret from DB
@@ -42,19 +44,17 @@ export default function Link(): JSX.Element {
       isLoading.set(true);
       const res = await getSecret(link);
       const data = res.data;
-      if (res.success) {
-        if (data) {
-          const decrypted = decrypt(data.secret, getHash());
-          if (decrypted) {
-            if (data.type === "text") secret.set(decrypted), isSecretShown.set(true);
-            else if (data.type === "redirect") router.push(decrypted);
-            isLoading.set(false);
-          } else {
-            isError.set(true);
-          }
+      if (data) {
+        const decrypted = decrypt(data.secret, getHash());
+        if (decrypted) {
+          if (data.type === "text") secret.set(decrypted), isSecretShown.set(true);
+          else if (data.type === "redirect") router.push(decrypted);
+          isLoading.set(false);
         } else {
           isError.set(true);
         }
+      } else {
+        isError.set(true);
       }
     }
   };
