@@ -1,4 +1,4 @@
-export interface SaveSecretTypes {
+export interface secretDataTypes {
   type: "text" | "redirect";
   secret: string;
   password?: string;
