@@ -32,7 +32,7 @@ export default function Secret(): JSX.Element {
       isLoading.set(true);
       const key = genKey();
       const encrypted = encrypt(value.value, key);
-      const res = await saveSecret(encrypted);
+      const res = await saveSecret({ type: activeTab.value, secret: encrypted });
       if (res.data?.id) link.set(genLink(res.data.id, key));
       isLinkShown.set(true);
       isLoading.set(false);
