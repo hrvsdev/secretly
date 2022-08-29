@@ -9,7 +9,7 @@ export interface CreateButtonTypes {
   isDisabled: boolean;
   onClick: () => void;
   isLoading: boolean;
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export interface OptionsTypes {
@@ -23,5 +23,5 @@ export interface OptionsTypes {
 
 export interface TabsTypes {
   value: StateMethods<string>;
-  active: StateMethods<string>
+  active: StateMethods<"text" | "redirect">;
 }

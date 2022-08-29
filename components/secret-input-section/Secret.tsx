@@ -24,7 +24,7 @@ export default function Secret(): JSX.Element {
   const isLinkShown = useState(false);
 
   // Active tab state
-  const activeTab = useState("1");
+  const activeTab = useState<"text" | "redirect">("text");
 
   // Create button click action
   const onCreateButton = async () => {
@@ -41,8 +41,8 @@ export default function Secret(): JSX.Element {
 
   // Disabling create button function
   const disableButton = () => {
-    if (activeTab.value === "1") return value.value.trim() ? false : true;
-    if (activeTab.value === "2") return !isUrl(value.value);
+    if (activeTab.value === "text") return value.value.trim() ? false : true;
+    if (activeTab.value === "redirect") return !isUrl(value.value);
   };
 
   // Components props
