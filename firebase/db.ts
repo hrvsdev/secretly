@@ -9,7 +9,7 @@ const db = getFirestore(app);
 const secretsRef = collection(db, "secrets");
 
 // Saving secret
-const saveSecret = async (data: ) => {
+const saveSecret = async (data: save) => {
   try {
     const res = await addDoc(secretsRef, { secret });
     return { success: true, data: { id: res.id } };
