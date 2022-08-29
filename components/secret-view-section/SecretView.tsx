@@ -41,13 +41,14 @@ export default function Link(): JSX.Element {
     if (typeof link === "string") {
       isLoading.set(true);
       const res = await getSecret(link);
+      const data = res.data;
       if (res.success) {
-        isLoading.set(false);
-        if (res.data) {
-          const decrypted = decrypt(res.data.secret, getHash());
+        if (data) {
+          const decrypted = decrypt(data.secret, getHash());
           if (decrypted) {
-            secret.set(decrypted);
-            isSecretShown.set(true)
+            if (data.type === "text") secret.set(decrypted), isSecretShown.set(true);
+            else if (data.type === "redirect") router.push(decrypted);
+            isLoading.set(false);
           } else {
             isError.set(true);
           }
