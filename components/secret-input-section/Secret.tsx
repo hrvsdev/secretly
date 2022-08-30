@@ -45,16 +45,7 @@ export default function Secret(): JSX.Element {
     isLinkShown.set(true);
     isLoading.set(false);
   };
-
-  // Encrypting secret and prepending HTTPS if it is a redirect
-  // const encrypted = (key: string) => {
-  //   const getSecretValue = () => {
-  //     if (activeTab.value === "text") return textValue.value.trim();
-  //     else return redirectHttps.trim();
-  //   };
-  //   return encrypt(getSecretValue(), key);
-  // };
-
+  
   // Disabling create button function
   const disableButton = () => {
     if (activeTab.value === "text") return !valueToSave;
