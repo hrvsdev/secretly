@@ -1,4 +1,5 @@
 import { useState } from "@hookstate/core";
+import { useMemo } from "react";
 import styled from "@emotion/styled";
 import isUrl from "is-url";
 import prependHttp from "prepend-http";
@@ -9,6 +10,7 @@ import LinkView from "../link-view-section";
 
 import { saveSecret } from "../../firebase/db";
 import { encrypt, genKey, genLink } from "../../utils/utils";
+import { secretDataTypes } from "../../firebase/types";
 
 export default function Secret(): JSX.Element {
   // Values state
@@ -27,23 +29,36 @@ export default function Secret(): JSX.Element {
   // Active tab state
   const activeTab = useState<"text" | "redirect">("text");
 
+  // Value used to save data
+  const valueToSave = useMemo(() => {
+    if (activeTab.value === "text") return value.value.trim();
+    else return prependHttp(value.value.trim());
+  }, [value.value, activeTab.value]);
+
   // Create button click action
   const onCreateButton = async () => {
-    if (value.value.trim()) {
-      isLoading.set(true);
-      const key = genKey();
-      const encrypted = encrypt(value.value, key);
-      const res = await saveSecret({ type: activeTab.value, secret: encrypted });
-      if (res.data?.id) link.set(genLink(res.data.id, key));
-      isLinkShown.set(true);
-      isLoading.set(false);
-    }
+    isLoading.set(true);
+    const key = genKey();
+    const encrypted = encrypt(valueToSave, key);
+    const res = await saveSecret({ type: activeTab.value, secret: encrypted });
+    if (res.data?.id) link.set(genLink(res.data.id, key));
+    isLinkShown.set(true);
+    isLoading.set(false);
   };
+
+  // Encrypting secret and prepending HTTPS if it is a redirect
+  // const encrypted = (key: string) => {
+  //   const getSecretValue = () => {
+  //     if (activeTab.value === "text") return textValue.value.trim();
+  //     else return redirectHttps.trim();
+  //   };
+  //   return encrypt(getSecretValue(), key);
+  // };
 
   // Disabling create button function
   const disableButton = () => {
-    if (activeTab.value === "text") return !value.value.trim();
-    if (activeTab.value === "redirect") return !isUrl(prependHttp(value.value));
+    if (activeTab.value === "text") return !valueToSave;
+    if (activeTab.value === "redirect") return !isUrl(valueToSave);
   };
 
   // Components props
