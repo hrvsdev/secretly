@@ -33,7 +33,7 @@ const CopyButton = styled.button`
   background-color: #0073ff;
   color: white;
   border-radius: 10px;
-  will-change: transform filter;
+  will-change: transform;
   transition: all 0.25s;
   cursor: pointer;
   @media (max-width: 600px) {

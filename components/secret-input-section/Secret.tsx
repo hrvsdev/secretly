@@ -1,6 +1,7 @@
+import { useState } from "@hookstate/core";
 import styled from "@emotion/styled";
 import isUrl from "is-url";
-import { useState } from "@hookstate/core";
+import prependHttp from "prepend-http";
 
 import Options from "./options";
 import Tabs from "./tabs";
@@ -41,8 +42,8 @@ export default function Secret(): JSX.Element {
 
   // Disabling create button function
   const disableButton = () => {
-    if (activeTab.value === "text") return value.value.trim() ? false : true;
-    if (activeTab.value === "redirect") return !isUrl(value.value);
+    if (activeTab.value === "text") return !value.value.trim();
+    if (activeTab.value === "redirect") return !isUrl(prependHttp(value.value));
   };
 
   // Components props

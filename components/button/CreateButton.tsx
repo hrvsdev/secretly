@@ -7,7 +7,7 @@ export default function CreateButton(props: CreateButtonTypes) {
 
   return (
     <Button disabled={isDisabled} loading={+isLoading} onClick={onClick}>
-      <span className="loader"></span>
+      <span className="loader"/>
       <span className="text">{children}</span>
     </Button>
   );
@@ -24,7 +24,7 @@ const Button = styled.button<{ loading: number }>`
   background-color: #0072f5;
   border-radius: 10px;
   padding: 0 20px;
-  will-change: transform filter;
+  will-change: transform;
   transition: all 0.25s;
 
   @media (max-width: 600px) {
