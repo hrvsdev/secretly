@@ -15,10 +15,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   // Getting secret from database
   const data = (await getSecret(link)).data || null;
-
-  // Deleting secret instantly after getting
-  await deleteSecret(link);
-
+  
   // Returning data as props
   return {
     props: { data },
