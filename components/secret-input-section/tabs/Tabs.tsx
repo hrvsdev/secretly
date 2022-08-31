@@ -14,9 +14,9 @@ export default function TabsComp({ value, active }: TabsTypes): JSX.Element {
       <TabLayout.Panel id="text" active={active}>
         <TextareaInput value={value} />
       </TabLayout.Panel>
-      <TabLayout.Tab id="redirect" active={active}>
+      <TabLayout.Panel id="redirect" active={active}>
         <RedirectInput value={value} />
-      </TabLayout.Tab>
+      </TabLayout.Panel>
     </TabLayout.Tabs>
   );
 }
