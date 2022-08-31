@@ -1,9 +1,8 @@
+import type { NextPage } from "next";
 import Link from "../components/secret-view-section";
 
-export default function LinkPage() {
+const LinkPage: NextPage = () => {
   return <Link />;
 };
 
-export async function getServerSideProps (){
-  
-}
+export default LinkPage;
