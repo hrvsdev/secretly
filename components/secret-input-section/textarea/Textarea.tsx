@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { TextareaTypes } from "../types";
+import type { TextareaTypes } from "../types";
 
 export default function TextareaInput({ value }: TextareaTypes): JSX.Element {
   return (

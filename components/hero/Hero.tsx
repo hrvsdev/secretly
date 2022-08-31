@@ -1,11 +1,8 @@
 import styled from "@emotion/styled";
 
-interface PropsTypes {
-  heading: string;
-  para: string;
-}
+import type { HeroTypes } from "./types";
 
-export default function Hero(props: PropsTypes): JSX.Element {
+export default function Hero(props: HeroTypes): JSX.Element {
   return (
     <HeroWrapper>
       <Heading>{props.heading}</Heading>

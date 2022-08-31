@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import { SecButtonType } from "./types";
+
+import type { SecButtonType } from "./types";
 
 export default function SecButton(props: SecButtonType) {
   return <Button onClick={props.onClick}>{props.children}</Button>;

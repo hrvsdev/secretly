@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { CreateButtonTypes } from "../secret-input-section/types";
+import type { CreateButtonTypes } from "../secret-input-section/types";
 
 export default function CreateButton(props: CreateButtonTypes) {
   const { isDisabled, onClick, isLoading, children } = props;

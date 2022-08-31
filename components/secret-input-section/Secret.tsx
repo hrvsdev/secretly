@@ -1,8 +1,8 @@
-import { useState } from "@hookstate/core";
-import { useMemo } from "react";
 import styled from "@emotion/styled";
 import isUrl from "is-url";
 import prependHttp from "prepend-http";
+import { useState } from "@hookstate/core";
+import { useMemo } from "react";
 
 import Options from "./options";
 import Tabs from "./tabs";
@@ -10,7 +10,6 @@ import LinkView from "../link-view-section";
 
 import { saveSecret } from "../../firebase/db";
 import { encrypt, genKey, genLink } from "../../utils/utils";
-import { secretDataTypes } from "../../firebase/types";
 
 export default function Secret(): JSX.Element {
   // Values state
@@ -41,11 +40,13 @@ export default function Secret(): JSX.Element {
     const key = genKey();
     const encrypted = encrypt(valueToSave, key);
     const res = await saveSecret({ type: activeTab.value, secret: encrypted });
-    if (res.data?.id) link.set(genLink(res.data.id, key));
-    isLinkShown.set(true);
-    isLoading.set(false);
+    if (res.data?.id) {
+      link.set(genLink(res.data.id, key));
+      isLinkShown.set(true);
+      isLoading.set(false);
+    }
   };
-  
+
   // Disabling create button function
   const disableButton = () => {
     if (activeTab.value === "text") return !valueToSave;

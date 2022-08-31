@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
-import { TabListTypes, TabPanelTypes, TabsTypes, TabTypes } from "./types";
+
+import type { TabListTypes, TabPanelTypes, TabsTypes, TabTypes } from "./types";
 
 export function Tabs({ children }: TabsTypes) {
   return <TabsStyled>{children}</TabsStyled>;
 }
 
-export function TabList({ children }: TabListTypes) {
+export function List({ children }: TabListTypes) {
   return <TabListStyled>{children}</TabListStyled>;
 }
 
@@ -17,7 +18,7 @@ export function Tab({ children, id, title, active }: TabTypes) {
   );
 }
 
-export function TabPanel({ children, id, active }: TabPanelTypes) {
+export function Panel({ children, id, active }: TabPanelTypes) {
   return id === active.value ? <TabPanelStyled>{children}</TabPanelStyled> : null;
 }
 

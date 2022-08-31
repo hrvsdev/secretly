@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import CopyButton from "../copy-button";
 import SecButton from "../sec-button";
 
-import { LinkViewType } from "./types";
+import type { LinkViewType } from "./types";
 
 export default function LinkView(props: LinkViewType): JSX.Element {
   const { link, isLinkShown, onCreateNew } = props;

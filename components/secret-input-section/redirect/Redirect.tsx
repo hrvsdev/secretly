@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 
-import { TextareaTypes } from "../types";
 import { BiLink } from "react-icons/bi";
+
+import type { TextareaTypes } from "../types";
 
 export default function RedirectInput({ value }: TextareaTypes): JSX.Element {
   return (
