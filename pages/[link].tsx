@@ -1,14 +1,30 @@
-import Link from "../components/secret-view-section";
-import { saveSecret } from "../firebase/db";
+import SecretView from "../components/secret-view-section";
 
-export default function LinkPage({ res }: any): JSX.Element {
-  return <>{JSON.stringify(res)}</>;
+import { deleteSecret, getSecret } from "../firebase/db";
+
+import type { GetServerSidePropsContext } from "next";
+import type { secretDataTypes } from "../firebase/types";
+
+export default function LinkPage({ data }: SecretViewPageTypes): JSX.Element {
+  return <SecretView data={data} />;
 }
 
-export async function getServerSideProps(context: any) {
-  const res = await saveSecret({ type: "redirect", secret: "Hello" });
-  console.log(res);
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  // Getting link param from URL
+  const link = context.query.link as string;
+
+  // Getting secret from database
+  const data = (await getSecret(link)).data || null;
+
+  // Deleting secret instantly after getting
+  await deleteSecret(link);
+
+  // Returning data as props
   return {
-    props: { res: res.success },
+    props: { data },
   };
+}
+
+interface SecretViewPageTypes {
+  data: secretDataTypes;
 }
