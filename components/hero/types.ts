@@ -1,4 +1,4 @@
-export interface IHero {
+export interface HeroTypes {
     heading: string;
     para: string;
   }
