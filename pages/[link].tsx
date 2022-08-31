@@ -1,6 +1,6 @@
 import SecretView from "../components/secret-view-section";
 
-import { deleteSecret, getSecret } from "../firebase/db";
+import { getSecret } from "../firebase/db";
 
 import type { GetServerSidePropsContext } from "next";
 import type { secretDataTypes } from "../firebase/types";
@@ -15,7 +15,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   // Getting secret from database
   const data = (await getSecret(link)).data || null;
-  
+
   // Returning data as props
   return {
     props: { data },

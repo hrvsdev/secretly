@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 import { deleteSecret } from "../../firebase/db";
 import { getHash, decrypt } from "../../utils/utils";
@@ -35,11 +34,12 @@ export default function Link({ data }: { data: secretDataTypes }): JSX.Element {
 
   // View secret button action
   const onShowSecret = async () => {
-    await getSecretFromDB();
+    await decryptData();
+    await deleteSecret(link);
   };
 
   // Getting secret from DB
-  const getSecretFromDB = async () => {
+  const decryptData = async () => {
     if (data) {
       const decrypted = decrypt(data.secret, getHash());
       if (decrypted) {
