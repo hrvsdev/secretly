@@ -1,8 +1,14 @@
-import type { NextPage } from "next";
 import Link from "../components/secret-view-section";
+import { saveSecret } from "../firebase/db";
 
-const LinkPage: NextPage = () => {
-  return <Link />;
-};
+export default function LinkPage({ res }: any): JSX.Element {
+  return <>{JSON.stringify(res)}</>;
+}
 
-export default LinkPage;
+export async function getServerSideProps(context: any) {
+  const res = await saveSecret({ type: "redirect", secret: "Hello" });
+  console.log(res);
+  return {
+    props: { res: res.success },
+  };
+}
