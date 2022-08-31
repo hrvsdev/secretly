@@ -1,7 +1,4 @@
-import dynamic from "next/dynamic";
-import { lazy, Suspense } from "react";
-
-const SecretView = lazy(() => import("../components/secret-view-section"));
+import SecretView from "../components/secret-view-section";
 
 import { getSecret } from "../firebase/db";
 
@@ -9,11 +6,7 @@ import type { GetServerSidePropsContext } from "next";
 import type { secretDataTypes } from "../firebase/types";
 
 export default function LinkPage({ data }: SecretViewPageTypes): JSX.Element {
-  return (
-    <Suspense fallback="loading">
-      <SecretView data={data} />
-    </Suspense>
-  );
+  return <SecretView data={data} />;
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
