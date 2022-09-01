@@ -16,15 +16,11 @@
     "firebase": "^9.9.3",
     "is-url": "^1.2.4",
     "nanoid": "^4.0.0",
-    "next": "^12.2.5",
-    "next-plugin-preact": "^3.0.7",
-    "preact": "^10.10.6",
-    "preact-render-to-string": "^5.2.2",
+    "next": "12.2.5",
     "prepend-http": "^4.0.0",
-    "react": "npm:@preact/compat@^17.1.1",
-    "react-dom": "npm:@preact/compat@^17.1.1",
-    "react-icons": "^4.4.0",
-    "react-ssr-prepass": "npm:preact-ssr-prepass@^1.2.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.4.0"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.1.1",
