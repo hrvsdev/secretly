@@ -7,7 +7,7 @@ export default function CreateButton(props: CreateButtonTypes) {
 
   return (
     <Button disabled={isDisabled} loading={+isLoading} onClick={onClick}>
-      <span className="loader"/>
+      <span className="loader" />
       <span className="text">{children}</span>
     </Button>
   );
@@ -34,8 +34,11 @@ const Button = styled.button<{ loading: number }>`
 
   &:enabled {
     cursor: ${({ loading }) => (loading ? "not-allowed" : "pointer")};
-    &:hover {
-      filter: ${({ loading }) => (loading ? "unset" : "brightness(1.2)")};
+    
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        filter: ${({ loading }) => (loading ? "unset" : "brightness(1.2)")};
+      }
     }
 
     &:active {

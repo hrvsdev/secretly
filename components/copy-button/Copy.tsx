@@ -41,8 +41,10 @@ const CopyButton = styled.button`
     padding: 0;
   }
 
-  &:hover {
-    filter: brightness(1.2);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      filter: brightness(1.2);
+    }
   }
 
   &:active {

@@ -65,8 +65,10 @@ const MoreButton = styled.button<{ active: boolean }>`
   display: flex;
   align-items: center;
 
-  &:hover {
-    background-color: hsla(0, 0%, 100%, 0.1);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: hsla(0, 0%, 100%, 0.1);
+    }
   }
 
   svg {
@@ -77,7 +79,6 @@ const MoreButton = styled.button<{ active: boolean }>`
     transform: ${({ active }) => (active ? "rotate(180deg)" : "rotate(0deg)")};
   }
 
-  
   @media (max-width: 600px) {
     margin-bottom: 8px;
   }

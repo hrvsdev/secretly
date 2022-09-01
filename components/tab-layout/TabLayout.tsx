@@ -49,11 +49,13 @@ const TabStyled = styled.button<{ active?: boolean }>`
   color: ${({ active }) => active && "#0072f5"};
   border-bottom: 2px solid ${({ active }) => (active ? "currentcolor" : "transparent")};
 
-  &:hover{
-    background-color: rgba(255, 255, 255, 0.03);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+    }
   }
 
-  &:active{
+  &:active {
     background-color: rgba(255, 255, 255, 0.05);
   }
 

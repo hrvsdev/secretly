@@ -24,8 +24,10 @@ const Button = styled.button`
     width: 100%;
   }
 
-  &:hover {
-    background-color: hsla(0, 0%, 100%, 0.06);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: hsla(0, 0%, 100%, 0.06);
+    }
   }
 
   svg {
