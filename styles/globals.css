@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: Inter, sens-serif;
+  font-display: fallback;
   -webkit-tap-highlight-color: transparent;
 }
 
