@@ -2,10 +2,8 @@ import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 import { useRouter } from "next/router";
 
-import { deleteSecret } from "../../firebase/db";
+import { deleteSecret, getSecret } from "../../firebase/db";
 import { getHash, decrypt } from "../../utils/utils";
-
-import type { secretDataTypes } from "../../firebase/types";
 
 import ViewButton from "../button";
 import CopyButton from "../copy-button";
@@ -13,7 +11,7 @@ import Hero from "../hero";
 import SecButton from "../sec-button";
 import Error from "./error";
 
-export default function Link({ data }: { data: secretDataTypes }): JSX.Element {
+export default function Link(): JSX.Element {
   // Router hook
   const router = useRouter();
 
@@ -34,17 +32,21 @@ export default function Link({ data }: { data: secretDataTypes }): JSX.Element {
 
   // View secret button action
   const onShowSecret = async () => {
-    await decryptData();
-    await deleteSecret(link);
+    await getSecretFromDB();
+    deleteSecret(link);
   };
 
   // Getting secret from DB
-  const decryptData = async () => {
+  const getSecretFromDB = async () => {
+    isLoading.set(true);
+    const res = await getSecret(link);
+    const data = res.data;
     if (data) {
       const decrypted = decrypt(data.secret, getHash());
       if (decrypted) {
         if (data.type === "text") secret.set(decrypted), isSecretShown.set(true);
         else if (data.type === "redirect") router.push(decrypted);
+        isLoading.set(false);
       } else {
         isError.set(true);
       }
