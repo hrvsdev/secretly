@@ -4,6 +4,7 @@ import { useState } from "@hookstate/core";
 import { BiChevronDown } from "react-icons/bi";
 
 import CreateButton from "../../button";
+import Top from "./top";
 
 import type { OptionsTypes } from "../types";
 
@@ -26,6 +27,7 @@ export default function Options(props: OptionsTypes): JSX.Element {
 
   return (
     <OptionsWrapper>
+      <Top isVisible={areOptionsShown.value} />
       <Bottom>
         <MoreButton active={areOptionsShown.value} onClick={onMoreOptions}>
           <BiChevronDown />
@@ -40,13 +42,6 @@ export default function Options(props: OptionsTypes): JSX.Element {
 
 const OptionsWrapper = styled.div``;
 
-const Top = styled.div<{ visible: boolean }>`
-  color: white;
-  overflow: hidden;
-  transition: max-height 500ms;
-  max-height: ${({ visible }) => (visible ? "500px" : "0")};
-`;
-
 const Bottom = styled.div`
   display: flex;
   flex-direction: row;
@@ -55,6 +50,7 @@ const Bottom = styled.div`
 
   @media (max-width: 600px) {
     flex-direction: column;
+    row-gap: 15px;
   }
 `;
 
@@ -69,12 +65,22 @@ const MoreButton = styled.button<{ active?: boolean }>`
   font-size: 13px;
   display: flex;
   align-items: center;
-  display: flex;
-  align-items: center;
+  transition: all 250ms;
+  
+  @media (max-width: 600px) {
+    color: #0073ff;
+    background-color: hsla(0, 0%, 100%, 0.05);
+    padding: 0;
+    width: 100%;
+    height: 48px;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 16px;
+  }
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      background-color: hsla(0, 0%, 100%, 0.1);
+      background-color: hsla(0, 0%, 100%, 0.05);
     }
   }
 
@@ -84,10 +90,6 @@ const MoreButton = styled.button<{ active?: boolean }>`
     margin-right: 5px;
     transition: transform 200ms;
     transform: ${({ active }) => (active ? "rotate(180deg)" : "rotate(0deg)")};
-  }
-
-  @media (max-width: 600px) {
-    margin-bottom: 8px;
   }
 `;
 
