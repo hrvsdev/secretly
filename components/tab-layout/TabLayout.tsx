@@ -30,9 +30,10 @@ const TabsStyled = styled.div`
 const TabListStyled = styled.div`
   height: 45px;
   margin-bottom: 20px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: row;
+  justify-content: center;
 `;
 
 const TabStyled = styled.button<{ active?: boolean }>`
@@ -42,7 +43,7 @@ const TabStyled = styled.button<{ active?: boolean }>`
   align-items: center;
   flex-shrink: 0;
   margin-bottom: -2px;
-  padding: 0 18px;
+  padding: 0 22px;
   cursor: pointer;
   transition: all 250ms;
   border-radius: 5px 5px 0 0;
@@ -59,9 +60,9 @@ const TabStyled = styled.button<{ active?: boolean }>`
     background-color: rgba(255, 255, 255, 0.05);
   }
 
-  @media (max-width: 600px) {
+  /* @media (max-width: 600px) {
     flex: 1 0 0;
-  }
+  } */
 `;
 
 const TabPanelStyled = styled.div``;
