@@ -23,5 +23,5 @@ export interface OptionsTypes {
 
 export interface TabsTypes {
   value: StateMethods<string>;
-  active: StateMethods<"text" | "redirect">;
+  active: StateMethods<string>;
 }
