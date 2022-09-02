@@ -33,6 +33,8 @@ const TabListStyled = styled.div`
   border-bottom: 2px solid rgba(255, 255, 255, 0.2);
   display: flex;
   flex-direction: row;
+  overflow-x: scroll;
+  scrollbar-width: none;
 `;
 
 const TabStyled = styled.button<{ active?: boolean }>`
@@ -60,7 +62,7 @@ const TabStyled = styled.button<{ active?: boolean }>`
   }
 
   @media (max-width: 600px) {
-    flex: 1 0 0;
+    /* flex: 1 0 0; */
   }
 `;
 

@@ -75,7 +75,7 @@ const MoreButton = styled.button<{ active?: boolean }>`
     height: 48px;
     justify-content: center;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 15px;
   }
 
   @media (hover: hover) and (pointer: fine) {

@@ -3,14 +3,14 @@ import { StateMethods } from "@hookstate/core";
 export interface TabTypes {
   children?: React.ReactNode;
   title?: string;
-  id: "text" | "redirect";
-  active: StateMethods<"text" | "redirect">;
+  id: string;
+  active: StateMethods<string>;
 }
 
 export interface TabPanelTypes {
   children: React.ReactNode;
-  id: "text" | "redirect";
-  active: StateMethods<"text" | "redirect">;
+  id: string;
+  active: StateMethods<string>;
 }
 
 export interface TabsTypes {
