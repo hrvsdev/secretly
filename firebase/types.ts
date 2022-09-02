@@ -1,5 +1,5 @@
 export interface secretDataTypes {
-  type: "text" | "redirect";
+  type: string;
   secret: string;
   password?: string;
   readRecieptEmail?: string;

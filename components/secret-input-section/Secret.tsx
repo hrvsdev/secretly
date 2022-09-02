@@ -26,7 +26,7 @@ export default function Secret(): JSX.Element {
   const isLinkShown = useState(false);
 
   // Active tab state
-  const activeTab = useState<"text" | "redirect">("text");
+  const activeTab = useState("text");
 
   // Value used to save data
   const valueToSave = useMemo(() => {

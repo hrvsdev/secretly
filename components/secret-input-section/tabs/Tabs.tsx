@@ -4,7 +4,10 @@ import RedirectInput from "../redirect";
 
 import type { TabsTypes } from "../types";
 
-export default function TabsComp({ value, active }: TabsTypes): JSX.Element {
+export default function TabsComp(props: TabsTypes): JSX.Element {
+  // Props destructuring
+  const { value, active } = props;
+
   return (
     <TabLayout.Tabs>
       <TabLayout.List>
