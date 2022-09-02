@@ -33,7 +33,7 @@ export default function Password(): JSX.Element {
 }
 
 const PasswordWrapper = styled.div`
-  margin: 25px 0;
+  margin: 25px 0 50px;
 `;
 
 const Heading = styled.h2`
@@ -55,7 +55,7 @@ const Input = styled.input`
   margin-bottom: 25px;
 `;
 
-const Info = styled.p`
+const Info = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
@@ -63,8 +63,4 @@ const Info = styled.p`
   padding-left: 8px;
   color: rgba(255, 255, 255, 0.8);
   line-height: 25px;
-`;
-
-const Br = styled.br`
-  margin-bottom: 10px;
 `;

@@ -35,7 +35,6 @@ export default function Options(props: OptionsTypes): JSX.Element {
         </MoreButton>
         <CreateButton {...createButtonProps} />
       </Bottom>
-      <Blank />
     </OptionsWrapper>
   );
 }
@@ -66,7 +65,7 @@ const MoreButton = styled.button<{ active?: boolean }>`
   display: flex;
   align-items: center;
   transition: all 250ms;
-  
+
   @media (max-width: 600px) {
     color: #0073ff;
     background-color: hsla(0, 0%, 100%, 0.05);
@@ -91,9 +90,4 @@ const MoreButton = styled.button<{ active?: boolean }>`
     transition: transform 200ms;
     transform: ${({ active }) => (active ? "rotate(180deg)" : "rotate(0deg)")};
   }
-`;
-
-const Blank = styled.div`
-  height: 10px;
-  width: 100%;
 `;

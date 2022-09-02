@@ -16,3 +16,8 @@ input:-webkit-autofill:focus {
   -webkit-text-fill-color: white;
   transition: background-color 5000s 0s;
 }
+
+
+input::placeholder, textarea::placeholder {
+  color: hsl(0, 0%, 100%, 0.5);
+}

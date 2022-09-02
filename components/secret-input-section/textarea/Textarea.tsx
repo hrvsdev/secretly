@@ -35,8 +35,4 @@ const Textarea = styled.textarea`
   &:focus {
     outline: none;
   }
-
-  &::placeholder {
-    color: hsl(0, 0%, 100%, 0.5);
-  }
 `;
