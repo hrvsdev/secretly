@@ -13,5 +13,5 @@ export default function Home(): JSX.Element {
 }
 
 const Main = styled.main`
-  min-height: 130vh;
+  min-height: calc(100vh + 1px);
 `;

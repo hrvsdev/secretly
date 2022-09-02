@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { useState } from "@hookstate/core";
 
 import Tabs from "../tabs";
 
@@ -16,6 +15,5 @@ export default function Top({ isVisible }: TopTypes): JSX.Element {
 const TopStyled = styled.div<{ visible: boolean }>`
   color: white;
   overflow: hidden;
-  /* transition: max-height 500ms; */
-  max-height: ${({ visible }) => (visible ? "500px" : "0")};
+  display: ${({ visible }) => (visible ? "block" : "none")};
 `;

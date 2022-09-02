@@ -46,6 +46,7 @@ const Bottom = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  margin-bottom: 30px;
 
   @media (max-width: 600px) {
     flex-direction: column;

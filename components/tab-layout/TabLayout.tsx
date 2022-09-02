@@ -59,10 +59,6 @@ const TabStyled = styled.button<{ active?: boolean }>`
   &:active {
     background-color: rgba(255, 255, 255, 0.05);
   }
-
-  /* @media (max-width: 600px) {
-    flex: 1 0 0;
-  } */
 `;
 
 const TabPanelStyled = styled.div``;
