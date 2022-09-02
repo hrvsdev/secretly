@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 
+import { BiChevronDown } from "react-icons/bi";
+
 import CreateButton from "../../button";
 
 import type { OptionsTypes } from "../types";
@@ -25,6 +27,10 @@ export default function Options(props: OptionsTypes): JSX.Element {
   return (
     <OptionsWrapper>
       <Bottom>
+        <MoreButton active={areOptionsShown.value} onClick={onMoreOptions}>
+          <BiChevronDown />
+          More Options
+        </MoreButton>
         <CreateButton {...createButtonProps} />
       </Bottom>
       <Blank />
@@ -44,14 +50,15 @@ const Top = styled.div<{ visible: boolean }>`
 const Bottom = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: right;
+  justify-content: space-between;
+  align-items: flex-start;
 
   @media (max-width: 600px) {
     flex-direction: column;
   }
 `;
 
-const MoreButton = styled.button<{ active: boolean }>`
+const MoreButton = styled.button<{ active?: boolean }>`
   all: unset;
   color: #d9d9d9;
   border-radius: 5px;
