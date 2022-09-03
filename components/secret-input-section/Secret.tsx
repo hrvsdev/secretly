@@ -38,8 +38,8 @@ export default function Secret(): JSX.Element {
   const onCreateButton = async () => {
     isLoading.set(true);
     const key = genKey();
-    const encrypted = encrypt(valueToSave, key);
-    const res = await saveSecret({ type: activeTab.value, secret: encrypted });
+    const encrypted = encrypt({ type: activeTab.value, secret: valueToSave }, key);
+    const res = await saveSecret(encrypted);
     if (res.data?.id) {
       link.set(genLink(res.data.id, key));
       isLinkShown.set(true);

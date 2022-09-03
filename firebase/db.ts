@@ -1,6 +1,6 @@
 import { getFirestore, collection } from "firebase/firestore";
 import { addDoc, getDoc, doc, deleteDoc } from "firebase/firestore";
-import { secretDataTypes } from "./types";
+import { SecretDataTypes } from "./types";
 
 import app from "./config";
 
@@ -11,9 +11,9 @@ const db = getFirestore(app);
 const secretsRef = collection(db, "secrets");
 
 // Saving secret
-const saveSecret = async (data: secretDataTypes) => {
+const saveSecret = async (data: string) => {
   try {
-    const res = await addDoc(secretsRef, data);
+    const res = await addDoc(secretsRef, { data: data });
     return { success: true, data: { id: res.id } };
   } catch (err) {
     console.log(err);
