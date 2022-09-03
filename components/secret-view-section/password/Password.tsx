@@ -26,12 +26,12 @@ export default function Password(): JSX.Element {
 
 const PasswordRootWrapper = styled.div`
   margin: auto;
-  padding: 0 20px;
   max-width: 800px;
   border-radius: 20px;
   color: white;
+  /* padding: 0 20px;
   border: 1px solid rgb(0, 114, 245);
-  background-color: hsla(0, 0%, 0%, 0.1);
+  background-color: hsla(0, 0%, 0%, 0.1); */
 `;
 
 const Heading = styled.h2`

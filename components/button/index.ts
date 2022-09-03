@@ -1,2 +1,2 @@
-import CreateButton from "./CreateButton";
-export default CreateButton
+import Button from "./Button";
+export default Button

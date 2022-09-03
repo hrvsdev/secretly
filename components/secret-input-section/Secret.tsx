@@ -96,9 +96,6 @@ export default function Secret(): JSX.Element {
 const Section = styled.section``;
 
 const SecretWrapper = styled.div<{ show: boolean }>`
-  margin: auto;
-  max-width: 800px;
-  padding: 0 20px;
   display: ${({ show }) => (show ? "flex" : "none")};
   justify-content: center;
   flex-direction: column;
