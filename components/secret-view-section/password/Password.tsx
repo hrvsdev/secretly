@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 
+import { BiShow, BiHide, BiKey } from "react-icons/bi";
+
 export default function Password(): JSX.Element {
   // Input value state
   const value = useState("");
@@ -12,14 +14,16 @@ export default function Password(): JSX.Element {
 
   return (
     <PasswordRootWrapper>
-
       <Heading>Enter the password</Heading>
-      <Input
-        type="password"
-        value={value.value}
-        onChange={onChange}
-        placeholder="Enter a secure password"
-      />
+      <InputWrapper>
+        <KeyIcon size={24} />
+        <Input
+          type="password"
+          value={value.value}
+          onChange={onChange}
+          placeholder="Enter the password to decrypt"
+        />
+      </InputWrapper>
     </PasswordRootWrapper>
   );
 }
@@ -29,16 +33,24 @@ const PasswordRootWrapper = styled.div`
   max-width: 800px;
   border-radius: 20px;
   color: white;
-  /* padding: 0 20px;
-  border: 1px solid rgb(0, 114, 245);
-  background-color: hsla(0, 0%, 0%, 0.1); */
 `;
 
 const Heading = styled.h2`
   font-weight: 500;
-  font-size: 25px;
+  font-size: 28px;
   margin-bottom: 20px;
   text-align: center;
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  position: relative;
+`;
+
+const KeyIcon = styled(BiKey)`
+  position: absolute;
 `;
 
 const Input = styled.input`
@@ -50,14 +62,4 @@ const Input = styled.input`
   border-radius: 10px;
   height: 54px;
   padding: 0 20px;
-  margin-bottom: 25px;
-`;
-
-const Error = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 12px;
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 25px;
 `;
