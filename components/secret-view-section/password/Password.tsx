@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
-import { If, Then, Else } from "react-if";
+import { If, Then, Else, When } from "react-if";
 
 import { BiShow, BiHide, BiKey } from "react-icons/bi";
+
+import Button from "../../button";
 
 export default function Password(): JSX.Element {
   // Input value state
@@ -10,6 +12,9 @@ export default function Password(): JSX.Element {
 
   // Password shown state
   const isPasswordShown = useState(false);
+
+  // Password error state
+  const isError = useState(false);
 
   // Input change action
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,14 +24,27 @@ export default function Password(): JSX.Element {
   // Show password button action
   const onShowPassword = () => isPasswordShown.set((prev) => !prev);
 
+  // Submit button click action
+  const onSubmit = () => {
+    if (value.value.trim()) {
+    } else {
+      return isError.set(true);
+    }
+  };
+
+  // Input focus action
+  const onInputFocus = () => isError.set(false);
+
   return (
     <PasswordRootWrapper>
       <Heading>Enter the password</Heading>
       <InputWrapper>
         <KeyIcon size={28} />
         <Input
+          isError={isError.value}
           type={isPasswordShown.value ? "text" : "password"}
           value={value.value}
+          onFocus={onInputFocus}
           onChange={onChange}
           placeholder="Enter the password to decrypt"
         />
@@ -39,6 +57,12 @@ export default function Password(): JSX.Element {
           </Else>
         </If>
       </InputWrapper>
+      <ButtonWrapper>
+        <When condition={isError.value}>
+          <Error>Entered passsword is incorrect</Error>
+        </When>
+        <Button onClick={onSubmit}>Decrypt Secret</Button>
+      </ButtonWrapper>
     </PasswordRootWrapper>
   );
 }
@@ -60,7 +84,7 @@ const Heading = styled.h2`
 const InputWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   position: relative;
 `;
 
@@ -81,13 +105,30 @@ const HideIcon = styled(BiHide)`
   cursor: pointer;
 `;
 
-const Input = styled.input`
+const Input = styled.input<{ isError: boolean }>`
   all: unset;
   cursor: initial;
   box-sizing: border-box;
   width: 100%;
   background: hsla(0, 0%, 0%, 0.3);
+  outline: ${({ isError }) => (isError ? "1px solid rgb(255, 8, 0)" : "none")};
   border-radius: 10px;
   height: 60px;
   padding: 0 65px;
+`;
+
+const Error = styled.p`
+  padding-left: 8px;
+  font-weight: 300;
+  color: rgb(255, 8, 0);
+  font-size: 13px;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    margin-left: auto;
+  }
 `;
