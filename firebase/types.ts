@@ -1,7 +1,7 @@
 export interface SecretDataTypes {
   type: string;
   secret: string;
-  password?: string;
+  isEncryptedWithPassword: boolean;
   readRecieptEmail?: string;
   duration?: {
     unit: "sec" | "min" | "hour" | "day" | "week" | "month" | "year";

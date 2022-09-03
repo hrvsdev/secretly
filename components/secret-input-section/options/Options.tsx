@@ -9,9 +9,7 @@ import Top from "./top";
 import type { OptionsTypes } from "../types";
 
 export default function Options(props: OptionsTypes): JSX.Element {
-  // Props destructuring
-  const { message, email, password } = props;
-
+  
   // Show more options state
   const areOptionsShown = useState(false);
 

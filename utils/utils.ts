@@ -1,17 +1,14 @@
 import { AES, enc } from "crypto-js";
 import { customAlphabet } from "nanoid";
 
-import type { SecretDataTypes } from "../firebase/types";
-
 const genKey = () => {
   const alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
   const nanoid = customAlphabet(alphabet, 20);
   return nanoid();
 };
 
-const encrypt = (data: SecretDataTypes, key: string) => {
-  const ciphertext = AES.encrypt(JSON.stringify(data), key).toString();
-  return ciphertext;
+const encrypt = (data: any, key: string) => {
+  return AES.encrypt(JSON.stringify(data), key).toString();
 };
 
 const decrypt = (ciphertext: string, key: string) => {

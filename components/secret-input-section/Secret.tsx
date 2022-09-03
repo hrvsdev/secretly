@@ -4,6 +4,8 @@ import prependHttp from "prepend-http";
 import { useState } from "@hookstate/core";
 import { useMemo } from "react";
 
+import { password } from "./store";
+
 import Options from "./options";
 import Tabs from "./tabs";
 import LinkView from "../link-view-section";
@@ -11,12 +13,11 @@ import LinkView from "../link-view-section";
 import { saveSecret } from "../../firebase/db";
 import { encrypt, genKey, genLink } from "../../utils/utils";
 
+import type { SecretDataTypes } from "../../firebase/types";
+
 export default function Secret(): JSX.Element {
   // Values state
   const value = useState("");
-  const password = useState("");
-  const message = useState("");
-  const email = useState("");
   const link = useState("");
 
   // Loading state for data saving
@@ -38,13 +39,23 @@ export default function Secret(): JSX.Element {
   const onCreateButton = async () => {
     isLoading.set(true);
     const key = genKey();
-    const encrypted = encrypt({ type: activeTab.value, secret: valueToSave }, key);
+    const encrypted = encrypt(data(), key);
     const res = await saveSecret(encrypted);
     if (res.data?.id) {
       link.set(genLink(res.data.id, key));
       isLinkShown.set(true);
       isLoading.set(false);
     }
+  };
+
+  // Data to save
+  const data = (password: string): SecretDataTypes => {
+    const isEncryptedWithPassword = password.trim() ? true : false;
+    return {
+      type: activeTab.value,
+      secret: isEncryptedWithPassword ? encrypt(valueToSave, password) : valueToSave,
+      isEncryptedWithPassword: isEncryptedWithPassword,
+    };
   };
 
   // Disabling create button function
@@ -58,9 +69,6 @@ export default function Secret(): JSX.Element {
     isCreateButtonDisabled: disableButton() || false,
     isLoading: isLoading.value,
     onCreateButton: onCreateButton,
-    password: password,
-    message: message,
-    email: email,
   };
 
   // Link View Props
