@@ -3,7 +3,7 @@ import { useState } from "@hookstate/core";
 
 import { password } from "../../store";
 
-export default function Password(): JSX.Element {
+export default function ReadReceipt(): JSX.Element {
   // Input value state
   const value = useState(password);
 
