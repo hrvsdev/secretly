@@ -2,14 +2,16 @@ import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 import { useRouter } from "next/router";
 
-import { deleteSecret, getSecret } from "../../firebase/db";
-import { getHash, decrypt } from "../../utils/utils";
-
 import ViewButton from "../button";
 import CopyButton from "../copy-button";
 import Hero from "../hero";
 import SecButton from "../sec-button";
 import Error from "./error";
+
+import { deleteSecret, getSecret } from "../../firebase/db";
+import { getHash, decrypt } from "../../utils/utils";
+
+import type { SecretDataTypes } from "../../firebase/types";
 
 export default function Link(): JSX.Element {
   // Router hook
@@ -18,14 +20,20 @@ export default function Link(): JSX.Element {
   // Link from URL parameter
   const link = router.query.link as string;
 
+  // Secret text value state
+  const secret = useState("");
+
+  // Password value state
+  const password = useState("")
+
   // Show secret state
   const isSecretShown = useState(false);
 
+  // Show password input state
+  const isPasswordInputShown = useState(false);
+
   // Error state
   const isError = useState(false);
-
-  // Secret text value state
-  const secret = useState("");
 
   // Loading state
   const isLoading = useState(false);
@@ -42,7 +50,7 @@ export default function Link(): JSX.Element {
     const res = await getSecret(link);
     const data = res.data;
     if (data) {
-      const decrypted = decrypt(data.data, getHash());
+      const decrypted: SecretDataTypes = decrypt(data.data, getHash());
       if (decrypted) {
         if (decrypted.type === "text") secret.set(decrypted.secret), isSecretShown.set(true);
         else if (decrypted.type === "redirect") router.push(decrypted.secret);
@@ -113,6 +121,7 @@ const Secret = styled.div`
   padding: 20px;
   background: hsla(0, 0%, 0%, 0.3);
   color: white;
+  word-break: break-all;
   margin-bottom: 15px;
 `;
 
