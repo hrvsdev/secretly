@@ -15,15 +15,19 @@ export default function ReadReceipt(): JSX.Element {
   return (
     <PasswordWrapper>
       <Heading>Read receipt on email</Heading>
-      <Input type="email" value={email.value} onChange={onChange} placeholder="username@email.com" />
+      <Input
+        type="email"
+        value={email.value}
+        onChange={onChange}
+        placeholder="username@email.com"
+      />
       <Info>
         <p>
           Whenever the secret is revealed, we will inform you by the selected method. Don&apos;t
           worry, we will never send you spam or promotional mails and never store it permanently.
         </p>
         <p>
-          Your email is also end-to-end encrypted which we are unable to see until anyone open the
-          secret.
+          Just like your password and secret, email is also end-to-end encrypted and hidden to everyone.
         </p>
       </Info>
     </PasswordWrapper>

@@ -3,6 +3,7 @@ import { useState } from "@hookstate/core";
 import TabLayout from "../../../tab-layout";
 import Password from "../password";
 import ReadReceipt from "../read-receipt";
+import Delivery from "../delivery";
 
 export default function Tabs() {
   // Active tab state
@@ -22,7 +23,7 @@ export default function Tabs() {
         <ReadReceipt/>
       </TabLayout.Panel>
       <TabLayout.Panel id="delivery" active={activeTab}>
-        Delivery
+        <Delivery/>
       </TabLayout.Panel>
     </TabLayout.Tabs>
   );

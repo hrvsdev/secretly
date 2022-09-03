@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 
-import { readReceiptEmail } from "../../store";
+import { deliveryEmail } from "../../store";
 
 export default function Delivery(): JSX.Element {
   // Input value state
-  const email = useState(readReceiptEmail);
+  const email = useState(deliveryEmail);
 
   // Input change action
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,16 +14,11 @@ export default function Delivery(): JSX.Element {
 
   return (
     <PasswordWrapper>
-      <Heading>Read receipt on email</Heading>
+      <Heading>Deliver secret on email</Heading>
       <Input type="email" value={email.value} onChange={onChange} placeholder="username@email.com" />
       <Info>
         <p>
-          Whenever the secret is revealed, we will inform you by the selected method. Don&apos;t
-          worry, we will never send you spam or promotional mails and never store it permanently.
-        </p>
-        <p>
-          Your email is also end-to-end encrypted which we are unable to see until anyone open the
-          secret.
+          We can deliver the secret for you on email free of cost and hassle-free. This email is never saved to our database and just forgotten after you create a secret.
         </p>
       </Info>
     </PasswordWrapper>
