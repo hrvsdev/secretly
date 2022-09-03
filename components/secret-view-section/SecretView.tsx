@@ -12,6 +12,7 @@ import { deleteSecret, getSecret } from "../../firebase/db";
 import { getHash, decrypt } from "../../utils/utils";
 
 import type { SecretDataTypes } from "../../firebase/types";
+import Password from "./password";
 
 export default function Link(): JSX.Element {
   // Router hook
@@ -24,13 +25,16 @@ export default function Link(): JSX.Element {
   const secret = useState("");
 
   // Password value state
-  const password = useState("")
+  const password = useState("");
+
+  // Show view button state
+  const isViewButtonShown = useState(false)
 
   // Show secret state
   const isSecretShown = useState(false);
 
   // Show password input state
-  const isPasswordInputShown = useState(false);
+  const isPasswordInputShown = useState(true);
 
   // Error state
   const isError = useState(false);
@@ -76,12 +80,13 @@ export default function Link(): JSX.Element {
   return (
     <Main>
       <Hero {...heroProps} />
-      <ViewButtonWrapper show={isSecretShown.value || isError.value}>
+      <ViewButtonWrapper show={isSecretShown.value}>
         <ViewButton onClick={onShowSecret} isLoading={isLoading.value}>
           View Secret
         </ViewButton>
       </ViewButtonWrapper>
       <Error show={isError.value} />
+      <Password show={isPasswordInputShown.value} />
       <SecretWrapper show={isSecretShown.value}>
         <Secret>{secret.value}</Secret>
         <ButtonsWrapper>
@@ -98,7 +103,7 @@ const Main = styled.main`
 `;
 
 const ViewButtonWrapper = styled.div<{ show: boolean }>`
-  display: ${({ show }) => (show ? "none" : "flex")};
+  display: ${({ show }) => (show ? "flex" : "none")};
   justify-content: center;
   padding: 0 20px;
 `;
