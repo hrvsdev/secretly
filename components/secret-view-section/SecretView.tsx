@@ -100,6 +100,8 @@ export default function Link(): JSX.Element {
 
 const Main = styled.main`
   min-height: 100vh;
+  padding: 0 20px;
+  max-width: 760px;
 `;
 
 const ViewButtonWrapper = styled.div<{ show: boolean }>`

@@ -12,14 +12,13 @@ export default function Hero(props: HeroTypes): JSX.Element {
 }
 
 const HeroWrapper = styled.section`
-  margin: 0 auto 70px;
-  max-width: 800px;
   width: 100%;
-  padding: 70px 20px 0;
+  padding-top: 70px;
+  margin-bottom: 70px;
 
   @media (max-width: 600px) {
-    margin-bottom: 40px;
     padding-top: 40px;
+    margin-bottom: 40px;
   }
 `;
 
