@@ -1,4 +1,4 @@
-export interface secretDataTypes {
+export interface SecretDataTypes {
   type: string;
   secret: string;
   password?: string;
