@@ -1,32 +1,30 @@
 import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 
-import { password } from "../../store";
+import { readReceiptEmail } from "../../store";
 
 export default function ReadReceipt(): JSX.Element {
   // Input value state
-  const value = useState(password);
+  const email = useState(readReceiptEmail);
 
   // Input change action
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    value.set(e.target.value);
+    email.set(e.target.value);
   };
 
   return (
     <PasswordWrapper>
-      <Heading>Encrypt with password</Heading>
-      <Input
-        type="password"
-        value={value.value}
-        onChange={onChange}
-        placeholder="Enter a secure password"
-      />
+      <Heading>Read receipt on email</Heading>
+      <Input type="email" value={email.value} onChange={onChange} placeholder="username@email.com" />
       <Info>
         <p>
-          Enter an optional password to make secret even more secure. Even if you leave this, your
-          secret will always be encrypted and secure.
+          Whenever the secret is revealed, we will inform you by the selected method. Don&apos;t
+          worry, we will never send you spam or promotional mails and never store it permanently.
         </p>
-        <p>You should send password with other method rather than sending link and password together.</p>
+        <p>
+          Your email is also end-to-end encrypted which we are unable to see until anyone open the
+          secret.
+        </p>
       </Info>
     </PasswordWrapper>
   );
