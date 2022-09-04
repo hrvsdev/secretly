@@ -2,6 +2,6 @@ import { StateMethods } from "@hookstate/core";
 
 export interface PasswordTypes {
   password: StateMethods<string>;
-  isError: boolean;
+  isError: StateMethods<boolean>;
   onSubmit: () => void;
 }

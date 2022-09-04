@@ -81,10 +81,10 @@ export default function Link(): JSX.Element {
   const decryptWithPassword = () => {
     const decrypted = decrypt(secret.value, password.value);
     if (decrypted) {
-      if (decrypted.type === "text") {
-        decryptedSecret.set(decrypted.secret);
-        isSecretShown.set(true);
-      } else if (decrypted.type === "redirect") router.push(decrypted.secret);
+      decryptedSecret.set(decrypted);
+      isSecretShown.set(true);
+    } else {
+      isError.set(true);
     }
   };
 
@@ -103,14 +103,14 @@ export default function Link(): JSX.Element {
         <Default>
           <ViewButton isLoading={isLoading.value} onClick={onShowSecret} />
         </Default>
-        <Case condition={isPasswordInputShown.value}>
-          <Password password={password} onSubmit={decryptWithPassword} isError={isError.value}/>
+        <Case condition={isError.value}>
+          <Error />
         </Case>
         <Case condition={isSecretShown.value}>
           <Viewer secret={decryptedSecret.value} />
         </Case>
-        <Case condition={isError.value}>
-          <Error />
+        <Case condition={isPasswordInputShown.value}>
+          <Password password={password} onSubmit={decryptWithPassword} isError={isError} />
         </Case>
       </Switch>
     </Main>

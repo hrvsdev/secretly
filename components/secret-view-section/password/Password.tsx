@@ -6,13 +6,12 @@ import { BiShow, BiHide, BiKey } from "react-icons/bi";
 
 import Button from "../../button";
 
-import type{ PasswordTypes } from "./types";
+import type { PasswordTypes } from "./types";
 
 export default function Password(props: PasswordTypes): JSX.Element {
-
   // Props destructuring
-  const {password, isError, onSubmit} = props
-  
+  const { password, isError, onSubmit: onDecrypt } = props;
+
   // Password shown state
   const isPasswordShown = useState(false);
 
@@ -27,10 +26,7 @@ export default function Password(props: PasswordTypes): JSX.Element {
   // Submit button click action
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (value.value.trim()) {
-    } else {
-      return isError.set(true);
-    }
+    onDecrypt()
   };
 
   // Input focus action
@@ -44,7 +40,7 @@ export default function Password(props: PasswordTypes): JSX.Element {
         <Input
           isError={isError.value}
           type={isPasswordShown.value ? "text" : "password"}
-          value={value.value}
+          value={password.value}
           onFocus={onInputFocus}
           onChange={onChange}
           placeholder="Enter the password to decrypt"
