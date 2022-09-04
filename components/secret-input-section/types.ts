@@ -5,9 +5,7 @@ export interface TextareaTypes {
   value: StateMethods<string>;
 }
 
-export interface CreateButtonTypes {
-  isDisabled: boolean;
-  onClick: () => void;
+export interface CreateButtonTypes extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading: boolean;
   children: React.ReactNode;
 }

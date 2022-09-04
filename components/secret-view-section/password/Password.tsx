@@ -25,7 +25,8 @@ export default function Password(): JSX.Element {
   const onShowPassword = () => isPasswordShown.set((prev) => !prev);
 
   // Submit button click action
-  const onSubmit = () => {
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     if (value.value.trim()) {
     } else {
       return isError.set(true);
@@ -36,7 +37,7 @@ export default function Password(): JSX.Element {
   const onInputFocus = () => isError.set(false);
 
   return (
-    <PasswordRootWrapper>
+    <PasswordRootWrapper onSubmit={onSubmit}>
       <Heading>Enter the password</Heading>
       <InputWrapper>
         <KeyIcon size={28} />
@@ -61,13 +62,13 @@ export default function Password(): JSX.Element {
         <When condition={isError.value}>
           <Error>Entered passsword is incorrect</Error>
         </When>
-        <Button onClick={onSubmit}>Decrypt Secret</Button>
+        <Button type="submit">Decrypt Secret</Button>
       </ButtonWrapper>
     </PasswordRootWrapper>
   );
 }
 
-const PasswordRootWrapper = styled.div`
+const PasswordRootWrapper = styled.form`
   margin: auto;
   max-width: 800px;
   border-radius: 20px;
@@ -79,6 +80,10 @@ const Heading = styled.h2`
   font-size: 28px;
   margin-bottom: 20px;
   text-align: center;
+
+  @media (max-width: 600px) {
+    text-align: left;
+  }
 `;
 
 const InputWrapper = styled.div`
@@ -86,6 +91,10 @@ const InputWrapper = styled.div`
   align-items: center;
   margin-bottom: 15px;
   position: relative;
+
+  @media (max-width: 600px) {
+    margin-bottom: 0;
+  }
 `;
 
 const KeyIcon = styled(BiKey)`
@@ -115,6 +124,10 @@ const Input = styled.input<{ isError: boolean }>`
   border-radius: 10px;
   height: 60px;
   padding: 0 65px;
+
+  &:focus {
+    outline: 1px solid hsl(212, 100%, 50%);
+  }
 `;
 
 const Error = styled.p`
@@ -122,6 +135,10 @@ const Error = styled.p`
   font-weight: 300;
   color: rgb(255, 8, 0);
   font-size: 13px;
+
+  @media (max-width: 600px) {
+    margin-top: 5px;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -130,5 +147,12 @@ const ButtonWrapper = styled.div`
 
   button {
     margin-left: auto;
+    @media (max-width: 600px) {
+      margin-top: 15px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
   }
 `;

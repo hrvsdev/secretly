@@ -3,10 +3,10 @@ import styled from "@emotion/styled";
 import type { CreateButtonTypes } from "../secret-input-section/types";
 
 export default function CreateButton(props: CreateButtonTypes) {
-  const { isDisabled, onClick, isLoading, children } = props;
+  const { onClick, isLoading, children } = props;
 
   return (
-    <Button disabled={isDisabled} loading={+isLoading} onClick={onClick}>
+    <Button loading={+isLoading} onClick={onClick}>
       <span className="loader" />
       <span className="text">{children}</span>
     </Button>
@@ -18,7 +18,7 @@ const Button = styled.button<{ loading: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 140px;
+  min-width: 140px;
   height: 48px;
   color: #ffffff;
   background-color: #0072f5;
