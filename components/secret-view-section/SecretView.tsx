@@ -3,17 +3,16 @@ import { useState } from "@hookstate/core";
 import { useRouter } from "next/router";
 import { Switch, Case, Default } from "react-if";
 
-import ViewButton from "../button";
 import CopyButton from "../copy-button";
 import Hero from "../hero";
 import SecButton from "../sec-button";
 import Error from "./error";
+import Password from "./password";
 
 import { deleteSecret, getSecret } from "../../firebase/db";
 import { getHash, decrypt } from "../../utils/utils";
 
 import type { SecretDataTypes } from "../../firebase/types";
-import Password from "./password";
 
 export default function Link(): JSX.Element {
   // Router hook
@@ -28,14 +27,11 @@ export default function Link(): JSX.Element {
   // Password value state
   const password = useState("");
 
-  // Show view button state
-  const isViewButtonShown = useState(false);
-
   // Show secret state
   const isSecretShown = useState(false);
 
   // Show password input state
-  const isPasswordInputShown = useState(true);
+  const isPasswordInputShown = useState(false);
 
   // Error state
   const isError = useState(false);
@@ -83,16 +79,12 @@ export default function Link(): JSX.Element {
       <Hero {...heroProps} />
       <Switch>
         <Default>
-          <ViewButtonWrapper>
-            <ViewButton onClick={onShowSecret} isLoading={isLoading.value}>
-              View Secret
-            </ViewButton>
-          </ViewButtonWrapper>
+         
         </Default>
-        <Case>
+        <Case condition={isPasswordInputShown.value}>
           <Password />
         </Case>
-        <Case>
+        <Case condition={isSecretShown.value}>
           <SecretWrapper>
             <Secret>{secret.value}</Secret>
             <ButtonsWrapper>
@@ -101,7 +93,7 @@ export default function Link(): JSX.Element {
             </ButtonsWrapper>
           </SecretWrapper>
         </Case>
-        <Case>
+        <Case condition={isError.value}>
           <Error />
         </Case>
       </Switch>
@@ -114,11 +106,6 @@ const Main = styled.main`
   padding: 0 20px;
   max-width: 800px;
   margin: 0 auto;
-`;
-
-const ViewButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
 `;
 
 const SecretWrapper = styled.div`
