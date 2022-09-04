@@ -3,11 +3,11 @@ import { useState } from "@hookstate/core";
 import { useRouter } from "next/router";
 import { Switch, Case, Default } from "react-if";
 
-import CopyButton from "../copy-button";
 import Hero from "../hero";
-import SecButton from "../sec-button";
 import Error from "./error";
 import Password from "./password";
+import ViewButton from "./view-button";
+import Viewer from "./viewer";
 
 import { deleteSecret, getSecret } from "../../firebase/db";
 import { getHash, decrypt } from "../../utils/utils";
@@ -79,19 +79,13 @@ export default function Link(): JSX.Element {
       <Hero {...heroProps} />
       <Switch>
         <Default>
-         
+          <ViewButton isLoading={isLoading.value} onClick={onShowSecret} />
         </Default>
         <Case condition={isPasswordInputShown.value}>
           <Password />
         </Case>
         <Case condition={isSecretShown.value}>
-          <SecretWrapper>
-            <Secret>{secret.value}</Secret>
-            <ButtonsWrapper>
-              <SecButton onClick={onReply}>Reply with a secret</SecButton>
-              <CopyButton text={secret.value} />
-            </ButtonsWrapper>
-          </SecretWrapper>
+          <Viewer secret={secret.value} />
         </Case>
         <Case condition={isError.value}>
           <Error />
@@ -106,35 +100,4 @@ const Main = styled.main`
   padding: 0 20px;
   max-width: 800px;
   margin: 0 auto;
-`;
-
-const SecretWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: all 200ms;
-  transition-delay: 100ms;
-`;
-
-const Secret = styled.div`
-  border-radius: 10px;
-  min-height: 100px;
-  width: 100%;
-  padding: 20px;
-  background: hsla(0, 0%, 0%, 0.3);
-  color: white;
-  word-break: break-all;
-  margin-bottom: 15px;
-`;
-
-const ButtonsWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  column-gap: 15px;
-  @media (max-width: 600px) {
-    flex-direction: column-reverse;
-    row-gap: 15px;
-  }
 `;

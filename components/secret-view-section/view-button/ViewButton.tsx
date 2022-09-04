@@ -7,7 +7,7 @@ import type { ViewButtonTypes } from "./types";
 export default function ViewButton(props: ViewButtonTypes): JSX.Element {
   return (
     <ViewButtonWrapper>
-      <Button onClick={props.onClick} isLoading={props.isLoading || false}>
+      <Button onClick={props.onClick} isLoading={props.isLoading}>
         View Secret
       </Button>
     </ViewButtonWrapper>
