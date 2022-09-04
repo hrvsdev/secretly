@@ -24,7 +24,7 @@ const TextareaBox = styled.div`
 
 const Textarea = styled.textarea`
   padding: 0 20px;
-  height: 10rem;
+  height: 7rem;
   font-size: 1rem;
   resize: none;
   border: 0;

@@ -124,10 +124,6 @@ const Input = styled.input<{ isError: boolean }>`
   border-radius: 10px;
   height: 60px;
   padding: 0 65px;
-
-  &:focus {
-    outline: 1px solid hsl(212, 100%, 50%);
-  }
 `;
 
 const Error = styled.p`
