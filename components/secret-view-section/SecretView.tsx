@@ -27,6 +27,9 @@ export default function Link(): JSX.Element {
   // Decrypted secret
   const decryptedSecret = useState("");
 
+  // Secret type
+  const secretType = useState("text");
+
   // Password value state
   const password = useState("");
 
@@ -59,21 +62,25 @@ export default function Link(): JSX.Element {
     if (data) {
       const decrypted: SecretDataTypes = decrypt(data.data, getHash());
       if (decrypted) {
-        if (decrypted.isEncryptedWithPassword) {
-          isPasswordInputShown.set(true);
-          secret.set(decrypted.secret);
-        } else {
-          if (decrypted.type === "text") {
-            decryptedSecret.set(decrypted.secret);
-            isSecretShown.set(true);
-          } else if (decrypted.type === "redirect") router.push(decrypted.secret);
-          isLoading.set(false);
-        }
+        secret.set(decrypted.secret);
+        secretType.set(decrypted.type);
+        if (decrypted.isEncryptedWithPassword) isPasswordInputShown.set(true);
+        else showOrRedirect(secret.value);
       } else {
         isError.set(true);
       }
     } else {
       isError.set(true);
+    }
+  };
+
+  // Show secret or redirect according to type of secret
+  const showOrRedirect = (secret) => {
+    if (secretType.value === "text") {
+      decryptedSecret.set(secret.value);
+      isSecretShown.set(true);
+    } else if (type === "redirect") {
+      router.push(secret);
     }
   };
 
@@ -84,7 +91,7 @@ export default function Link(): JSX.Element {
       decryptedSecret.set(decrypted);
       isSecretShown.set(true);
     } else {
-      isError.set(true);
+      isPasswordIncorrect.set(true);
     }
   };
 
@@ -110,7 +117,11 @@ export default function Link(): JSX.Element {
           <Viewer secret={decryptedSecret.value} />
         </Case>
         <Case condition={isPasswordInputShown.value}>
-          <Password password={password} onSubmit={decryptWithPassword} isError={isError} />
+          <Password
+            password={password}
+            onSubmit={decryptWithPassword}
+            isError={isPasswordIncorrect}
+          />
         </Case>
       </Switch>
     </Main>
