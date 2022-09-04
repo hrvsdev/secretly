@@ -59,43 +59,44 @@ export default function Link(): JSX.Element {
     isLoading.set(true);
     const res = await getSecret(link);
     const data = res.data;
-    if (data) {
-      const decrypted: SecretDataTypes = decrypt(data.data, getHash());
-      if (decrypted) {
-        secret.set(decrypted.secret);
-        secretType.set(decrypted.type);
-        if (decrypted.isEncryptedWithPassword) isPasswordInputShown.set(true);
-        else showOrRedirect(secret.value);
-      } else {
-        isError.set(true);
-      }
-    } else {
-      isError.set(true);
-    }
+
+    if (!data) return isError.set(true);
+
+    const decrypted: SecretDataTypes = decrypt(data.data, getHash());
+
+    if (!decrypted) return isError.set(true);
+
+    secret.set(decrypted.secret);
+    secretType.set(decrypted.type);
+
+    if (decrypted.isEncryptedWithPassword) isPasswordInputShown.set(true);
+    else decryptedSecret.set(secret.value), showOrRedirect();
   };
 
   // Show secret or redirect according to type of secret
-  const showOrRedirect = (secret) => {
-    if (secretType.value === "text") {
-      decryptedSecret.set(secret.value);
-      isSecretShown.set(true);
-    } else if (type === "redirect") {
-      router.push(secret);
+  const showOrRedirect = () => {
+    switch (secretType.value) {
+      case "text":
+        isSecretShown.set(true);
+        break;
+      case "redirect":
+        router.push(decryptedSecret.value);
     }
   };
 
   // Decrypting with password
   const decryptWithPassword = () => {
     const decrypted = decrypt(secret.value, password.value);
-    if (decrypted) {
-      decryptedSecret.set(decrypted);
-      isSecretShown.set(true);
-    } else {
-      isPasswordIncorrect.set(true);
-    }
+    if (decrypted) decryptedSecret.set(decrypted), showOrRedirect();
+    else isPasswordIncorrect.set(true);
   };
 
   // Password component props
+  const passwordProps = {
+    password: password,
+    onSubmit: decryptWithPassword,
+    isError: isPasswordIncorrect,
+  };
 
   // Hero component props
   const heroProps = {
@@ -117,11 +118,7 @@ export default function Link(): JSX.Element {
           <Viewer secret={decryptedSecret.value} />
         </Case>
         <Case condition={isPasswordInputShown.value}>
-          <Password
-            password={password}
-            onSubmit={decryptWithPassword}
-            isError={isPasswordIncorrect}
-          />
+          <Password {...passwordProps} />
         </Case>
       </Switch>
     </Main>

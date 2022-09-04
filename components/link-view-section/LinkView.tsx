@@ -24,11 +24,6 @@ const LinkWrapper = styled.div<{ show: boolean }>`
   display: ${({ show }) => (show ? "flex" : "none")};
   flex-direction: column;
   align-items: center;
-  padding: 0 20px;
-  max-width: 800px;
-  margin: auto;
-  transition: all 200ms;
-  transition-delay: 100ms;
 `;
 
 const Link = styled.div`
