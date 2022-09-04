@@ -14,7 +14,7 @@ export default function ViewButton(props: ViewButtonTypes): JSX.Element {
   );
 }
 
-const ViewButtonWrapper = styled.div`
+const ViewButtonWrapper = styled.section`
   display: flex;
   justify-content: center;
 `;

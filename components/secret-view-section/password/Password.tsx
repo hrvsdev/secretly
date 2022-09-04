@@ -26,45 +26,49 @@ export default function Password(props: PasswordTypes): JSX.Element {
   // Submit button click action
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onDecrypt()
+    onDecrypt();
   };
 
   // Input focus action
   const onInputFocus = () => isError.set(false);
 
   return (
-    <PasswordRootWrapper onSubmit={onSubmit}>
-      <Heading>Enter the password</Heading>
-      <InputWrapper>
-        <KeyIcon size={28} />
-        <Input
-          isError={isError.value}
-          type={isPasswordShown.value ? "text" : "password"}
-          value={password.value}
-          onFocus={onInputFocus}
-          onChange={onChange}
-          placeholder="Enter the password to decrypt"
-        />
-        <If condition={isPasswordShown.value}>
-          <Then>
-            <HideIcon size={24} onClick={onShowPassword} />
-          </Then>
-          <Else>
-            <ShowIcon size={24} onClick={onShowPassword} />
-          </Else>
-        </If>
-      </InputWrapper>
-      <ButtonWrapper>
-        <When condition={isError.value}>
-          <Error>Entered passsword is incorrect</Error>
-        </When>
-        <Button type="submit">Decrypt Secret</Button>
-      </ButtonWrapper>
-    </PasswordRootWrapper>
+    <Section>
+      <PasswordWrapper onSubmit={onSubmit}>
+        <Heading>Enter the password</Heading>
+        <InputWrapper>
+          <KeyIcon size={28} />
+          <Input
+            isError={isError.value}
+            type={isPasswordShown.value ? "text" : "password"}
+            value={password.value}
+            onFocus={onInputFocus}
+            onChange={onChange}
+            placeholder="Enter the password to decrypt"
+          />
+          <If condition={isPasswordShown.value}>
+            <Then>
+              <HideIcon size={24} onClick={onShowPassword} />
+            </Then>
+            <Else>
+              <ShowIcon size={24} onClick={onShowPassword} />
+            </Else>
+          </If>
+        </InputWrapper>
+        <ButtonWrapper>
+          <When condition={isError.value}>
+            <Error>Entered passsword is incorrect</Error>
+          </When>
+          <Button type="submit">Decrypt Secret</Button>
+        </ButtonWrapper>
+      </PasswordWrapper>
+    </Section>
   );
 }
 
-const PasswordRootWrapper = styled.form`
+const Section = styled.section``
+
+const PasswordWrapper = styled.form`
   margin: auto;
   max-width: 800px;
   border-radius: 20px;

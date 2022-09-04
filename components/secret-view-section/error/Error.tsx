@@ -15,7 +15,7 @@ export default function Error(): JSX.Element {
   );
 }
 
-const Section = styled.div``;
+const Section = styled.section``;
 
 const ErrorWrapper = styled.div`
   display: flex;

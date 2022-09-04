@@ -24,7 +24,7 @@ export default function Viewer({ secret }: { secret: string }): JSX.Element {
   );
 }
 
-const SecretWrapper = styled.div`
+const SecretWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
