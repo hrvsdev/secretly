@@ -6,19 +6,19 @@ import { BiShow, BiHide, BiKey } from "react-icons/bi";
 
 import Button from "../../button";
 
-export default function Password(): JSX.Element {
-  // Input value state
-  const value = useState("");
+import type{ PasswordTypes } from "./types";
 
+export default function Password(props: PasswordTypes): JSX.Element {
+
+  // Props destructuring
+  const {password, isError, onSubmit} = props
+  
   // Password shown state
   const isPasswordShown = useState(false);
 
-  // Password error state
-  const isError = useState(false);
-
   // Input change action
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    value.set(e.target.value);
+    password.set(e.target.value);
   };
 
   // Show password button action

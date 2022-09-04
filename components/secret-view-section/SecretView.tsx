@@ -24,6 +24,9 @@ export default function Link(): JSX.Element {
   // Secret text value state
   const secret = useState("");
 
+  // Decrypted secret
+  const decryptedSecret = useState("");
+
   // Password value state
   const password = useState("");
 
@@ -35,6 +38,9 @@ export default function Link(): JSX.Element {
 
   // Error state
   const isError = useState(false);
+
+  // Password incorrect state
+  const isPasswordIncorrect = useState(false);
 
   // Loading state
   const isLoading = useState(false);
@@ -53,9 +59,16 @@ export default function Link(): JSX.Element {
     if (data) {
       const decrypted: SecretDataTypes = decrypt(data.data, getHash());
       if (decrypted) {
-        if (decrypted.type === "text") secret.set(decrypted.secret), isSecretShown.set(true);
-        else if (decrypted.type === "redirect") router.push(decrypted.secret);
-        isLoading.set(false);
+        if (decrypted.isEncryptedWithPassword) {
+          isPasswordInputShown.set(true);
+          secret.set(decrypted.secret);
+        } else {
+          if (decrypted.type === "text") {
+            decryptedSecret.set(decrypted.secret);
+            isSecretShown.set(true);
+          } else if (decrypted.type === "redirect") router.push(decrypted.secret);
+          isLoading.set(false);
+        }
       } else {
         isError.set(true);
       }
@@ -64,11 +77,20 @@ export default function Link(): JSX.Element {
     }
   };
 
-  // Reply button action
-  const onReply = () => {
-    router.push("/");
+  // Decrypting with password
+  const decryptWithPassword = () => {
+    const decrypted = decrypt(secret.value, password.value);
+    if (decrypted) {
+      if (decrypted.type === "text") {
+        decryptedSecret.set(decrypted.secret);
+        isSecretShown.set(true);
+      } else if (decrypted.type === "redirect") router.push(decrypted.secret);
+    }
   };
 
+  // Password component props
+
+  // Hero component props
   const heroProps = {
     heading: "Here is a secret",
     para: "Click the button below to view the secret. Copy it as it will be deleted instantly.",
@@ -82,10 +104,10 @@ export default function Link(): JSX.Element {
           <ViewButton isLoading={isLoading.value} onClick={onShowSecret} />
         </Default>
         <Case condition={isPasswordInputShown.value}>
-          <Password />
+          <Password password={password} onSubmit={decryptWithPassword} isError={isError.value}/>
         </Case>
         <Case condition={isSecretShown.value}>
-          <Viewer secret={secret.value} />
+          <Viewer secret={decryptedSecret.value} />
         </Case>
         <Case condition={isError.value}>
           <Error />
