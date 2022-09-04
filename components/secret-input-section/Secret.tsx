@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import isUrl from "is-url";
 import prependHttp from "prepend-http";
+import { Else, If, Then } from "react-if";
 import { useState } from "@hookstate/core";
 import { useMemo } from "react";
 
@@ -64,7 +65,7 @@ export default function Secret(): JSX.Element {
     if (activeTab.value === "redirect") return !isUrl(valueToSave);
   };
 
-  // Components props
+  // Options props
   const optionsProps = {
     isCreateButtonDisabled: disableButton() || false,
     isLoading: isLoading.value,
@@ -73,7 +74,6 @@ export default function Secret(): JSX.Element {
 
   // Link View Props
   const linkViewProps = {
-    isLinkShown: isLinkShown.value,
     link: link.value,
     onCreateNew: () => {
       value.set("");
@@ -84,19 +84,25 @@ export default function Secret(): JSX.Element {
 
   return (
     <Section>
-      <LinkView {...linkViewProps} />
-      <SecretWrapper show={!isLinkShown.value}>
-        <Tabs value={value} active={activeTab} />
-        <Options {...optionsProps} />
-      </SecretWrapper>
+      <If condition={isLinkShown.value}>
+        <Then>
+          <LinkView {...linkViewProps} />
+        </Then>
+        <Else>
+          <SecretWrapper>
+            <Tabs value={value} active={activeTab} />
+            <Options {...optionsProps} />
+          </SecretWrapper>
+        </Else>
+      </If>
     </Section>
   );
 }
 
 const Section = styled.section``;
 
-const SecretWrapper = styled.div<{ show: boolean }>`
-  display: ${({ show }) => (show ? "flex" : "none")};
+const SecretWrapper = styled.div`
+  display: flex;
   justify-content: center;
   flex-direction: column;
 `;

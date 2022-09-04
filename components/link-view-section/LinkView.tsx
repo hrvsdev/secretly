@@ -6,9 +6,9 @@ import SecButton from "../sec-button";
 import type { LinkViewType } from "./types";
 
 export default function LinkView(props: LinkViewType): JSX.Element {
-  const { link, isLinkShown, onCreateNew } = props;
+  const { link, onCreateNew } = props;
   return (
-    <LinkWrapper show={isLinkShown}>
+    <LinkWrapper>
       <Link>
         <Text>{link}</Text>
       </Link>
@@ -20,8 +20,8 @@ export default function LinkView(props: LinkViewType): JSX.Element {
   );
 }
 
-const LinkWrapper = styled.div<{ show: boolean }>`
-  display: ${({ show }) => (show ? "flex" : "none")};
+const LinkWrapper = styled.div`
+  display: flex;
   flex-direction: column;
   align-items: center;
 `;
