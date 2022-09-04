@@ -1,10 +1,13 @@
 import styled from "@emotion/styled";
+
 import Button from "../../button";
 
-export default function ViewButton() {
+import type { ViewButtonTypes } from "./types";
+
+export default function ViewButton(props: ViewButtonTypes): JSX.Element {
   return (
     <ViewButtonWrapper>
-      <Button onClick={onShowSecret} isLoading={isLoading}>
+      <Button onClick={props.onClick} isLoading={props.isLoading || false}>
         View Secret
       </Button>
     </ViewButtonWrapper>
