@@ -13,6 +13,7 @@ import { getHash, decrypt } from "../../utils/utils";
 
 import type { SecretDataTypes } from "../../firebase/types";
 import Password from "./password";
+import { When } from "react-if";
 
 export default function Link(): JSX.Element {
   // Router hook
@@ -28,7 +29,7 @@ export default function Link(): JSX.Element {
   const password = useState("");
 
   // Show view button state
-  const isViewButtonShown = useState(false)
+  const isViewButtonShown = useState(false);
 
   // Show secret state
   const isSecretShown = useState(false);
@@ -80,14 +81,16 @@ export default function Link(): JSX.Element {
   return (
     <Main>
       <Hero {...heroProps} />
-      <ViewButtonWrapper show={isSecretShown.value}>
+      <ViewButtonWrapper>
         <ViewButton onClick={onShowSecret} isLoading={isLoading.value}>
           View Secret
         </ViewButton>
       </ViewButtonWrapper>
-      <Error show={isError.value} />
-      <Password show={isPasswordInputShown.value} />
-      <SecretWrapper show={isSecretShown.value}>
+      <Error/>
+      <When condition={isPasswordInputShown.value}>
+        <Password />
+      </When>
+      <SecretWrapper>
         <Secret>{secret.value}</Secret>
         <ButtonsWrapper>
           <SecButton onClick={onReply}>Reply with a secret</SecButton>
@@ -105,14 +108,14 @@ const Main = styled.main`
   margin: 0 auto;
 `;
 
-const ViewButtonWrapper = styled.div<{ show: boolean }>`
-  display: ${({ show }) => (show ? "flex" : "none")};
+const ViewButtonWrapper = styled.div`
+  display: flex;
   justify-content: center;
   padding: 0 20px;
 `;
 
-const SecretWrapper = styled.div<{ show: boolean }>`
-  display: ${({ show }) => (show ? "flex" : "none")};
+const SecretWrapper = styled.div`
+  display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0 20px;

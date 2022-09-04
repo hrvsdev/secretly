@@ -2,10 +2,10 @@ import styled from "@emotion/styled";
 
 import { BiErrorCircle } from "react-icons/bi";
 
-export default function Error({ show }: { show: boolean }): JSX.Element {
+export default function Error(): JSX.Element {
   return (
     <Section>
-      <ErrorWrapper show={show}>
+      <ErrorWrapper>
         <Icon>
           <BiErrorCircle />
         </Icon>
@@ -21,8 +21,8 @@ const Section = styled.div`
   max-width: 800px;
 `;
 
-const ErrorWrapper = styled.div<{ show: boolean }>`
-  display: ${({ show }) => (show ? "flex" : "none")};
+const ErrorWrapper = styled.div`
+  display: flex;
   align-items: center;
   margin-bottom: 50px;
   width: 100%;
