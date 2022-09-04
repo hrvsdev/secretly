@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 import { useRouter } from "next/router";
+import { Switch, Case, Default } from "react-if";
 
 import ViewButton from "../button";
 import CopyButton from "../copy-button";
@@ -13,7 +14,6 @@ import { getHash, decrypt } from "../../utils/utils";
 
 import type { SecretDataTypes } from "../../firebase/types";
 import Password from "./password";
-import { When } from "react-if";
 
 export default function Link(): JSX.Element {
   // Router hook
@@ -81,22 +81,30 @@ export default function Link(): JSX.Element {
   return (
     <Main>
       <Hero {...heroProps} />
-      <ViewButtonWrapper>
-        <ViewButton onClick={onShowSecret} isLoading={isLoading.value}>
-          View Secret
-        </ViewButton>
-      </ViewButtonWrapper>
-      <Error/>
-      <When condition={isPasswordInputShown.value}>
-        <Password />
-      </When>
-      <SecretWrapper>
-        <Secret>{secret.value}</Secret>
-        <ButtonsWrapper>
-          <SecButton onClick={onReply}>Reply with a secret</SecButton>
-          <CopyButton text={secret.value} />
-        </ButtonsWrapper>
-      </SecretWrapper>
+      <Switch>
+        <Default>
+          <ViewButtonWrapper>
+            <ViewButton onClick={onShowSecret} isLoading={isLoading.value}>
+              View Secret
+            </ViewButton>
+          </ViewButtonWrapper>
+        </Default>
+        <Case>
+          <Password />
+        </Case>
+        <Case>
+          <SecretWrapper>
+            <Secret>{secret.value}</Secret>
+            <ButtonsWrapper>
+              <SecButton onClick={onReply}>Reply with a secret</SecButton>
+              <CopyButton text={secret.value} />
+            </ButtonsWrapper>
+          </SecretWrapper>
+        </Case>
+        <Case>
+          <Error />
+        </Case>
+      </Switch>
     </Main>
   );
 }
@@ -111,16 +119,12 @@ const Main = styled.main`
 const ViewButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding: 0 20px;
 `;
 
 const SecretWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 20px;
-  max-width: 800px;
-  margin: auto;
   transition: all 200ms;
   transition-delay: 100ms;
 `;

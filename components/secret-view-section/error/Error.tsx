@@ -15,11 +15,7 @@ export default function Error(): JSX.Element {
   );
 }
 
-const Section = styled.div`
-  margin: auto;
-  padding: 0 20px;
-  max-width: 800px;
-`;
+const Section = styled.div``;
 
 const ErrorWrapper = styled.div`
   display: flex;
