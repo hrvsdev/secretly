@@ -1,19 +1,19 @@
 import styled from "@emotion/styled";
 
-import type { CreateButtonTypes } from "../secret-input-section/types";
+import type { ButtonTypes } from "./types";
 
-export default function CreateButton(props: CreateButtonTypes) {
+export default function Button(props: ButtonTypes) {
   const { onClick, isLoading, children, isDisabled } = props;
 
   return (
-    <Button disabled={isDisabled} loading={+isLoading} onClick={onClick}>
+    <ButtonStyled disabled={isDisabled} loading={+isLoading} onClick={onClick}>
       <span className="loader" />
       <span className="text">{children}</span>
-    </Button>
+    </ButtonStyled>
   );
 }
 
-const Button = styled.button<{ loading: number }>`
+const ButtonStyled = styled.button<{ loading: number }>`
   all: unset;
   display: flex;
   justify-content: center;
@@ -75,7 +75,7 @@ const Button = styled.button<{ loading: number }>`
   }
 `;
 
-CreateButton.defaultProps = {
+Button.defaultProps = {
   isDisabled: false,
   isLoading: false,
   children: "Create Secret Link",
