@@ -5,11 +5,11 @@ import { Else, If, Then } from "react-if";
 import { useState } from "@hookstate/core";
 import { useMemo } from "react";
 
-import { password } from "./store";
-
 import Options from "./options";
 import Tabs from "./tabs";
 import LinkView from "../link-view-section";
+
+import { password } from "./store";
 
 import { saveSecret } from "../../firebase/db";
 import { encrypt, genKey, genLink } from "../../utils/utils";
@@ -79,6 +79,7 @@ export default function Secret(): JSX.Element {
       value.set("");
       isLinkShown.set(false);
       link.set("");
+      password.set("")
     },
   };
 
