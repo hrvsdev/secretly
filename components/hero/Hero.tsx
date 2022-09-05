@@ -1,12 +1,14 @@
 import styled from "@emotion/styled";
 
-import type { HeroTypes } from "./types";
+import { useHero } from "./store";
 
-export default function Hero(props: HeroTypes): JSX.Element {
+export default function Hero(): JSX.Element {
+  const hero = useHero();
+
   return (
     <HeroWrapper>
-      <Heading>{props.heading}</Heading>
-      <Para>{props.para}</Para>
+      <Heading>{hero.heading.value}</Heading>
+      <Para>{hero.para.value}</Para>
     </HeroWrapper>
   );
 }
@@ -44,8 +46,3 @@ const Para = styled.p`
     text-align: left;
   }
 `;
-
-Hero.defaultProps = {
-  heading: "Share a secret",
-  para: "The secret is end-to-end encrypted and can only be viewed once via a link.",
-};
