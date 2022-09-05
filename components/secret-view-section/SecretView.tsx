@@ -9,44 +9,34 @@ import Password from "./password";
 import ViewButton from "./view-button";
 import Viewer from "./viewer";
 
+import { useHero } from "../hero/store";
 import { deleteSecret, getSecret } from "../../firebase/db";
 import { getHash, decrypt } from "../../utils/utils";
 
 import type { SecretDataTypes } from "../../firebase/types";
 
 export default function Link(): JSX.Element {
-  // Router hook
+  // Router and URL link
   const router = useRouter();
-
-  // Link from URL parameter
   const link = router.query.link as string;
 
-  // Secret text value state
+  // Secret data value states
   const secret = useState("");
-
-  // Decrypted secret
   const decryptedSecret = useState("");
-
-  // Secret type
   const secretType = useState("text");
-
-  // Password value state
   const password = useState("");
 
-  // Show secret state
-  const isSecretShown = useState(false);
-
-  // Show password input state
-  const isPasswordInputShown = useState(false);
-
-  // Error state
+  // Error and loading states
+  const isLoading = useState(false);
   const isError = useState(false);
-
-  // Password incorrect state
   const isPasswordIncorrect = useState(false);
 
-  // Loading state
-  const isLoading = useState(false);
+  // Component visibility states
+  const isSecretShown = useState(false);
+  const isPasswordInputShown = useState(false);
+
+  // Component prop hook state
+  const hero = useHero();
 
   // View secret button action
   const onShowSecret = async () => {
@@ -98,15 +88,15 @@ export default function Link(): JSX.Element {
     isError: isPasswordIncorrect,
   };
 
-  // Hero component props
-  const heroProps = {
+  // Setting hero props
+  hero.set({
     heading: "Here is a secret",
     para: "Click the button below to view the secret. Copy it as it will be deleted instantly.",
-  };
+  });
 
   return (
     <Main>
-      <Hero {...heroProps} />
+      <Hero />
       <Switch>
         <Default>
           <ViewButton isLoading={isLoading.value} onClick={onShowSecret} />

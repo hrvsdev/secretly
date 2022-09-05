@@ -1,5 +1,4 @@
 import { StateMethods } from "@hookstate/core";
-import React from "react";
 
 export interface TextareaTypes {
   value: StateMethods<string>;
