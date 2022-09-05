@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 import type { ButtonTypes } from "./types";
 
-export default function Button(props: ButtonTypes) {
+export default function Button(props: ButtonTypes): JSX.Element {
   const { onClick, isLoading, children, isDisabled } = props;
 
   return (

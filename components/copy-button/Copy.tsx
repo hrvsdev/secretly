@@ -4,7 +4,7 @@ import { useState } from "@hookstate/core";
 
 import { BiCopy } from "react-icons/bi";
 
-export default function Copy({ text }: { text: string }) {
+export default function Copy({ text }: { text: string }): JSX.Element {
   // Copied text state
   const isCopied = useState(false);
 
