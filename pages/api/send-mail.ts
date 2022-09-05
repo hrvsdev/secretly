@@ -1,26 +1,24 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const testAccount = await nodemailer.createTestAccount();
+    const transporter = nodemailer.createTransport("SMTP", {
+        service: "hotmail",
+        auth: {
+            user: "scrtly@hotmail.com",
+            pass: "@Hrvs.dev822"
+        }
+    });
 
-  const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false,
-    auth: {
-      user: testAccount.user, 
-      pass: testAccount.pass,
-    },
-  });
-
-  const info = await transporter.sendMail({
-    from: '"Fred Foo 👻" <foo@example.com>',
-    to: "bar@example.com, baz@example.com",
-    subject: "Hello ✔",
-    text: "Hello world?",
-    html: "<b>Hello world?</b>",
-  });
-
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  try {
+    const info = await transporter.sendMail({
+      from: "Secretly <scrtly@hotmail.com>",
+      to: "itsharshvyas@gmail.com",
+      subject: "Hello ✔",
+      text: "Hello world?",
+    });
+    res.send(info);
+  } catch (error) {
+    res.json(error);
+  }
 }
