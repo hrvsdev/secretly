@@ -12,7 +12,7 @@ export default function Copy({ text }: { text: string }): JSX.Element {
   const onCopy = () => {
     copy(text);
     isCopied.set(true);
-    setTimeout(() => isCopied.set(false), 2000);
+    isCopied?.value && setTimeout(() => isCopied.set(false), 2000);
   };
 
   return (
