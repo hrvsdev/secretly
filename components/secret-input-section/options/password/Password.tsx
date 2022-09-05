@@ -1,11 +1,20 @@
 import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
+import { If, Then, Else } from "react-if";
+
+import { BiShow, BiHide, BiKey } from "react-icons/bi";
 
 import { password } from "../../store";
 
 export default function Password(): JSX.Element {
   // Input value state
   const value = useState(password);
+
+  // Password shown state
+  const isPasswordShown = useState(false);
+
+  // Show password button action
+  const onShowPassword = () => isPasswordShown.set((prev) => !prev);
 
   // Input change action
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,18 +24,31 @@ export default function Password(): JSX.Element {
   return (
     <PasswordWrapper>
       <Heading>Encrypt with password</Heading>
-      <Input
-        type="password"
-        value={value.value}
-        onChange={onChange}
-        placeholder="Enter a secure password"
-      />
+      <InputWrapper>
+        <KeyIcon size={28} />
+        <Input
+          type={isPasswordShown.value ? "text" : "password"}
+          value={value.value}
+          onChange={onChange}
+          placeholder="Enter a secure password"
+        />
+        <If condition={isPasswordShown.value}>
+          <Then>
+            <HideIcon size={24} onClick={onShowPassword} />
+          </Then>
+          <Else>
+            <ShowIcon size={24} onClick={onShowPassword} />
+          </Else>
+        </If>
+      </InputWrapper>
       <Info>
         <p>
           Enter an optional password to make secret even more secure. Even if you leave this, your
           secret will always be encrypted and secure.
         </p>
-        <p>You should send password with other method rather than sending link and password together.</p>
+        <p>
+          You should send password with other method rather than sending link and password together.
+        </p>
       </Info>
     </PasswordWrapper>
   );
@@ -43,6 +65,30 @@ const Heading = styled.h2`
   margin-bottom: 20px;
 `;
 
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 25px;
+`;
+
+const KeyIcon = styled(BiKey)`
+  position: absolute;
+  left: 20px;
+`;
+
+const ShowIcon = styled(BiShow)`
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+`;
+
+const HideIcon = styled(BiHide)`
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+`;
+
 const Input = styled.input`
   all: unset;
   cursor: initial;
@@ -51,8 +97,7 @@ const Input = styled.input`
   background: hsla(0, 0%, 0%, 0.3);
   border-radius: 10px;
   height: 54px;
-  padding: 0 20px;
-  margin-bottom: 25px;
+  padding: 0 65px;
 `;
 
 const Info = styled.div`
