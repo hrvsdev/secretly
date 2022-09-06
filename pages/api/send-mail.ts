@@ -2,6 +2,8 @@ import nodemailer from "nodemailer";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const { email, link } = req.query;
+
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -13,9 +15,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const info = await transporter.sendMail({
       from: "Secretly <i@hrvs.me>",
-      to: "itsharshvyas@gmail.com",
-      subject: "Hello ✔",
-      text: "Hello world?",
+      to: email,
+      subject: "It's a secret",
+      text: `Your secret: \n${link} \n For one time only \n, By secret.hrvs.me`,
     });
     res.send(info);
   } catch (error) {
