@@ -26,6 +26,4 @@ const getHash = () => {
   return hash.substring(1);
 };
 
-const exports = { genKey, encrypt, decrypt, genLink, getHash };
-
-export default exports
+export { genKey, encrypt, decrypt, genLink, getHash };
