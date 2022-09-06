@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const info = await transporter.sendMail({
-      from: "Secretly <i@hrvs.me>",
+      from: "Secretly <scrtly@hotmail.com>",
       to: email,
       subject: "It's a secret",
       text: `Your secret: \n${link} \n For one time only \n, By secret.hrvs.me`,
