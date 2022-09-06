@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       from: "Secretly <scrtly@hotmail.com>",
       to: email,
       subject: "It's a secret",
-      text: `Your secret: \n${link} \n For one time only \n, By secret.hrvs.me`,
+      text: `Your secret: \n${link} \n \n \n By Secretly`,
     });
     res.send(info);
   } catch (error) {
