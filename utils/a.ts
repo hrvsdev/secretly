@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-const sendMail = async () => {
+const sendMail = async (email: string, link: string) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -10,11 +10,11 @@ const sendMail = async () => {
   });
 
   try {
-    const info = await transporter.sendMail({
+    await transporter.sendMail({
       from: "Secretly <i@hrvs.me>",
-      to: "itsharshvyas@gmail.com",
-      subject: "Hello ✔",
-      text: "Hello world?",
+      to: email,
+      subject: "It's a secret",
+      text: `Your secret: \n${link} \n For one time only \n, By secret.hrvs.me`,
     });
   } catch (error) {
     console.log(error);
