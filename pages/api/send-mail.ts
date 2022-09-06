@@ -5,10 +5,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { email, link } = req.query;
 
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: "hotmail",
     auth: {
-      user: "itzharshvyas@gmail.com",
-      pass: "harsh.123",
+      user: "scrtly@hotmail.com",
+      pass: "@Hrvs.dev822",
     },
   });
 
