@@ -9,7 +9,7 @@ import Options from "./options";
 import Tabs from "./tabs";
 import LinkView from "../link-view-section";
 
-import { password } from "./store";
+import { password, deliveryEmail } from "./store";
 
 import { saveSecret } from "../../firebase/db";
 import { encrypt, genKey, genLink } from "../../utils/utils";
