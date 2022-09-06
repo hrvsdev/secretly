@@ -46,6 +46,7 @@ export default function Secret(): JSX.Element {
       link.set(genLink(res.data.id, key));
       isLinkShown.set(true);
       isLoading.set(false);
+      await fetch(`/api/send-mail?email=${deliveryEmail.value}&link=${link.value}`);
     }
   };
 
@@ -79,7 +80,7 @@ export default function Secret(): JSX.Element {
       value.set("");
       isLinkShown.set(false);
       link.set("");
-      password.set("")
+      password.set("");
     },
   };
 
