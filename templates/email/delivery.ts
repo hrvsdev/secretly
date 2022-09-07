@@ -1,4 +1,4 @@
-const delivery = (link: string, message?: string) => {
+const deliveryTemp = (link: string, message?: string) => {
   return `
     <style>
       body {
@@ -72,4 +72,4 @@ const delivery = (link: string, message?: string) => {
   `;
 };
 
-export default delivery;
+export default deliveryTemp;

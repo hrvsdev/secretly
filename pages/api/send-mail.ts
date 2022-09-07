@@ -1,9 +1,12 @@
 import nodemailer from "nodemailer";
+
+import deliveryTemp from "../../templates/email/delivery";
+
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { email, link } = req.query;
-  console.log(email, link)
+  const email = req.query.email as string;
+  const link = req.query.link as string;
 
   const transporter = nodemailer.createTransport({
     service: "hotmail",
@@ -18,11 +21,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       from: "Secretly <scrtly@hotmail.com>",
       to: email,
       subject: "It's a secret",
-      text: `Your secret: \n${link} \n \n \n By Secretly`,
+      text: deliveryTemp(link),
     });
     res.send(info);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.json(error);
   }
 }
