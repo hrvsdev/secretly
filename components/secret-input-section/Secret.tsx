@@ -20,7 +20,6 @@ export default function Secret(): JSX.Element {
   // Values state
   const value = useState("");
   const link = useState("");
-  // const deliveryEmail = useState("");
 
   // Loading state for data saving
   const isLoading = useState(false);
@@ -47,8 +46,7 @@ export default function Secret(): JSX.Element {
       link.set(genLink(res.data.id, key));
       isLinkShown.set(true);
       isLoading.set(false);
-      console.log(deliveryEmail.value)
-      await fetch(`/api/send-mail?email=${deliveryEmail.value}&link=${link.value}`);
+      deliveryEmail.value && sendMail()
     }
   };
 
@@ -60,6 +58,15 @@ export default function Secret(): JSX.Element {
       secret: isEncryptedWithPassword ? encrypt(valueToSave, password) : valueToSave,
       isEncryptedWithPassword: isEncryptedWithPassword,
     };
+  };
+
+  // Sending mail
+  const sendMail = async () => {
+    const email = encodeURIComponent(deliveryEmail.value);
+    const secretLink = encodeURIComponent(link.value);
+    console.log({email, secretLink})
+    const URL = `/api/send-mail?email=${email}&link=${secretLink}`;
+    await fetch(URL);
   };
 
   // Disabling create button function
