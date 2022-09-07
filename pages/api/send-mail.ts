@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { email, link } = req.query;
+  console.log(email, link)
 
   const transporter = nodemailer.createTransport({
     service: "hotmail",
@@ -21,6 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
     res.send(info);
   } catch (error) {
+    console.log(error)
     res.json(error);
   }
 }

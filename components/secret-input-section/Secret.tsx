@@ -20,6 +20,7 @@ export default function Secret(): JSX.Element {
   // Values state
   const value = useState("");
   const link = useState("");
+  // const deliveryEmail = useState("");
 
   // Loading state for data saving
   const isLoading = useState(false);
@@ -46,6 +47,7 @@ export default function Secret(): JSX.Element {
       link.set(genLink(res.data.id, key));
       isLinkShown.set(true);
       isLoading.set(false);
+      console.log(deliveryEmail.value)
       await fetch(`/api/send-mail?email=${deliveryEmail.value}&link=${link.value}`);
     }
   };
