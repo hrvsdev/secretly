@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       from: "Secretly <scrtly@hotmail.com>",
       to: email,
       subject: "It's a secret",
-      text: deliveryTemp(link),
+      html: deliveryTemp(link),
     });
     res.send(info);
   } catch (error) {
