@@ -19,7 +19,7 @@ const deliveryTemp = (link: string, message?: string) => {
                 <button style="height: 48px; width: 140px; border-radius: 10px; border: 0; outline: 0; cursor: pointer; font-size: 16px; background-color: #0072f5;"><a href="${link}" style="text-decoration: none; color: white;">View Secret</a></button>
             </div>
             <p class="warning" style="margin: 0; font-size: 16px; text-align: center; color: black; line-height: 25px; margin-bottom: 20px;">Be careful, the secret can be viewed only once.</p>
-            <p class="thanks" style="margin: 0; font-size: 16px; text-align: center; color: black; line-height: 25px;">Thanks!<br><a href style="text-decoration: none; color: #0072f5;">Secretly App</a></p>
+            <p class="thanks" style="margin: 0; font-size: 16px; text-align: center; color: black; line-height: 25px;">Thanks!<br><a href="https://secret.hrvs.me" style="text-decoration: none; color: #0072f5;">Secretly App</a></p>
         </div>
     </div>
 </body>
