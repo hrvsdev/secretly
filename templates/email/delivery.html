@@ -8,11 +8,12 @@
 
     <style>
       div.main {
-        max-width: 500px;
+        background: #fafbfc;
         padding: 20px;
         margin: 0 auto;
         display: flex;
-        justify-content: center;
+        align-items: center;
+        flex-direction: column;
       }
 
       a {
@@ -21,17 +22,31 @@
       }
 
       h1 {
-        margin: 0;
+        margin: 0 0 20px;
       }
 
-      div.inner
+      div.inner{
+        max-width: 500px;
+        width: 100%;
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      p{
+        margin: 0;
+      }
     </style>
   </head>
   <body>
     <div class="main">
       <h1><a href="https://secret.hrvs.me">Secretly</a></h1>
       <div class="inner">
-
+        <p class="hello">Hello Internet User,</p>
+        <p class="hello">Hello Internet User,</p>
       </div>
     </div>
   </body>
