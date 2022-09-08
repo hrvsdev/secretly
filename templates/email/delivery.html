@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-    <style>
+    <!-- <style>
       div.main {
         background: #fafbfc;
-        padding: 20px;
+        padding: 25px 20px;
         margin: 0 auto;
         display: flex;
         align-items: center;
@@ -25,8 +25,8 @@
         margin: 0 0 20px;
       }
 
-      div.inner{
-        max-width: 500px;
+      div.inner {
+        max-width: 600px;
         width: 100%;
         background: #fff;
         border-radius: 10px;
@@ -36,27 +36,55 @@
         flex-direction: column;
       }
 
-      p{
+      p {
         margin: 0;
+        font-size: 16px;
+        text-align: center;
       }
 
       p.hello {
-        margin-bottom: 5px;;
+        margin-bottom: 5px;
       }
 
-      button{
-        margin: 30px 0;
-        height: ;
+      p.warning{
+        margin-bottom: 20px;
       }
-    </style>
+
+      button {
+        margin: 20px 0;
+        height: 48px;
+        width: 140px;
+        border-radius: 10px;
+        border: 0;
+        outline: 0;
+        cursor: pointer;
+        font-size: 16px;
+        background-color: #0072f5;
+      }
+
+      button a {
+        color: white;
+      }
+    </style> -->
   </head>
   <body>
-    <div class="main">
-      <h1><a href="https://secret.hrvs.me">Secretly</a></h1>
+    <div
+      style="
+        background: #fafbfc;
+        padding: 25px 20px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      "
+    >
+      <h1 style="margin: 0 0 20px;"><a href="https://secret.hrvs.me">Secretly</a></h1>
       <div class="inner">
         <p class="hello">Hello Internet User,</p>
-        <p class="inst">Someone has sent you a secret. Click to view it.</p>
-        <button><a href="https://secret.hrvs.me">Open Secret</a></button>
+        <p class="inst">Someone sent you a secret. Click to see it.</p>
+        <button><a href="https://secret.hrvs.me">View Secret</a></button>
+        <p class="warning">Be careful, the secret can be viewed only once.</p>
+        <p class="thanks">Thanks!<br /><a href="">Secretly App</a></p>
       </div>
     </div>
   </body>
