@@ -6,7 +6,7 @@ const deliveryTemp = (link: string, message?: string) => {
 <head>
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Simple Call To Action</title>
+    <title>Secretly App</title>
 </head>
 
 <body style="padding: 25px 10px; background: #fbfcfe;">
