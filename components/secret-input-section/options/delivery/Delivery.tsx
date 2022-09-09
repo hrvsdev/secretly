@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import isEmail from "email-validator"
 import { useState } from "@hookstate/core";
 
 import { BiAt } from "react-icons/bi";
@@ -9,8 +10,16 @@ export default function Delivery(): JSX.Element {
   // Input value state
   const email = useState(deliveryEmail);
 
-  // Input change action
+  // Input events action
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    email.val.set(e.target.value);
+  };
+
+  // Input events action
+  const onFocus = () => isEma
+
+  // Input events action
+  const onBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
     email.val.set(e.target.value);
   };
 
@@ -23,6 +32,8 @@ export default function Delivery(): JSX.Element {
           type="email"
           value={email.val.value}
           onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
           placeholder="username@email.com"
         />
       </InputWrapper>
