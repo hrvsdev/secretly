@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import isEmail from "email-validator"
+import isEmail from "email-validator";
 import { useState } from "@hookstate/core";
 
 import { BiAt } from "react-icons/bi";
@@ -15,12 +15,14 @@ export default function Delivery(): JSX.Element {
     email.val.set(e.target.value);
   };
 
-  // Input events action
-  const onFocus = () => isEma
+  const onFocus = () => {
+    email.error.set(false);
+  };
 
-  // Input events action
   const onBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    email.val.set(e.target.value);
+    if (isEmail.validate(email.val.value)) {
+      email.error.set(true);
+    }
   };
 
   return (
