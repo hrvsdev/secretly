@@ -10,7 +10,7 @@ import Options from "./options";
 import Tabs from "./tabs";
 import LinkView from "../link-view-section";
 
-import { password, deliveryEmail, readReceiptEmail } from "./store";
+import { password, deliveryEmail as delEm, readReceiptEmail as rrEm } from "./store";
 
 import { saveSecret } from "../../firebase/db";
 import { encrypt, genKey, genLink } from "../../utils/utils";
@@ -21,6 +21,8 @@ export default function Secret(): JSX.Element {
   // Values state
   const value = useState("");
   const link = useState("");
+  const deliveryEmail = useState(delEm);
+  const readReceiptEmail = useState(rrEm);
 
   // Loading state for data saving
   const isLoading = useState(false);
@@ -72,15 +74,16 @@ export default function Secret(): JSX.Element {
 
   // Disabling create button function
   const disableButton = () => {
-    if (deliveryEmail.nested("error").value) return true;
-    if (readReceiptEmail.nested("error").value) return true;
     if (activeTab.value === "text") return !valueToSave;
     if (activeTab.value === "redirect") return !isUrl(valueToSave);
+    if (isEmailValid(deliveryEmail.nested("val").value)) return false;
+    if (isEmailValid(readReceiptEmail.nested("val").value)) return false;
   };
 
   // Checking if emails are invalid
   const isEmailValid = (email: string) => {
-    if (email.trim()) return isEmail.validate(email)
+    if (email.trim()) return isEmail.validate(email);
+    else return true;
   };
 
   // Options props
