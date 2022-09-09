@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import isEmail from "email-validator";
 import { useState } from "@hookstate/core";
 
 import { BiAt } from "react-icons/bi";

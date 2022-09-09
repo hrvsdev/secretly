@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import isUrl from "is-url";
 import prependHttp from "prepend-http";
+import isEmail from "email-validator";
 import { Else, If, Then } from "react-if";
 import { useState } from "@hookstate/core";
 import { useMemo } from "react";
@@ -71,10 +72,15 @@ export default function Secret(): JSX.Element {
 
   // Disabling create button function
   const disableButton = () => {
-    if (deliveryEmail.nested("error").value) return true
-    if (readReceiptEmail.nested("error").value) return true
+    if (deliveryEmail.nested("error").value) return true;
+    if (readReceiptEmail.nested("error").value) return true;
     if (activeTab.value === "text") return !valueToSave;
     if (activeTab.value === "redirect") return !isUrl(valueToSave);
+  };
+
+  // Checking if emails are invalid
+  const isEmailValid = (email: string) => {
+    if (email.trim()) return isEmail.validate(email)
   };
 
   // Options props
