@@ -21,7 +21,7 @@ export default function Delivery(): JSX.Element {
         <AtIcon size={22} />
         <Input
           type="email"
-          // value={email.val.value}
+          value={email.val.value}
           onChange={onChange}
           placeholder="username@email.com"
         />
