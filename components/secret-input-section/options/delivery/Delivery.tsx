@@ -18,13 +18,18 @@ export default function Delivery(): JSX.Element {
     <PasswordWrapper>
       <Heading>Deliver secret on email</Heading>
       <InputWrapper>
-      <AtIcon size={22}/>
-      <Input type="email" value={email.value} onChange={onChange} placeholder="username@email.com" />
-
+        <AtIcon size={22} />
+        <Input
+          type="email"
+          value={email.value}
+          onChange={onChange}
+          placeholder="username@email.com"
+        />
       </InputWrapper>
       <Info>
         <p>
-          We can deliver the secret for you on email free of cost and hassle-free. This email is never saved to our database and just forgotten after you create a secret.
+          We can deliver the secret for you on email free of cost and hassle-free. This email is
+          never saved to our database and just forgotten after you create a secret.
         </p>
       </Info>
     </PasswordWrapper>

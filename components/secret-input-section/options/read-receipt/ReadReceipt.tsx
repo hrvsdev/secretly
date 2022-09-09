@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 
+import { BiAt } from "react-icons/bi";
+
 import { readReceiptEmail } from "../../store";
 
 export default function ReadReceipt(): JSX.Element {
@@ -15,12 +17,15 @@ export default function ReadReceipt(): JSX.Element {
   return (
     <PasswordWrapper>
       <Heading>Read receipt on email</Heading>
-      <Input
-        type="email"
-        value={email.value}
-        onChange={onChange}
-        placeholder="username@email.com"
-      />
+      <InputWrapper>
+        <AtIcon size={22} />
+        <Input
+          type="email"
+          value={email.value}
+          onChange={onChange}
+          placeholder="username@email.com"
+        />
+      </InputWrapper>
       <Info>
         <p>
           Whenever the secret is revealed, we will inform you by the selected method. Don&apos;t
@@ -45,6 +50,18 @@ const Heading = styled.h2`
   margin-bottom: 20px;
 `;
 
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 25px;
+`;
+
+const AtIcon = styled(BiAt)`
+  position: absolute;
+  left: 20px;
+`;
+
 const Input = styled.input`
   all: unset;
   cursor: initial;
@@ -53,8 +70,7 @@ const Input = styled.input`
   background: hsla(0, 0%, 0%, 0.3);
   border-radius: 10px;
   height: 54px;
-  padding: 0 20px;
-  margin-bottom: 25px;
+  padding: 0 20px 0 55px;
 `;
 
 const Info = styled.div`
