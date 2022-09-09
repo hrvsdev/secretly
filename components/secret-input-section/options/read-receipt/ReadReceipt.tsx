@@ -21,7 +21,7 @@ export default function ReadReceipt(): JSX.Element {
         <AtIcon size={22} />
         <Input
           type="email"
-          value={email.set.value}
+          value={email.val.value}
           onChange={onChange}
           placeholder="username@email.com"
         />

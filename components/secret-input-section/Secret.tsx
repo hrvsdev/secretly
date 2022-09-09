@@ -9,7 +9,7 @@ import Options from "./options";
 import Tabs from "./tabs";
 import LinkView from "../link-view-section";
 
-import { password, deliveryEmail } from "./store";
+import { password, deliveryEmail, readReceiptEmail } from "./store";
 
 import { saveSecret } from "../../firebase/db";
 import { encrypt, genKey, genLink } from "../../utils/utils";
@@ -46,7 +46,7 @@ export default function Secret(): JSX.Element {
       link.set(genLink(res.data.id, key));
       isLinkShown.set(true);
       isLoading.set(false);
-      deliveryEmail.value && sendMail()
+      deliveryEmail.value && sendMail();
     }
   };
 
@@ -62,15 +62,16 @@ export default function Secret(): JSX.Element {
 
   // Sending mail
   const sendMail = async () => {
-    const email = encodeURIComponent(deliveryEmail.value);
+    const email = encodeURIComponent(deliveryEmail.val.value);
     const secretLink = encodeURIComponent(link.value);
-    console.log({email, secretLink})
+    console.log({ email, secretLink });
     const URL = `/api/send-mail?email=${email}&link=${secretLink}`;
     await fetch(URL);
   };
 
   // Disabling create button function
   const disableButton = () => {
+    if (deliveryEmail.error.value || readReceiptEmail.error.value) return true;
     if (activeTab.value === "text") return !valueToSave;
     if (activeTab.value === "redirect") return !isUrl(valueToSave);
   };
