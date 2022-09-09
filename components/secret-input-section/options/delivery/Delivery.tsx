@@ -11,7 +11,7 @@ export default function Delivery(): JSX.Element {
 
   // Input change action
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    email.set(e.target.value);
+    email.val.set(e.target.value);
   };
 
   return (
@@ -21,7 +21,7 @@ export default function Delivery(): JSX.Element {
         <AtIcon size={22} />
         <Input
           type="email"
-          value={email.value}
+          // value={email.val.value}
           onChange={onChange}
           placeholder="username@email.com"
         />
