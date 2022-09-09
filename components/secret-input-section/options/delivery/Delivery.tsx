@@ -15,16 +15,6 @@ export default function Delivery(): JSX.Element {
     email.val.set(e.target.value);
   };
 
-  const onFocus = () => {
-    email.error.set(false);
-  };
-
-  const onBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (isEmail.validate(email.val.value)) {
-      email.error.set(true);
-    }
-  };
-
   return (
     <PasswordWrapper>
       <Heading>Deliver secret on email</Heading>
@@ -34,8 +24,6 @@ export default function Delivery(): JSX.Element {
           type="email"
           value={email.val.value}
           onChange={onChange}
-          onFocus={onFocus}
-          onBlur={onBlur}
           placeholder="username@email.com"
         />
       </InputWrapper>

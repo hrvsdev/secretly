@@ -71,7 +71,8 @@ export default function Secret(): JSX.Element {
 
   // Disabling create button function
   const disableButton = () => {
-    if (deliveryEmail.error.value || readReceiptEmail.error.value) return true;
+    if (deliveryEmail.nested("error").value) return true
+    if (readReceiptEmail.nested("error").value) return true
     if (activeTab.value === "text") return !valueToSave;
     if (activeTab.value === "redirect") return !isUrl(valueToSave);
   };
