@@ -88,7 +88,7 @@ export default function Secret(): JSX.Element {
       errors.readReceiptError = !isEmail.validate(readReceiptEmail.val.get());
     }
     deliveryEmail.err.set(errors.deliveryError);
-    readReceiptEmail.err.set(errors.deliveryError);
+    readReceiptEmail.err.set(errors.readReceiptError);
     return errors.deliveryError || errors.readReceiptError;
   };
 
