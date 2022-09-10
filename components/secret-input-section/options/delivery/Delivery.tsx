@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "@hookstate/core";
 
 import { BiAt } from "react-icons/bi";
+import { When } from "react-if";
 
 import { deliveryEmail } from "../../store";
 
@@ -21,11 +22,15 @@ export default function Delivery(): JSX.Element {
         <AtIcon size={22} />
         <Input
           type="email"
+          isError={email.err.get()}
           value={email.val.get()}
           onChange={onChange}
           placeholder="username@email.com"
         />
       </InputWrapper>
+      <When condition={email.err.get()}>
+        <Error>Entered passsword is incorrect</Error>
+      </When>
       <Info>
         <p>
           We can deliver the secret for you on email free of cost and hassle-free. This email is
@@ -59,7 +64,7 @@ const AtIcon = styled(BiAt)`
   left: 20px;
 `;
 
-const Input = styled.input`
+const Input = styled.input<{ isError?: boolean }>`
   all: unset;
   cursor: initial;
   box-sizing: border-box;
@@ -68,6 +73,14 @@ const Input = styled.input`
   border-radius: 10px;
   height: 54px;
   padding: 0 20px 0 55px;
+  outline: ${({ isError }) => (isError ? "1px solid rgb(255, 8, 0)" : "none")};
+`;
+
+const Error = styled.p`
+  padding-left: 8px;
+  font-weight: 300;
+  color: rgb(255, 8, 0);
+  font-size: 13px;
 `;
 
 const Info = styled.div`
