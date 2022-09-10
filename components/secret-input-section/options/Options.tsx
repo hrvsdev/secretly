@@ -6,15 +6,26 @@ import { BiChevronDown } from "react-icons/bi";
 import CreateButton from "../../button";
 import Top from "./top";
 
+import { deliveryEmail, readReceiptEmail } from "../store";
 import type { OptionsTypes } from "../types";
 
 export default function Options(props: OptionsTypes): JSX.Element {
-  
   // Show more options state
   const areOptionsShown = useState(false);
 
+  // Error states
+  const deliveryError = useState(deliveryEmail.err)
+  const readReceiptError = useState(readReceiptEmail.err)
+
   // More options button action
   const onMoreOptions = () => areOptionsShown.set((prev) => !prev);
+
+  // More options button props
+  const moreButtonProps = {
+    active: areOptionsShown.value,
+    error: deliveryError.value || readReceiptError.value,
+    onClick: onMoreOptions,
+  };
 
   // Create button component props
   const createButtonProps = {
@@ -27,7 +38,7 @@ export default function Options(props: OptionsTypes): JSX.Element {
     <OptionsWrapper>
       <Top isVisible={areOptionsShown.value} />
       <Bottom>
-        <MoreButton active={areOptionsShown.value} onClick={onMoreOptions}>
+        <MoreButton {...moreButtonProps}>
           <BiChevronDown />
           More Options
         </MoreButton>
@@ -52,9 +63,9 @@ const Bottom = styled.div`
   }
 `;
 
-const MoreButton = styled.button<{ active?: boolean }>`
+const MoreButton = styled.button<{ active?: boolean; error?: boolean }>`
   all: unset;
-  color: #d9d9d9;
+  color: ${({ error }) => (error ? "#ff0800" : "#d9d9d9")};
   border-radius: 5px;
   padding: 0 8px 0 5px;
   cursor: pointer;
@@ -64,9 +75,9 @@ const MoreButton = styled.button<{ active?: boolean }>`
   display: flex;
   align-items: center;
   transition: all 250ms;
-
+  
   @media (max-width: 600px) {
-    color: #0073ff;
+    color: ${({ error }) => (error ? "#ff0800" : "#0073ff")};
     background-color: hsla(0, 0%, 100%, 0.05);
     padding: 0;
     width: 100%;
