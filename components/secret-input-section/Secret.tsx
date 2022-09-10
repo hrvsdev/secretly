@@ -80,15 +80,20 @@ export default function Secret(): JSX.Element {
 
   // Checking if emails are invalid
   const areEmailsInvalid = () => {
-    deliveryEmail.err.set(false);
-    let valid = true;
-    const email = deliveryEmail.val.get();
+    const errors = { deliveryError: false, readReceiptError: false };
 
-    if (email.trim()) valid = isEmail.validate(email);
-    else valid = true;
+    if (deliveryEmail.val.get().trim()) {
+      errors.deliveryError = !isEmail.validate(deliveryEmail.val.get());
+    }
 
-    !valid && deliveryEmail.err.set(true)
-    return !valid;
+    if (readReceiptEmail.val.get().trim()) {
+      errors.readReceiptError = !isEmail.validate(readReceiptEmail.val.get());
+    }
+
+    deliveryEmail.err.set(errors.deliveryError);
+    readReceiptEmail.err.set(errors.deliveryError);
+
+    return errors.deliveryError && errors.readReceiptError;
   };
 
   // Options props
