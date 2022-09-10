@@ -39,16 +39,17 @@ export default function Secret(): JSX.Element {
 
   // Create button click action
   const onCreateButton = async () => {
-    isLoading.set(true);
-    const key = genKey();
-    const encrypted = encrypt(data(password.value), key);
-    const res = await saveSecret(encrypted);
-    if (res.data?.id) {
-      link.set(genLink(res.data.id, key));
-      isLinkShown.set(true);
-      isLoading.set(false);
-      deliveryEmail.val.get() && sendMail();
-    }
+    if (areEmailsInvalid()) return;
+    // isLoading.set(true);
+    // const key = genKey();
+    // const encrypted = encrypt(data(password.value), key);
+    // const res = await saveSecret(encrypted);
+    // if (res.data?.id) {
+    //   link.set(genLink(res.data.id, key));
+    //   isLinkShown.set(true);
+    //   isLoading.set(false);
+    //   deliveryEmail.val.get() && sendMail();
+    // }
   };
 
   // Data to save
@@ -77,10 +78,17 @@ export default function Secret(): JSX.Element {
     else return false;
   };
 
-  // Checking if email is invalid
-  const isEmailValid = (email: string) => {
-    if (email.trim()) return isEmail.validate(email);
-    else return true;
+  // Checking if emails are invalid
+  const areEmailsInvalid = () => {
+    deliveryEmail.err.set(false);
+    let valid = true;
+    const email = deliveryEmail.val.get();
+
+    if (email.trim()) valid = isEmail.validate(email);
+    else valid = true;
+
+    !valid && deliveryEmail.err.set(true)
+    return !valid;
   };
 
   // Options props
