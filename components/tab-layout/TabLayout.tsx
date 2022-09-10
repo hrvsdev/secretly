@@ -10,9 +10,9 @@ export function List({ children }: TabListTypes) {
   return <TabListStyled>{children}</TabListStyled>;
 }
 
-export function Tab({ children, id, title, active }: TabTypes) {
+export function Tab({ children, id, title, active, error }: TabTypes) {
   return (
-    <TabStyled onClick={() => active.set(id)} active={active.value === id}>
+    <TabStyled onClick={() => active.set(id)} active={active.value === id} error={error}>
       {children ? children : title}
     </TabStyled>
   );
@@ -36,7 +36,7 @@ const TabListStyled = styled.div`
   justify-content: center;
 `;
 
-const TabStyled = styled.button<{ active?: boolean }>`
+const TabStyled = styled.button<{ active?: boolean, error?:boolean }>`
   all: unset;
   display: flex;
   justify-content: center;
@@ -48,6 +48,7 @@ const TabStyled = styled.button<{ active?: boolean }>`
   transition: all 250ms;
   border-radius: 5px 5px 0 0;
   color: ${({ active }) => active && "#0072f5"};
+  color: ${({ error }) => error && "#ff0800"};
   border-bottom: 2px solid ${({ active }) => (active ? "currentcolor" : "transparent")};
 
   @media (hover: hover) and (pointer: fine) {
