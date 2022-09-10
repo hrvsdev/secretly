@@ -56,7 +56,6 @@ const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  margin-bottom: 25px;
 `;
 
 const AtIcon = styled(BiAt)`
@@ -73,10 +72,11 @@ const Input = styled.input<{ isError?: boolean }>`
   border-radius: 10px;
   height: 54px;
   padding: 0 20px 0 55px;
-  outline: ${({ isError }) => (isError ? "1px solid rgb(255, 8, 0)" : "none")};
+  border: ${({ isError }) => (isError ? "1px solid rgb(255, 8, 0)" : "none")};
 `;
 
 const Error = styled.p`
+  margin-top: 5px;
   padding-left: 8px;
   font-weight: 300;
   color: rgb(255, 8, 0);
@@ -87,6 +87,7 @@ const Info = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
+  margin-top: 25px;
   font-size: 15px;
   padding-left: 8px;
   color: rgba(255, 255, 255, 0.8);

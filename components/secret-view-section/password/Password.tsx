@@ -120,7 +120,7 @@ const Input = styled.input<{ isError: boolean }>`
   box-sizing: border-box;
   width: 100%;
   background: hsla(0, 0%, 0%, 0.3);
-  outline: ${({ isError }) => (isError ? "1px solid rgb(255, 8, 0)" : "none")};
+  border: ${({ isError }) => (isError ? "1px solid rgb(255, 8, 0)" : "none")};
   border-radius: 10px;
   height: 60px;
   padding: 0 65px;

@@ -40,16 +40,16 @@ export default function Secret(): JSX.Element {
   // Create button click action
   const onCreateButton = async () => {
     if (areEmailsInvalid()) return;
-    // isLoading.set(true);
-    // const key = genKey();
-    // const encrypted = encrypt(data(password.value), key);
-    // const res = await saveSecret(encrypted);
-    // if (res.data?.id) {
-    //   link.set(genLink(res.data.id, key));
-    //   isLinkShown.set(true);
-    //   isLoading.set(false);
-    //   deliveryEmail.val.get() && sendMail();
-    // }
+    isLoading.set(true);
+    const key = genKey();
+    const encrypted = encrypt(data(password.value), key);
+    const res = await saveSecret(encrypted);
+    if (res.data?.id) {
+      link.set(genLink(res.data.id, key));
+      isLinkShown.set(true);
+      isLoading.set(false);
+      deliveryEmail.val.get() && sendMail();
+    }
   };
 
   // Data to save
@@ -81,19 +81,15 @@ export default function Secret(): JSX.Element {
   // Checking if emails are invalid
   const areEmailsInvalid = () => {
     const errors = { deliveryError: false, readReceiptError: false };
-
     if (deliveryEmail.val.get().trim()) {
       errors.deliveryError = !isEmail.validate(deliveryEmail.val.get());
     }
-
     if (readReceiptEmail.val.get().trim()) {
       errors.readReceiptError = !isEmail.validate(readReceiptEmail.val.get());
     }
-
     deliveryEmail.err.set(errors.deliveryError);
     readReceiptEmail.err.set(errors.deliveryError);
-
-    return errors.deliveryError && errors.readReceiptError;
+    return errors.deliveryError || errors.readReceiptError;
   };
 
   // Options props
