@@ -8,7 +8,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const type = req.query.type as string;
   const email = req.query.email as string;
   const link = req.query.link as string;
-  const time = new Date().toLocaleString()
+  const id = req.query.id as string;
+  const time = new Date().toString()
 
   const transporter = nodemailer.createTransport({
     service: "hotmail",
@@ -23,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       from: "Secretly <scrtly@hotmail.com>",
       to: email,
       subject: type === "delivery" ? "It's a secret" : "Secret opened",
-      html: type === "delivery" ? deliveryTemp(link) : recieptTemp(time),
+      html: type === "delivery" ? deliveryTemp(link) : recieptTemp(id, time),
     });
     res.send(info);
   } catch (error) {

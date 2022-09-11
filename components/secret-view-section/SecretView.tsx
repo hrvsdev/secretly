@@ -61,7 +61,7 @@ export default function Link(): JSX.Element {
     secretType.set(decrypted.type);
     readReceiptEmail.set(decrypted.readRecieptEmail);
 
-    sendMail()
+    sendMail(link)
 
     if (decrypted.isEncryptedWithPassword) isPasswordInputShown.set(true);
     else decryptedSecret.set(secret.value), showOrRedirect();
@@ -86,12 +86,12 @@ export default function Link(): JSX.Element {
   };
 
   // Sending mail
-  const sendMail = async () => {
+  const sendMail = async (id: string) => {
     const email = encodeURIComponent(readReceiptEmail.value);
 
     if (!email) return;
-    
-    const URL = `/api/send-mail?type=receipt&email=${email}`;
+
+    const URL = `/api/send-mail?type=receipt&email=${email}&id=${id}`;
     await fetch(URL);
   };
 
