@@ -55,9 +55,12 @@ export default function Secret(): JSX.Element {
   // Data to save
   const data = (password: string): SecretDataTypes => {
     const isEncryptedWithPassword = password.trim() ? true : false;
+    const receiptEmail = readReceiptEmail.val.get().trim();
+
     return {
       type: activeTab.value,
       secret: isEncryptedWithPassword ? encrypt(valueToSave, password) : valueToSave,
+      readRecieptEmail: isEncryptedWithPassword ? encrypt(receiptEmail, password) : receiptEmail,
       isEncryptedWithPassword: isEncryptedWithPassword,
     };
   };
