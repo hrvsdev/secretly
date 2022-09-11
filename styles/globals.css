@@ -2,8 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Inter, sens-serif;
-  font-display: fallback;
+  font-family: Inter, Helvetica, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
