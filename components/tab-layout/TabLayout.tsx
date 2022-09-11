@@ -30,23 +30,31 @@ const TabsStyled = styled.div`
 const TabListStyled = styled.div`
   height: 45px;
   margin-bottom: 20px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  position: relative;
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
+  
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  }
 
-  &::-webkit-scrollbar{
+  &::-webkit-scrollbar {
     display: none;
   }
 `;
 
-const TabStyled = styled.button<{ active?: boolean, error?:boolean }>`
+const TabStyled = styled.button<{ active?: boolean; error?: boolean }>`
   all: unset;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  margin-bottom: -2px;
   padding: 0 22px;
   cursor: pointer;
   transition: all 250ms;
@@ -55,11 +63,11 @@ const TabStyled = styled.button<{ active?: boolean, error?:boolean }>`
   color: ${({ error }) => error && "#ff0800"};
   border-bottom: 2px solid ${({ active }) => (active ? "currentcolor" : "transparent")};
 
-  &:first-child{
+  &:first-child {
     margin-left: auto;
   }
 
-  &:last-child{
+  &:last-child {
     margin-right: auto;
   }
 
