@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import copy from "copy-to-clipboard";
+import { useEffect } from "react";
 import { useState } from "@hookstate/core";
 
 import { BiCopy } from "react-icons/bi";
@@ -13,6 +14,12 @@ export default function Copy({ text }: { text: string }): JSX.Element {
     copy(text);
     isCopied.set(true);
   };
+
+  // useEffect
+  useEffect(() => {
+    const timer = setTimeout(() => isCopied.set(false), 2000);
+    return () => clearTimeout(timer);
+  }, [isCopied]);
 
   return (
     <CopyButton onClick={onCopy}>
