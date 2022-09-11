@@ -34,8 +34,8 @@ const TabListStyled = styled.div`
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
-  
-  &::after {
+
+  &::before {
     content: "";
     position: absolute;
     right: 0;
