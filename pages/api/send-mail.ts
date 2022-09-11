@@ -1,11 +1,13 @@
 import nodemailer from "nodemailer";
 
+import recieptTemp from "../../templates/email/receipt";
 import deliveryTemp from "../../templates/email/delivery";
-
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const type = req.query.type as string;
   const email = req.query.email as string;
+  const time = req.query.time as string;
   const link = req.query.link as string;
 
   const transporter = nodemailer.createTransport({
@@ -21,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       from: "Secretly <scrtly@hotmail.com>",
       to: email,
       subject: "It's a secret",
-      html: deliveryTemp(link),
+      html: type === "delivery" ? deliveryTemp(link) : recieptTemp(time),
     });
     res.send(info);
   } catch (error) {

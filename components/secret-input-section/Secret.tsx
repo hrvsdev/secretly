@@ -40,15 +40,18 @@ export default function Secret(): JSX.Element {
   // Create button click action
   const onCreateButton = async () => {
     if (areEmailsInvalid()) return;
+
     isLoading.set(true);
+
     const key = genKey();
     const encrypted = encrypt(data(password.value), key);
     const res = await saveSecret(encrypted);
+
     if (res.data?.id) {
       link.set(genLink(res.data.id, key));
       isLinkShown.set(true);
       isLoading.set(false);
-      deliveryEmail.val.get() && sendMail();
+      sendMail();
     }
   };
 
@@ -67,9 +70,11 @@ export default function Secret(): JSX.Element {
   // Sending mail
   const sendMail = async () => {
     const email = encodeURIComponent(deliveryEmail.val.value);
+
+    if (!email) return;
+
     const secretLink = encodeURIComponent(link.value);
-    console.log({ email, secretLink });
-    const URL = `/api/send-mail?email=${email}&link=${secretLink}`;
+    const URL = `/api/send-mail?type=delivery&email=${email}&link=${secretLink}`;
     await fetch(URL);
   };
 
@@ -83,14 +88,18 @@ export default function Secret(): JSX.Element {
   // Checking if emails are invalid
   const areEmailsInvalid = () => {
     const errors = { deliveryError: false, readReceiptError: false };
+
     if (deliveryEmail.val.get().trim()) {
       errors.deliveryError = !isEmail.validate(deliveryEmail.val.get());
     }
+
     if (readReceiptEmail.val.get().trim()) {
       errors.readReceiptError = !isEmail.validate(readReceiptEmail.val.get());
     }
+
     deliveryEmail.err.set(errors.deliveryError);
     readReceiptEmail.err.set(errors.readReceiptError);
+
     return errors.deliveryError || errors.readReceiptError;
   };
 

@@ -25,7 +25,7 @@ export default function Link(): JSX.Element {
   const decryptedSecret = useState("");
   const secretType = useState("text");
   const password = useState("");
-  const readReceiptEmail = useState("")
+  const readReceiptEmail = useState("");
 
   // Error and loading states
   const isLoading = useState(false);
@@ -59,7 +59,9 @@ export default function Link(): JSX.Element {
 
     secret.set(decrypted.secret);
     secretType.set(decrypted.type);
-    readReceiptEmail.set(decrypted.readRecieptEmail)
+    readReceiptEmail.set(decrypted.readRecieptEmail);
+
+    sendMail()
 
     if (decrypted.isEncryptedWithPassword) isPasswordInputShown.set(true);
     else decryptedSecret.set(secret.value), showOrRedirect();
@@ -79,9 +81,20 @@ export default function Link(): JSX.Element {
   // Decrypting with password
   const decryptWithPassword = () => {
     const decrypted = decrypt(secret.value, password.value);
-    const decryptedEmail = decrypt(secret.value, password.value);
     if (decrypted) decryptedSecret.set(decrypted), showOrRedirect();
     else isPasswordIncorrect.set(true);
+  };
+
+  // Sending mail
+  const sendMail = async () => {
+    const email = encodeURIComponent(readReceiptEmail.value);
+
+    if (!email) return;
+
+    const time = Date.now().toString()
+    console.log({ email, time });
+    const URL = `/api/send-mail?type=receipt&email=${email}&time=${time}`;
+    await fetch(URL);
   };
 
   // Password component props
