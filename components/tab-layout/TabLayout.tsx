@@ -7,7 +7,11 @@ export function Tabs({ children }: TabsTypes) {
 }
 
 export function List({ children }: TabListTypes) {
-  return <TabListStyled>{children}</TabListStyled>;
+  return (
+    <TabListStyled>
+      <div>{children}</div>
+    </TabListStyled>
+  );
 }
 
 export function Tab({ children, id, title, active, error }: TabTypes) {
@@ -28,12 +32,19 @@ const TabsStyled = styled.div`
 `;
 
 const TabListStyled = styled.div`
-  height: 45px;
-  margin-bottom: 20px;
   position: relative;
-  display: flex;
-  flex-direction: row;
-  overflow-x: scroll;
+  
+  div {
+    height: 45px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 
   &::before {
     content: "";
@@ -42,10 +53,6 @@ const TabListStyled = styled.div`
     left: 0;
     bottom: 0;
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-  }
-
-  &::-webkit-scrollbar {
-    display: none;
   }
 `;
 
@@ -63,11 +70,11 @@ const TabStyled = styled.button<{ active?: boolean; error?: boolean }>`
   color: ${({ error }) => error && "#ff0800"};
   border-bottom: 2px solid ${({ active }) => (active ? "currentcolor" : "transparent")};
 
-  &:first-child {
+  &:first-of-type {
     margin-left: auto;
   }
 
-  &:last-child {
+  &:last-of-type {
     margin-right: auto;
   }
 
