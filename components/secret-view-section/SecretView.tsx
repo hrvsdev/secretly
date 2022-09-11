@@ -90,10 +90,8 @@ export default function Link(): JSX.Element {
     const email = encodeURIComponent(readReceiptEmail.value);
 
     if (!email) return;
-
-    const time = Date.now().toString()
-    console.log({ email, time });
-    const URL = `/api/send-mail?type=receipt&email=${email}&time=${time}`;
+    
+    const URL = `/api/send-mail?type=receipt&email=${email}`;
     await fetch(URL);
   };
 

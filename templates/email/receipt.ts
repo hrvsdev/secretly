@@ -9,40 +9,22 @@ const recieptTemp = (time: string) => {
       </head>
 
       <body style="padding: 25px 10px; background: #fbfcfe;">
-        <div class="main" style="max-width: 600px; width: 100%; margin: 0 auto;">
-          <h1 style="margin: 0 0 20px; font-size: 32px; text-align: center;">
-            <a href="https://secret.hrvs.me" style="text-decoration: none; color: #0072f5;"
-              >Secretly</a
-            >
-          </h1>
-          <div
-            class="inner"
-            style="box-sizing: border-box; width: 100%; background: #fff; border-radius: 10px; padding: 25px 10px; margin: 0 auto; border: 1px solid #e5eafa;"
-          >
-            <p
-              class="hello"
-              style="margin: 0; font-size: 16px; text-align: center; color: black; line-height: 25px; margin-bottom: 5px;"
-            >
-              Hello,
-            </p>
-            <p
-              class="inst"
-              style="margin: 0 0 25px; font-size: 16px; text-align: center; color: black; line-height: 25px;"
-            >
-              The secret you created was opened at ${time}
-            </p>
-            <p
-              class="thanks"
-              style="margin: 0; font-size: 16px; text-align: center; color: black; line-height: 25px;"
-            >
-              Thanks!<br /><a
-                href="https://secret.hrvs.me"
-                style="text-decoration: none; color: #0072f5;"
-                >Secretly App</a
-              >
-            </p>
-          </div>
-        </div>
+      <div class="main" style="max-width: 600px; width: 100%; margin: 0 auto;">
+      <h1 style="margin: 0 0 20px; font-size: 32px; text-align: center;">
+        <a href="https://secret.hrvs.me" style="text-decoration: none; color: #0072f5;">Secretly</a>
+      </h1>
+      <div class="inner" style="box-sizing: border-box; width: 100%; background: #fff; border-radius: 10px; padding: 25px 10px; margin: 0 auto; border: 1px solid #e5eafa;">
+        <p class="hello" style="margin: 0; font-size: 16px; text-align: center; color: black; line-height: 25px; margin-bottom: 5px;">
+          Hello,
+        </p>
+        <p class="inst" style="margin: 0 0 25px; font-size: 16px; text-align: center; color: black; line-height: 25px;">
+          The secret you created was opened at <br>${time}
+        </p>
+        <p class="thanks" style="margin: 0; font-size: 16px; text-align: center; color: black; line-height: 25px;">
+          Thanks!<br /><a href="https://secret.hrvs.me" style="text-decoration: none; color: #0072f5;">Secretly App</a>
+        </p>
+      </div>
+    </div>    
       </body>
     </html>
   `;

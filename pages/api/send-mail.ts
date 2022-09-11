@@ -7,8 +7,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const type = req.query.type as string;
   const email = req.query.email as string;
-  const time = req.query.time as string;
   const link = req.query.link as string;
+  const time = new Date().toLocaleString()
 
   const transporter = nodemailer.createTransport({
     service: "hotmail",
@@ -22,7 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const info = await transporter.sendMail({
       from: "Secretly <scrtly@hotmail.com>",
       to: email,
-      subject: "It's a secret",
+      subject: type === "delivery" ? "It's a secret" : "Secret opened",
       html: type === "delivery" ? deliveryTemp(link) : recieptTemp(time),
     });
     res.send(info);
