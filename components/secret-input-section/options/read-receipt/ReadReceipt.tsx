@@ -29,7 +29,7 @@ export default function Delivery(): JSX.Element {
         />
       </InputWrapper>
       <When condition={email.err.get()}>
-        <Error>Entered email is invalid</Error>
+        <Error>Entered email is invalid. Remove it or make it valid.</Error>
       </When>
       <Info>
         <p>

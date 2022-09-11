@@ -33,7 +33,11 @@ const TabListStyled = styled.div`
   border-bottom: 2px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar{
+    display: none;
+  }
 `;
 
 const TabStyled = styled.button<{ active?: boolean, error?:boolean }>`
@@ -50,6 +54,14 @@ const TabStyled = styled.button<{ active?: boolean, error?:boolean }>`
   color: ${({ active }) => active && "#0072f5"};
   color: ${({ error }) => error && "#ff0800"};
   border-bottom: 2px solid ${({ active }) => (active ? "currentcolor" : "transparent")};
+
+  &:first-child{
+    margin-left: auto;
+  }
+
+  &:last-child{
+    margin-right: auto;
+  }
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
