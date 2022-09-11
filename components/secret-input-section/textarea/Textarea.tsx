@@ -6,7 +6,8 @@ export default function TextareaInput({ value }: TextareaTypes): JSX.Element {
   return (
     <TextareaBox>
       <Textarea
-        placeholder="What's on your mind!"
+        placeholder="Enter your secret,
+        whether it's a password, PIN, keys, or anything else confidential."
         onChange={(e) => value.set(e.target.value)}
         value={value.value}
         spellCheck={false}
@@ -31,6 +32,7 @@ const Textarea = styled.textarea`
   background: transparent;
   width: 100%;
   color: white;
+  line-height: 25px;
 
   &:focus {
     outline: none;

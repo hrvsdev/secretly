@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     service: "hotmail",
     auth: {
       user: "scrtly@hotmail.com",
-      pass: "@Hrvs.dev822",
+      pass: process.env.EMAIL_PASSWORD,
     },
   });
 

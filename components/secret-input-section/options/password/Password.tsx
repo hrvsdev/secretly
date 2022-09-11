@@ -28,6 +28,7 @@ export default function Password(): JSX.Element {
         <KeyIcon size={28} />
         <Input
           type={isPasswordShown.value ? "text" : "password"}
+          autoComplete="new-password"
           value={value.value}
           onChange={onChange}
           placeholder="Enter a secure password"

@@ -40,6 +40,7 @@ const Secret = styled.div`
   background: hsla(0, 0%, 0%, 0.3);
   color: white;
   word-break: break-all;
+  line-height: 25px;
   margin-bottom: 15px;
 `;
 

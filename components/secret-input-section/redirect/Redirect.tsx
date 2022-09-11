@@ -7,9 +7,11 @@ import type { TextareaTypes } from "../types";
 export default function RedirectInput({ value }: TextareaTypes): JSX.Element {
   return (
     <RedirectBox>
-      <BiLink size={25}/>
+      <BiLink size={25} />
       <Input
         placeholder="Enter url to redirect"
+        type="text"
+        autoComplete="url"
         onChange={(e) => value.set(e.target.value)}
         value={value.value}
         spellCheck={false}
@@ -25,8 +27,8 @@ const RedirectBox = styled.div`
   padding: 0 18px;
   border-radius: 10px;
   background: hsla(0, 0%, 0%, 0.3);
-  
-  svg{
+
+  svg {
     margin-right: 13px;
   }
 `;

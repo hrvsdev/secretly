@@ -11,6 +11,10 @@ export default function Tabs() {
   // Active tab state
   const activeTab = useState("password");
 
+  // Error states
+  const deliveryError = useState(deliveryEmail.err);
+  const readReceiptError = useState(readReceiptEmail.err);
+
   return (
     <TabLayout.Tabs>
       <TabLayout.List>
@@ -19,13 +23,13 @@ export default function Tabs() {
           title="Read Receipt"
           id="receipt"
           active={activeTab}
-          error={readReceiptEmail.err.get()}
+          error={readReceiptError.value}
         />
         <TabLayout.Tab
           title="Delivery"
           id="delivery"
           active={activeTab}
-          error={deliveryEmail.err.get()}
+          error={deliveryError.value}
         />
       </TabLayout.List>
       <TabLayout.Panel id="password" active={activeTab}>
