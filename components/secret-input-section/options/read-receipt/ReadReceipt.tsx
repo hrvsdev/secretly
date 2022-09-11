@@ -32,14 +32,8 @@ export default function Delivery(): JSX.Element {
         <Error>Entered email is invalid. Remove it or make it valid.</Error>
       </When>
       <Info>
-        <p>
-          Whenever the secret is revealed, we will inform you by the selected method. Don&apos;t
-          worry, we will never send you spam or promotional mails and never store it permanently.
-        </p>
-        <p>
-          Just like your password and secret, email is also end-to-end encrypted and hidden to
-          everyone.
-        </p>
+        <p>Whenever the secret is revealed, we will inform you by the selected method. The <b>SECRET ID</b> is used to inform you about the secret.</p>
+        <p>Don&apos;t worry, we will never send you spam or promotional mails.</p>
       </Info>
     </PasswordWrapper>
   );

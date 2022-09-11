@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import date from "date-and-time"
 
 import recieptTemp from "../../templates/email/receipt";
 import deliveryTemp from "../../templates/email/delivery";
@@ -9,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const email = req.query.email as string;
   const link = req.query.link as string;
   const id = req.query.id as string;
-  const time = new Date().toString()
+  const time = date.format(new Date(), 'dddd, MMM DD YYYY at HH:mm:ss [UTC]ZZ')
 
   const transporter = nodemailer.createTransport({
     service: "hotmail",
