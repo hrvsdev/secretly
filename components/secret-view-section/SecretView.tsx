@@ -14,6 +14,7 @@ import { deleteSecret, getSecret } from "../../firebase/db";
 import { getHash, decrypt } from "../../utils/utils";
 
 import type { SecretDataTypes } from "../../firebase/types";
+import { useEffect } from "react";
 
 export default function Link(): JSX.Element {
   // Router and URL link
@@ -61,7 +62,7 @@ export default function Link(): JSX.Element {
     secretType.set(decrypted.type);
     readReceiptEmail.set(decrypted.readRecieptEmail);
 
-    sendMail(link)
+    sendMail(link);
 
     if (decrypted.isEncryptedWithPassword) isPasswordInputShown.set(true);
     else decryptedSecret.set(secret.value), showOrRedirect();
@@ -102,11 +103,14 @@ export default function Link(): JSX.Element {
     isError: isPasswordIncorrect,
   };
 
-  // Setting hero props
-  hero.set({
-    heading: "Here is a secret",
-    para: "Click the button below to view the secret. Copy it as it will be deleted instantly.",
-  });
+  // Setting hero props on startup
+  useEffect(() => {
+    hero.set({
+      heading: "Share a secret",
+      para: "The secret is end-to-end encrypted and can only be viewed once via a link.",
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Main>

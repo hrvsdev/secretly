@@ -12,9 +12,13 @@ const encrypt = (data: any, key: string) => {
 };
 
 const decrypt = (ciphertext: string, key: string) => {
-  const bytes = AES.decrypt(ciphertext, key);
-  const str = bytes.toString(enc.Utf8);
-  return str ? JSON.parse(str) : null;
+  try {
+    const bytes = AES.decrypt(ciphertext, key);
+    const str = bytes.toString(enc.Utf8);
+    return str ? JSON.parse(str) : null;
+  } catch (err) {
+    return null;
+  }
 };
 
 const genLink = (id: string, key: string) => {
