@@ -9,7 +9,6 @@ import Password from "./password";
 import ViewButton from "./view-button";
 import Viewer from "./viewer";
 
-import { useHero } from "../hero/store";
 import { deleteSecret, getSecret } from "../../firebase/db";
 import { getHash, decrypt } from "../../utils/utils";
 
@@ -35,9 +34,6 @@ export default function Link(): JSX.Element {
   // Component visibility states
   const isSecretShown = useState(false);
   const isPasswordInputShown = useState(false);
-
-  // Component prop hook state
-  const hero = useHero();
 
   // View secret button action
   const onShowSecret = async () => {
@@ -103,14 +99,14 @@ export default function Link(): JSX.Element {
   };
 
   // Setting hero props
-  hero.set({
+  const heroProps = {
     heading: "Here is a secret",
     para: "Click the button below to view the secret. Copy it as it will be deleted instantly.",
-  });
+  };
 
   return (
     <Main>
-      <Hero />
+      <Hero {...heroProps} />
       <Switch>
         <Default>
           <ViewButton isLoading={isLoading.value} onClick={onShowSecret} />
