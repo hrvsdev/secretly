@@ -11,7 +11,7 @@ import Viewer from "./viewer";
 
 import { deleteSecret, getSecret } from "../../firebase/db";
 import { getHash, decrypt } from "../../utils/utils";
-import { invalidKeyErr, noKeyErr, secretNotFoundErr } from "./error/errors";
+import { invalidKeyErr, secretNotFoundErr } from "./error/errors";
 
 import type { SecretDataTypes } from "../../firebase/types";
 
@@ -52,7 +52,7 @@ export default function Link(): JSX.Element {
     // Getting hash from URL and showing error if not found
     const hash = getHash();
     if (!hash.trim() || !(hash.length === 20))
-      return errText.set(noKeyErr), isError.set(true);
+      return errText.set(invalidKeyErr), isError.set(true);
 
     // Getting data from database dnd showing error if not found
     const res = await getSecret(link);
