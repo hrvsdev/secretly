@@ -11,6 +11,7 @@ import Viewer from "./viewer";
 
 import { deleteSecret, getSecret } from "../../firebase/db";
 import { getHash, decrypt } from "../../utils/utils";
+import { invalidKeyErr, noKeyErr, secretNotFoundErr } from "./error/errors";
 
 import type { SecretDataTypes } from "../../firebase/types";
 
@@ -31,6 +32,9 @@ export default function Link(): JSX.Element {
   const isError = useState(false);
   const isPasswordIncorrect = useState(false);
 
+  // Error text state
+  const errText = useState("Something wrong happened!");
+
   // Component visibility states
   const isSecretShown = useState(false);
   const isPasswordInputShown = useState(false);
@@ -44,21 +48,32 @@ export default function Link(): JSX.Element {
   // Getting secret from DB
   const getSecretFromDB = async () => {
     isLoading.set(true);
+
+    // Getting hash from URL and showing error if not found
+    const hash = getHash();
+    if (!hash.trim() || !(hash.length === 20))
+      return errText.set(noKeyErr), isError.set(true);
+
+    // Getting data from database dnd showing error if not found
     const res = await getSecret(link);
     const data = res.data;
 
-    if (!data) return isError.set(true);
+    if (!data) return errText.set(secretNotFoundErr), isError.set(true);
 
-    const decrypted: SecretDataTypes = decrypt(data.data, getHash());
+    // Decrypting the data and showing error if it fails
+    const decrypted: SecretDataTypes = decrypt(data.data, hash);
 
-    if (!decrypted) return isError.set(true);
+    if (!decrypted) return errText.set(invalidKeyErr), isError.set(true);
 
+    // Setting data to the states
     secret.set(decrypted.secret);
     secretType.set(decrypted.type);
     readReceiptEmail.set(decrypted.readRecieptEmail);
 
+    // Sending read receipt to the email
     sendMail(link);
 
+    // If secret is password protected, then showing password box otherwise showing them secret
     if (decrypted.isEncryptedWithPassword) isPasswordInputShown.set(true);
     else decryptedSecret.set(secret.value), showOrRedirect();
   };
@@ -112,7 +127,7 @@ export default function Link(): JSX.Element {
           <ViewButton isLoading={isLoading.value} onClick={onShowSecret} />
         </Default>
         <Case condition={isError.value}>
-          <Error />
+          <Error err={errText.value} />
         </Case>
         <Case condition={isSecretShown.value}>
           <Viewer secret={decryptedSecret.value} />

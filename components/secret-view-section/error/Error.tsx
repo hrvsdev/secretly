@@ -2,14 +2,14 @@ import styled from "@emotion/styled";
 
 import { BiErrorCircle } from "react-icons/bi";
 
-export default function Error(): JSX.Element {
+export default function Error({ err }: { err: string }): JSX.Element {
   return (
     <Section>
       <ErrorWrapper>
         <Icon>
           <BiErrorCircle />
         </Icon>
-        <Text>This secret is unavailable.</Text>
+        <Text>{err}</Text>
       </ErrorWrapper>
     </Section>
   );
@@ -41,4 +41,7 @@ const Icon = styled.div`
   }
 `;
 
-const Text = styled.p``;
+const Text = styled.p`
+  font-size: 15px;
+  line-height: 1.4;
+`;
